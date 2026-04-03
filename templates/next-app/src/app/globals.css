@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+/* ── UDesigner Design Tokens ── */
+:root {
+  --bg-primary: #0e1011;
+  --bg-elevated: #161819;
+  --bg-surface: #1e2022;
+  --border: #2a2d2f;
+  --text-primary: #f0f0f0;
+  --text-secondary: #8a8f93;
+  --text-tertiary: #7f858c;
+  --accent: #22c55e;
+  --accent-hover: #16a34a;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@theme inline {
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-surface: var(--bg-surface);
+  --color-border: var(--border);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+/* ── Base ── */
+html {
+  overflow-x: clip;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: clip; /* clip instead of hidden — doesn't break sticky */
+}
+
+p, li, span {
+  line-height: 1.6;
+}
+
+/* ── Catalis: Testimonial Scroll ── */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

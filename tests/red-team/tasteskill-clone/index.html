@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Taste Skill | The Anti-Slop Frontend Framework for AI Agents</title>
+  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    ::selection {
+      background-color: #3f3f46;
+      color: #e4e4e7;
+    }
+
+    /* ── Base ── */
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      min-height: 100vh;
+      background-color: #0e1011;
+      color: #d4d4d8;
+      font-family: 'Satoshi', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* ── Noise Overlay ── */
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 256px 256px;
+    }
+
+    /* ── Container ── */
+    .container {
+      width: 100%;
+      max-width: 64rem;
+      margin: 0 auto;
+      padding: 128px 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 128px;
+      position: relative;
+      z-index: 10;
+    }
+
+    /* ── Header ── */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      padding: 16px 24px;
+    }
+
+    .header-logo {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #e0e0e4;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    .header-links {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .header-links a {
+      color: #a1a1aa;
+      text-decoration: none;
+      transition: color 150ms ease-out;
+    }
+
+    .header-links a:hover {
+      color: #e0e0e4;
+    }
+
+    .header-links svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: #e0e0e4;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      max-width: 720px;
+    }
+
+    .hero .tagline {
+      font-size: 1.125rem;
+      color: #a1a1aa;
+      margin-top: 16px;
+    }
+
+    .copy-btn {
+      margin-top: 24px;
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #18181b;
+      color: #e4e4e7;
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: 'Satoshi', sans-serif;
+      border-radius: 12px;
+      border: 1px solid rgba(63, 63, 70, 0.6);
+      cursor: pointer;
+      transition: background-color 150ms ease-out, border-color 150ms ease-out;
+      min-height: 44px;
+    }
+
+    .copy-btn:hover {
+      background-color: #27272a;
+      border-color: #3f3f46;
+    }
+
+    .copy-btn:active {
+      transform: scale(0.98);
+    }
+
+    .copy-btn:focus-visible {
+      outline: 2px solid #a1a1aa;
+      outline-offset: 2px;
+    }
+
+    .hero-github {
+      margin-top: 16px;
+      font-size: 0.875rem;
+      color: #71717a;
+      text-decoration: none;
+      transition: color 150ms ease-out;
+    }
+
+    .hero-github:hover {
+      color: #a1a1aa;
+    }
+
+    /* ── Compat Section ── */
+    .compat {
+      max-width: 560px;
+    }
+
+    .compat h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #e0e0e4;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .compat p {
+      font-size: 1rem;
+      color: #a1a1aa;
+      line-height: 1.7;
+    }
+
+    /* ── Manifesto / Kinetic Section ── */
+    .manifesto {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 96px;
+      padding: 128px 0;
+    }
+
+    .manifesto-words {
+      font-size: clamp(3rem, 9vw, 6rem);
+      font-weight: 900;
+      color: #e0e0e4;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      text-align: center;
+    }
+
+    .manifesto-words span {
+      display: block;
+      opacity: 0.15;
+      transition: opacity 300ms ease-out;
+    }
+
+    .manifesto-words span.active {
+      opacity: 1;
+    }
+
+    .principles {
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .principle {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .principle-number {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #52525b;
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+      padding-top: 4px;
+    }
+
+    .principle h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #e0e0e4;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .principle p {
+      font-size: 0.9375rem;
+      color: #71717a;
+      line-height: 1.6;
+    }
+
+    /* ── Testimonials ── */
+    .testimonials {
+      overflow: hidden;
+      position: relative;
+    }
+
+    .testimonials-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .testimonials-header h2 {
+      font-size: clamp(1.5rem, 3vw, 1.875rem);
+      font-weight: 500;
+      color: #e0e0e4;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .testimonials-header p {
+      font-size: 0.9375rem;
+      color: #71717a;
+      margin-top: 8px;
+    }
+
+    .scroll-container {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .scroll-track {
+      display: flex;
+      gap: 16px;
+      animation: scroll-left 45s linear infinite;
+      width: max-content;
+    }
+
+    .scroll-track.scroll-reverse {
+      animation: scroll-right 38s linear infinite;
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @keyframes scroll-right {
+      0% { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+
+    .tweet-card {
+      flex-shrink: 0;
+      width: 320px;
+      padding: 24px;
+      background-color: #18181b;
+      border: 1px solid rgba(63, 63, 70, 0.6);
+      border-radius: 12px;
+    }
+
+    .tweet-card-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .tweet-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #27272a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: #a1a1aa;
+    }
+
+    .tweet-name {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: #e0e0e4;
+    }
+
+    .tweet-handle {
+      font-size: 0.75rem;
+      color: #52525b;
+    }
+
+    .tweet-text {
+      font-size: 0.875rem;
+      color: #a1a1aa;
+      line-height: 1.6;
+    }
+
+    .scroll-fade-left,
+    .scroll-fade-right {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 80px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .scroll-fade-left {
+      left: 0;
+      background: linear-gradient(to right, #0e1011, transparent);
+    }
+
+    .scroll-fade-right {
+      right: 0;
+      background: linear-gradient(to left, #0e1011, transparent);
+    }
+
+    /* ── Showcases ── */
+    .showcases h2 {
+      font-size: clamp(1.5rem, 3vw, 1.875rem);
+      font-weight: 500;
+      color: #e0e0e4;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+
+    .showcase-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .showcase-card {
+      background-color: #18181b;
+      border: 1px solid rgba(63, 63, 70, 0.6);
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 150ms ease-out;
+    }
+
+    .showcase-card:hover {
+      border-color: #3f3f46;
+    }
+
+    .showcase-card.full-width {
+      grid-column: span 2;
+    }
+
+    .showcase-label {
+      font-size: 0.75rem;
+      color: #52525b;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+    }
+
+    .showcase-card h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: #e0e0e4;
+      letter-spacing: -0.01em;
+    }
+
+    .showcase-desc {
+      font-size: 0.875rem;
+      color: #71717a;
+      margin-top: 4px;
+    }
+
+    .showcase-visual {
+      height: 160px;
+      background-color: #111113;
+      border-radius: 8px;
+      margin-top: 16px;
+    }
+
+    /* ── Coming Soon ── */
+    .coming-soon {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .coming-soon h2 {
+      font-size: clamp(1.5rem, 3vw, 1.875rem);
+      font-weight: 500;
+      color: #e0e0e4;
+      letter-spacing: -0.02em;
+    }
+
+    .coming-soon .subtitle {
+      font-size: 0.9375rem;
+      color: #71717a;
+      margin-top: 8px;
+    }
+
+    .coming-soon p {
+      font-size: 1rem;
+      color: #a1a1aa;
+      margin-top: 16px;
+      max-width: 480px;
+    }
+
+    .waitlist-btn {
+      margin-top: 24px;
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #18181b;
+      color: #e4e4e7;
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: 'Satoshi', sans-serif;
+      border-radius: 12px;
+      border: 1px solid rgba(63, 63, 70, 0.6);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 150ms ease-out, border-color 150ms ease-out;
+      min-height: 44px;
+    }
+
+    .waitlist-btn:hover {
+      background-color: #27272a;
+      border-color: #3f3f46;
+    }
+
+    .waitlist-btn:focus-visible {
+      outline: 2px solid #a1a1aa;
+      outline-offset: 2px;
+    }
+
+    /* ── FAQ ── */
+    .faq {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      width: 100%;
+      padding: 64px 0;
+    }
+
+    .faq h2 {
+      font-size: clamp(1.5rem, 3vw, 1.875rem);
+      font-weight: 500;
+      color: #e0e0e4;
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+    }
+
+    .faq-item {
+      border-top: 1px solid rgba(63, 63, 70, 0.4);
+      padding: 20px 0;
+    }
+
+    .faq-question {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      width: 100%;
+      background: none;
+      border: none;
+      font-family: 'Satoshi', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #e0e0e4;
+      text-align: left;
+      padding: 4px 0;
+      min-height: 44px;
+    }
+
+    .faq-question:focus-visible {
+      outline: 2px solid #a1a1aa;
+      outline-offset: 2px;
+    }
+
+    .faq-arrow {
+      font-size: 1.25rem;
+      color: #52525b;
+      transition: transform 200ms ease-out;
+      flex-shrink: 0;
+    }
+
+    .faq-item.open .faq-arrow {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      font-size: 0.9375rem;
+      color: #71717a;
+      line-height: 1.7;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 300ms ease-out, opacity 200ms ease-out;
+      opacity: 0;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 400px;
+      opacity: 1;
+      padding-top: 12px;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      padding: 96px 24px 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .footer h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #e0e0e4;
+      letter-spacing: -0.02em;
+    }
+
+    .footer .footer-sub {
+      font-size: 0.9375rem;
+      color: #71717a;
+    }
+
+    .footer p {
+      font-size: 0.9375rem;
+      color: #a1a1aa;
+      max-width: 400px;
+    }
+
+    .sponsor-btn {
+      display: inline-block;
+      padding: 12px 24px;
+      background-color: #18181b;
+      color: #e4e4e7;
+      font-size: 0.875rem;
+      font-weight: 500;
+      font-family: 'Satoshi', sans-serif;
+      border-radius: 12px;
+      border: 1px solid rgba(63, 63, 70, 0.6);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 150ms ease-out, border-color 150ms ease-out;
+      min-height: 44px;
+    }
+
+    .sponsor-btn:hover {
+      background-color: #27272a;
+      border-color: #3f3f46;
+    }
+
+    .sponsor-btn:focus-visible {
+      outline: 2px solid #a1a1aa;
+      outline-offset: 2px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: #52525b;
+      text-decoration: none;
+      transition: color 150ms ease-out;
+    }
+
+    .footer-links a:hover {
+      color: #a1a1aa;
+    }
+
+    .footer-copy {
+      font-size: 0.75rem;
+      color: #3f3f46;
+      margin-top: 16px;
+    }
+
+    /* ── Reduced Motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Mobile ── */
+    @media (max-width: 767px) {
+      .container {
+        padding: 96px 16px 0;
+        gap: 96px;
+      }
+
+      .showcase-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .showcase-card.full-width {
+        grid-column: span 1;
+      }
+
+      .principle {
+        flex-direction: column;
+        gap: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Noise Overlay -->
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <a href="#" class="header-logo">Taste Skill</a>
+    <div class="header-links">
+      <a href="#" aria-label="Twitter">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+      </a>
+      <a href="#" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Taste Skill &mdash; The Anti-Slop Frontend Framework</h1>
+      <p class="tagline">Less slop, designs pop</p>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('npx skills add Leonxlnx/taste-skill')">
+        npx skills add Leonxlnx/taste-skill
+      </button>
+      <a href="#" class="hero-github">GitHub &rarr;</a>
+    </section>
+
+    <!-- Compatibility -->
+    <section class="compat">
+      <h2>Works with every agent.</h2>
+      <p>One install. Cursor, Claude Code, Codex, Gemini CLI, v0, Lovable, and more. Taste Skill plugs into any tool that supports SKILL.md files.</p>
+    </section>
+
+    <!-- Manifesto -->
+    <section class="manifesto">
+      <div class="manifesto-words">
+        <span class="active">Escape</span>
+        <span>The</span>
+        <span>Generic</span>
+        <span>AI</span>
+        <span>Slop</span>
+      </div>
+
+      <div class="principles">
+        <div class="principle">
+          <span class="principle-number">01</span>
+          <div>
+            <h3>High-Agency Design</h3>
+            <p>Every shadow, every spring constant, every pixel offset &mdash; hand-tuned. No defaults.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <span class="principle-number">02</span>
+          <div>
+            <h3>Dark Premium OLED</h3>
+            <p>Pure #0e1011 canvas. Depth through material, not brightness.</p>
+          </div>
+        </div>
+        <div class="principle">
+          <span class="principle-number">03</span>
+          <div>
+            <h3>Zero Generic Patterns</h3>
+            <p>No 3-column icon grids. No gradient buttons. No emoji headers. Ever.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <div class="testimonials-header">
+        <h2>What people are saying</h2>
+        <p>Real feedback from builders using Taste Skill.</p>
+      </div>
+
+      <div class="scroll-container">
+        <div class="scroll-fade-left"></div>
+        <div class="scroll-fade-right"></div>
+        <div class="scroll-track">
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">MR</div><div><div class="tweet-name">Marco R.</div><div class="tweet-handle">@marco_dev</div></div></div>
+            <div class="tweet-text">Just dropped taste-skill into my Cursor project. The difference in output quality is immediately noticeable. No more generic hero sections.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">SL</div><div><div class="tweet-name">Sarah Lin</div><div class="tweet-handle">@sarahcodes</div></div></div>
+            <div class="tweet-text">Finally something that addresses the real problem with AI-generated frontends. The anti-slop rules alone are worth it.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">JK</div><div><div class="tweet-name">James K.</div><div class="tweet-handle">@jkbuilds</div></div></div>
+            <div class="tweet-text">The 3-dial system is genius. Being able to tune variance, motion, and density independently gives you so much control.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">AP</div><div><div class="tweet-name">Aisha Patel</div><div class="tweet-handle">@aisha_ui</div></div></div>
+            <div class="tweet-text">I was skeptical about a markdown file improving design quality, but the ban list approach actually works. My Claude outputs are noticeably better.</div>
+          </div>
+          <!-- Duplicate for infinite scroll -->
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">MR</div><div><div class="tweet-name">Marco R.</div><div class="tweet-handle">@marco_dev</div></div></div>
+            <div class="tweet-text">Just dropped taste-skill into my Cursor project. The difference in output quality is immediately noticeable. No more generic hero sections.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">SL</div><div><div class="tweet-name">Sarah Lin</div><div class="tweet-handle">@sarahcodes</div></div></div>
+            <div class="tweet-text">Finally something that addresses the real problem with AI-generated frontends. The anti-slop rules alone are worth it.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">JK</div><div><div class="tweet-name">James K.</div><div class="tweet-handle">@jkbuilds</div></div></div>
+            <div class="tweet-text">The 3-dial system is genius. Being able to tune variance, motion, and density independently gives you so much control.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">AP</div><div><div class="tweet-name">Aisha Patel</div><div class="tweet-handle">@aisha_ui</div></div></div>
+            <div class="tweet-text">I was skeptical about a markdown file improving design quality, but the ban list approach actually works. My Claude outputs are noticeably better.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-container">
+        <div class="scroll-fade-left"></div>
+        <div class="scroll-fade-right"></div>
+        <div class="scroll-track scroll-reverse">
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">DW</div><div><div class="tweet-name">David Wu</div><div class="tweet-handle">@davidwu_eng</div></div></div>
+            <div class="tweet-text">The output-skill alone saved me hours. No more fighting with AI to stop truncating code or leaving TODO placeholders.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">EN</div><div><div class="tweet-name">Elena N.</div><div class="tweet-handle">@elena_builds</div></div></div>
+            <div class="tweet-text">Tried the soft preset and my landing page went from looking like every other SaaS to something I'd actually show in a portfolio.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">RH</div><div><div class="tweet-name">Ryan H.</div><div class="tweet-handle">@ryanh_code</div></div></div>
+            <div class="tweet-text">The redesign skill is underrated. It analyzed my existing site, found 23 issues, and fixed them in priority order. Typography first, polish last.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">NK</div><div><div class="tweet-name">Nora Kim</div><div class="tweet-handle">@norakim_dev</div></div></div>
+            <div class="tweet-text">Open source, zero dependencies, works everywhere. This is how developer tools should be built.</div>
+          </div>
+          <!-- Duplicate for infinite scroll -->
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">DW</div><div><div class="tweet-name">David Wu</div><div class="tweet-handle">@davidwu_eng</div></div></div>
+            <div class="tweet-text">The output-skill alone saved me hours. No more fighting with AI to stop truncating code or leaving TODO placeholders.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">EN</div><div><div class="tweet-name">Elena N.</div><div class="tweet-handle">@elena_builds</div></div></div>
+            <div class="tweet-text">Tried the soft preset and my landing page went from looking like every other SaaS to something I'd actually show in a portfolio.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">RH</div><div><div class="tweet-name">Ryan H.</div><div class="tweet-handle">@ryanh_code</div></div></div>
+            <div class="tweet-text">The redesign skill is underrated. It analyzed my existing site, found 23 issues, and fixed them in priority order. Typography first, polish last.</div>
+          </div>
+          <div class="tweet-card">
+            <div class="tweet-card-author"><div class="tweet-avatar">NK</div><div><div class="tweet-name">Nora Kim</div><div class="tweet-handle">@norakim_dev</div></div></div>
+            <div class="tweet-text">Open source, zero dependencies, works everywhere. This is how developer tools should be built.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Showcases -->
+    <section class="showcases">
+      <h2>Showcases.</h2>
+      <div class="showcase-grid">
+        <div class="showcase-card">
+          <div class="showcase-label">Cinematic Scroll</div>
+          <h3>Noir Eternel</h3>
+          <div class="showcase-desc">Scroll-driven narrative with parallax depth</div>
+          <div class="showcase-visual"></div>
+        </div>
+        <div class="showcase-card">
+          <div class="showcase-label">High-Conversion</div>
+          <h3>Floria</h3>
+          <div class="showcase-desc">Landing page with bento grid features</div>
+          <div class="showcase-visual"></div>
+        </div>
+        <div class="showcase-card">
+          <div class="showcase-label">Refined Edition</div>
+          <h3>Floria 2</h3>
+          <div class="showcase-desc">Iterated version with spring animations</div>
+          <div class="showcase-visual"></div>
+        </div>
+        <div class="showcase-card">
+          <div class="showcase-label">Technical UI</div>
+          <h3>Collective OS</h3>
+          <div class="showcase-desc">Dashboard interface with data density</div>
+          <div class="showcase-visual"></div>
+        </div>
+        <div class="showcase-card full-width">
+          <div class="showcase-label">Avant-Garde</div>
+          <h3>DeepThink</h3>
+          <div class="showcase-desc">Experimental typography and motion</div>
+          <div class="showcase-visual"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="coming-soon">
+      <h2>Coming Soon</h2>
+      <div class="subtitle">The next generation.</div>
+      <p>Taste Skill v2 is in development. A massive leap in front-end agency software. Be among the first.</p>
+      <a href="#" class="waitlist-btn">Join the Waitlist</a>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2>Frequently Asked.</h2>
+
+      <div class="faq-item">
+        <button class="faq-question">What is Taste Skill? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer">Taste Skill is an open-source framework of SKILL.md instruction files that guide AI coding agents to produce premium, non-generic frontend interfaces. It works by banning common AI design patterns and replacing them with intentional alternatives.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">How do I install it? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer">Run npx skills add Leonxlnx/taste-skill in your project directory. The SKILL.md files are automatically detected by your AI agent on the next interaction.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Which agents does it work with? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer">Cursor, Claude Code, Codex, Gemini CLI, v0, Lovable, Windsurf, GitHub Copilot, and any tool that reads SKILL.md files from the project directory.</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">What are the skill variants? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer">Seven variants: taste-skill (core), redesign-skill (audit), soft-skill (luxury), minimalist-skill (clean), brutalist-skill (industrial), output-skill (anti-truncation), and stitch-skill (Google Stitch integration).</div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question">Is it free? <span class="faq-arrow">+</span></button>
+        <div class="faq-answer">Yes. Taste Skill is completely open source under the MIT license. You can use it in any project, personal or commercial.</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <h2>Open Source</h2>
+    <div class="footer-sub">Support Taste Skill</div>
+    <p>This framework is completely open source. If it saves you time and sanity, consider supporting the development.</p>
+    <a href="#" class="sponsor-btn">Sponsor on GitHub</a>
+    <div class="footer-links">
+      <a href="#">Docs</a>
+      <a href="#">Changelog</a>
+      <a href="#">Guide</a>
+      <a href="#">GitHub</a>
+      <a href="#">@lexnlin</a>
+    </div>
+    <div class="footer-copy">&copy; 2026 Taste Skill. Built by Leon Lin.</div>
+  </footer>
+
+  <!-- FAQ Toggle Script -->
+  <script>
+    document.querySelectorAll('.faq-question').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        item.classList.toggle('open');
+      });
+    });
+  </script>
+
+  <!-- Scroll-driven word activation -->
+  <script>
+    const words = document.querySelectorAll('.manifesto-words span');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    words.forEach((w) => observer.observe(w));
+  </script>
+
+</body>
+</html>

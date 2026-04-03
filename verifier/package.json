@@ -1,0 +1,20 @@
+{
+  "name": "udesigner-verifier",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Design quality verification for UDesigner",
+  "scripts": {
+    "verify": "npx playwright test",
+    "verify:spacing": "npx playwright test checks/spacing-audit.spec.ts",
+    "verify:typography": "npx playwright test checks/typography-check.spec.ts",
+    "verify:color": "npx playwright test checks/color-audit.spec.ts",
+    "verify:animation": "npx playwright test checks/animation-check.spec.ts",
+    "verify:responsive": "npx playwright test checks/responsive-check.spec.ts",
+    "verify:antislop": "npx playwright test checks/anti-slop-scan.spec.ts",
+    "verify:visual": "npx playwright test checks/visual-regression.spec.ts",
+    "lint": "node quick-lint.js"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0"
+  }
+}

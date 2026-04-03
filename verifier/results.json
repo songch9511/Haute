@@ -1,0 +1,248 @@
+{
+  "config": {
+    "configFile": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/playwright.config.ts",
+    "rootDir": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "desktop",
+        "name": "desktop",
+        "testDir": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 2
+        },
+        "id": "mobile",
+        "name": "mobile",
+        "testDir": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "changed",
+    "updateSourceMethod": "patch",
+    "version": "1.59.1",
+    "workers": 4,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "visual-regression.spec.ts",
+      "file": "visual-regression.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Visual Regression",
+          "file": "visual-regression.spec.ts",
+          "line": 13,
+          "column": 6,
+          "specs": [
+            {
+              "title": "desktop screenshot matches baseline",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 53670,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/visual-regression.spec.ts-snapshots/desktop-baseline-desktop-darwin.png does not match, writing actual.\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T16:17:03.560Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-fdb5d3dbfc6197dcbaff",
+              "file": "visual-regression.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "mobile screenshot matches baseline",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 110,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T16:17:57.335Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-54690c47d953554fd0c1",
+              "file": "visual-regression.spec.ts",
+              "line": 53,
+              "column": 7
+            },
+            {
+              "title": "desktop screenshot matches baseline",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 118,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T16:17:03.562Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-57ea9fcfae89c3aa017d",
+              "file": "visual-regression.spec.ts",
+              "line": 14,
+              "column": 7
+            },
+            {
+              "title": "mobile screenshot matches baseline",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 1,
+                      "status": "passed",
+                      "duration": 4805,
+                      "errors": [],
+                      "stdout": [
+                        {
+                          "text": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/visual-regression.spec.ts-snapshots/mobile-baseline-mobile-darwin.png does not match, writing actual.\n"
+                        }
+                      ],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-02T16:17:03.781Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "78e23c5201ba1ea12e76-ceb4b1cab4801405f15d",
+              "file": "visual-regression.spec.ts",
+              "line": 53,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-04-02T16:17:03.228Z",
+    "duration": 54553.591,
+    "expected": 4,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

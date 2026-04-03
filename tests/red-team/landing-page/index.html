@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clearpath — Design Operations Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=Outfit:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset ── */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* ── Reduced Motion ── */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    /* ── Design Tokens ── */
+    :root {
+      --bg-primary: #0e1011;
+      --bg-elevated: #161819;
+      --bg-surface: #1e2022;
+      --border: #2a2d2f;
+      --text-primary: #f0f0f0;
+      --text-secondary: #8a8f93;
+      --text-tertiary: #7f858c;
+      --accent: #22c55e;
+      --accent-hover: #16a34a;
+
+      --font-heading: 'Fraunces', serif;
+      --font-body: 'Outfit', sans-serif;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-24: 96px;
+      --space-32: 128px;
+    }
+
+    /* ── Base ── */
+    html {
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 1.5rem; }
+    h4 { font-size: 1.25rem; }
+
+    p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+      max-width: 560px;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      padding: 0 var(--space-8);
+      background-color: rgba(14, 16, 17, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      font-weight: 500;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: var(--space-8);
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 150ms ease-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-3) var(--space-6);
+      min-height: 44px;
+      background-color: var(--accent);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background-color 150ms ease-out, transform 150ms ease-out;
+    }
+
+    .nav-cta:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .nav-cta:active {
+      transform: scale(0.98);
+    }
+
+    .nav-cta:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* ── Hero (asymmetric split: 60/40) ── */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: var(--space-8);
+      min-height: 100dvh;
+      padding: var(--space-32) var(--space-8) var(--space-24);
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .hero-content {
+      padding-right: var(--space-16);
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: var(--space-6);
+    }
+
+    .hero h1 {
+      margin-bottom: var(--space-6);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      margin-bottom: var(--space-8);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: var(--space-4);
+      align-items: center;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-3) var(--space-6);
+      background-color: var(--accent);
+      color: var(--bg-primary);
+      border: none;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 150ms ease-out, transform 150ms ease-out;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-primary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-3) var(--space-6);
+      background-color: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 150ms ease-out, transform 150ms ease-out;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-tertiary);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary:active {
+      transform: scale(0.98);
+    }
+
+    .btn-secondary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    /* Hero visual — abstract SVG composition */
+    .hero-visual {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-visual-card {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: var(--space-6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .hero-visual-card .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card-badge {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--accent);
+      background-color: rgba(34, 197, 94, 0.1);
+      padding: 2px 10px;
+      border-radius: 4px;
+    }
+
+    .card-metric {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+    }
+
+    .card-metric-label {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      margin-top: var(--space-1);
+    }
+
+    .card-chart {
+      height: 64px;
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+    }
+
+    .card-chart-bar {
+      flex: 1;
+      background-color: var(--accent);
+      border-radius: 2px 2px 0 0;
+      opacity: 0.6;
+      transition: opacity 150ms ease-out;
+    }
+
+    .card-chart-bar:hover {
+      opacity: 1;
+    }
+
+    /* ── Social Proof ── */
+    .social-proof {
+      padding: var(--space-16) var(--space-8);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .social-proof-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: var(--space-16);
+    }
+
+    .social-proof-text {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .social-proof-logos {
+      display: flex;
+      gap: var(--space-12);
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .logo-placeholder {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      opacity: 0.5;
+    }
+
+    /* ── Features (bento grid) ── */
+    .features {
+      padding: var(--space-24) var(--space-8) var(--space-32);
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .features-header {
+      max-width: 480px;
+      margin-bottom: var(--space-16);
+    }
+
+    .features-header h2 {
+      margin-bottom: var(--space-4);
+    }
+
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: var(--space-4);
+    }
+
+    .bento-item {
+      background-color: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: var(--space-8);
+      transition: transform 200ms ease-out;
+    }
+
+    .bento-item:hover {
+      transform: translateY(-2px);
+    }
+
+    .bento-item.wide {
+      grid-column: span 2;
+    }
+
+    .bento-item.tall {
+      grid-row: span 2;
+    }
+
+    .bento-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background-color: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-6);
+    }
+
+    .bento-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--accent);
+    }
+
+    .bento-item h3 {
+      margin-bottom: var(--space-2);
+    }
+
+    .bento-item p {
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+
+    .bento-visual {
+      margin-top: var(--space-6);
+      height: 120px;
+      background-color: var(--bg-surface);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .bento-visual .mini-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 80px;
+      padding: 0 var(--space-6);
+    }
+
+    .bento-visual .mini-bar {
+      width: 24px;
+      background-color: var(--accent);
+      border-radius: 4px 4px 0 0;
+      opacity: 0.4;
+    }
+
+    .bento-visual .mini-bar.active {
+      opacity: 0.9;
+    }
+
+    /* ── Stats Row (asymmetric: 70/30) ── */
+    .stats {
+      padding: var(--space-24) var(--space-8);
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: var(--space-8);
+      align-items: center;
+    }
+
+    .stats-numbers {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+
+    .stat-item {
+      padding: var(--space-6);
+      border-left: 1px solid var(--border);
+    }
+
+    .stat-value {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .stat-label {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      margin-top: var(--space-1);
+    }
+
+    .stats-context p {
+      font-size: 1.125rem;
+    }
+
+    .stats-context .attribution {
+      margin-top: var(--space-4);
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+    }
+
+    .stats-context .attribution strong {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    /* ── Testimonial (offset layout) ── */
+    .testimonial {
+      padding: var(--space-32) var(--space-8);
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.6fr;
+      gap: var(--space-16);
+      align-items: start;
+    }
+
+    .testimonial-meta {
+      padding-top: var(--space-4);
+    }
+
+    .testimonial-meta .label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: var(--space-8);
+    }
+
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background-color: var(--bg-surface);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: var(--space-3);
+    }
+
+    .testimonial-name {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+
+    .testimonial-role {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      max-width: 640px;
+    }
+
+    .testimonial-quote::before {
+      content: "\201C";
+      display: block;
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--text-tertiary);
+      margin-bottom: var(--space-4);
+    }
+
+    /* ── CTA Section ── */
+    .cta {
+      padding: var(--space-32) var(--space-8);
+      max-width: 1280px;
+      margin: 0 auto;
+      border-top: 1px solid var(--border);
+    }
+
+    .cta-inner {
+      max-width: 560px;
+    }
+
+    .cta h2 {
+      margin-bottom: var(--space-4);
+    }
+
+    .cta p {
+      margin-bottom: var(--space-8);
+    }
+
+    .cta-input-row {
+      display: flex;
+      gap: var(--space-3);
+    }
+
+    .cta-input {
+      flex: 1;
+      padding: var(--space-3) var(--space-4);
+      background-color: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      color: var(--text-primary);
+      outline: none;
+      transition: border-color 150ms ease-out;
+    }
+
+    .cta-input::placeholder {
+      color: var(--text-tertiary);
+    }
+
+    .cta-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+    }
+
+    .cta-note {
+      font-size: 0.75rem;
+      color: var(--text-tertiary);
+      margin-top: var(--space-3);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: var(--space-16) var(--space-8);
+      border-top: 1px solid var(--border);
+    }
+
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: var(--space-6);
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.8125rem;
+      color: var(--text-tertiary);
+      text-decoration: none;
+      transition: color 150ms ease-out;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-secondary);
+    }
+
+    /* ── Fade-in Animation (MOTION_INTENSITY 5) ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 400ms cubic-bezier(0.16, 1, 0.3, 1),
+                  transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Mobile (< 768px) ── */
+    @media (max-width: 767px) {
+      h1 { font-size: 2.5rem; }
+      h2 { font-size: 1.75rem; }
+
+      .nav-links { display: none; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: var(--space-24) var(--space-4) var(--space-16);
+        min-height: auto;
+      }
+
+      .hero-content {
+        padding-right: 0;
+      }
+
+      .hero-visual {
+        margin-top: var(--space-8);
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .social-proof-inner {
+        flex-direction: column;
+        gap: var(--space-4);
+        align-items: flex-start;
+      }
+
+      .social-proof-logos {
+        flex-wrap: wrap;
+        gap: var(--space-6);
+      }
+
+      .features {
+        padding: var(--space-16) var(--space-4) var(--space-24);
+      }
+
+      .bento-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .bento-item.wide {
+        grid-column: span 1;
+      }
+
+      .bento-item.tall {
+        grid-row: span 1;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+        padding: var(--space-16) var(--space-4);
+      }
+
+      .stats-numbers {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonial {
+        grid-template-columns: 1fr;
+        padding: var(--space-16) var(--space-4);
+        gap: var(--space-6);
+      }
+
+      .cta {
+        padding: var(--space-16) var(--space-4);
+      }
+
+      .cta-input-row {
+        flex-direction: column;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: var(--space-4);
+        text-align: center;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <a href="#" class="nav-logo">Clearpath</a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#results">Results</a></li>
+      <li><a href="#testimonial">Customers</a></li>
+      <li><a href="#">Pricing</a></li>
+      <li><a href="#">Docs</a></li>
+    </ul>
+    <button class="nav-cta">Start free trial</button>
+  </nav>
+
+  <!-- Hero: asymmetric 60/40 split -->
+  <section class="hero">
+    <div class="hero-content fade-in">
+      <span class="hero-label">Design Operations</span>
+      <h1>Ship design work<br>without the <em>bottleneck</em></h1>
+      <p>Clearpath connects your design tools, review workflows, and handoff process into a single pipeline. Teams using Clearpath reduce their design-to-deploy cycle by 47%.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn-primary">Start free trial</a>
+        <a href="#" class="btn-secondary">Watch a 3-min demo</a>
+      </div>
+    </div>
+    <div class="hero-visual fade-in">
+      <div class="hero-visual-card">
+        <div class="card-header">
+          <div>
+            <div class="card-metric">14,729</div>
+            <div class="card-metric-label">Components shipped this month</div>
+          </div>
+          <span class="card-badge">+23.4%</span>
+        </div>
+        <div class="card-chart">
+          <div class="card-chart-bar" style="height: 35%"></div>
+          <div class="card-chart-bar" style="height: 50%"></div>
+          <div class="card-chart-bar" style="height: 42%"></div>
+          <div class="card-chart-bar" style="height: 65%"></div>
+          <div class="card-chart-bar" style="height: 55%"></div>
+          <div class="card-chart-bar" style="height: 72%"></div>
+          <div class="card-chart-bar" style="height: 68%"></div>
+          <div class="card-chart-bar" style="height: 80%"></div>
+          <div class="card-chart-bar" style="height: 75%"></div>
+          <div class="card-chart-bar" style="height: 90%"></div>
+          <div class="card-chart-bar" style="height: 85%"></div>
+          <div class="card-chart-bar" style="height: 100%"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Proof -->
+  <section class="social-proof">
+    <div class="social-proof-inner">
+      <span class="social-proof-text">Trusted by product teams at</span>
+      <div class="social-proof-logos">
+        <span class="logo-placeholder">Vercel</span>
+        <span class="logo-placeholder">Linear</span>
+        <span class="logo-placeholder">Pitch</span>
+        <span class="logo-placeholder">Raycast</span>
+        <span class="logo-placeholder">Resend</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features: bento grid (NOT 3 equal columns) -->
+  <section class="features" id="features">
+    <div class="features-header fade-in">
+      <h2>One pipeline for<br>design delivery</h2>
+      <p>Stop juggling Figma, Slack threads, and Jira tickets. Clearpath tracks every component from concept to production.</p>
+    </div>
+
+    <div class="bento-grid">
+      <!-- Wide card -->
+      <div class="bento-item wide fade-in">
+        <div class="bento-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M3 12h18"/><path d="M16 8l-4-4-4 4"/></svg>
+        </div>
+        <h3>Component tracking</h3>
+        <p>Every design component gets a lifecycle. See who's working on what, where it's blocked, and when it shipped.</p>
+        <div class="bento-visual">
+          <div class="mini-bars">
+            <div class="mini-bar" style="height: 30%"></div>
+            <div class="mini-bar" style="height: 55%"></div>
+            <div class="mini-bar active" style="height: 80%"></div>
+            <div class="mini-bar" style="height: 45%"></div>
+            <div class="mini-bar active" style="height: 95%"></div>
+            <div class="mini-bar" style="height: 60%"></div>
+            <div class="mini-bar" style="height: 40%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Standard card -->
+      <div class="bento-item fade-in">
+        <div class="bento-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        </div>
+        <h3>Figma sync</h3>
+        <p>Bi-directional sync with Figma. Changes in your file appear in Clearpath within seconds.</p>
+      </div>
+
+      <!-- Standard card -->
+      <div class="bento-item fade-in">
+        <div class="bento-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Review automation</h3>
+        <p>Auto-assign reviewers based on component ownership. Reviews close 3.2x faster on average.</p>
+      </div>
+
+      <!-- Standard card -->
+      <div class="bento-item fade-in">
+        <div class="bento-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+        </div>
+        <h3>Handoff spec</h3>
+        <p>Generated specs include spacing, tokens, and responsive breakpoints. Engineers stop asking questions.</p>
+      </div>
+
+      <!-- Wide card -->
+      <div class="bento-item wide fade-in">
+        <div class="bento-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        </div>
+        <h3>Design system audit</h3>
+        <p>Continuous monitoring of your design system. Clearpath flags inconsistencies, unused tokens, and drift between Figma and code — before your users notice.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats: 70/30 split -->
+  <section class="stats" id="results">
+    <div class="stats-numbers fade-in">
+      <div class="stat-item">
+        <div class="stat-value">47%</div>
+        <div class="stat-label">Faster design-to-deploy</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">3.2x</div>
+        <div class="stat-label">Faster design reviews</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value">891</div>
+        <div class="stat-label">Teams on Clearpath</div>
+      </div>
+    </div>
+    <div class="stats-context fade-in">
+      <p>Measured across 891 teams over 6 months. Results vary by team size and existing workflow maturity.</p>
+      <div class="attribution">
+        <strong>Methodology:</strong> Comparison of median cycle times 30 days before and 90 days after Clearpath adoption.
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial: offset layout -->
+  <section class="testimonial" id="testimonial">
+    <div class="testimonial-meta fade-in">
+      <div class="label">What teams say</div>
+      <div class="testimonial-avatar">EK</div>
+      <div class="testimonial-name">Elena Kowalski</div>
+      <div class="testimonial-role">Head of Design, Openframe</div>
+    </div>
+    <blockquote class="testimonial-quote fade-in">
+      We went from a 12-day average review cycle to under 3 days. The biggest change wasn't the tooling — it was that designers and engineers finally had a shared view of what was in progress and what was blocked.
+    </blockquote>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-inner fade-in">
+      <h2>Start building your pipeline</h2>
+      <p>Free for teams up to 8 people. No credit card required for the first 14 days.</p>
+      <div class="cta-input-row">
+        <input type="email" class="cta-input" placeholder="you@company.com" aria-label="Email address">
+        <button class="btn-primary">Get started</button>
+      </div>
+      <div class="cta-note">Setup takes about 4 minutes. Connects to Figma, GitHub, and Linear.</div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">Clearpath Inc. &middot; San Francisco</div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy</a></li>
+        <li><a href="#">Terms</a></li>
+        <li><a href="#">Status</a></li>
+        <li><a href="#">Twitter</a></li>
+        <li><a href="#">GitHub</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Intersection Observer for fade-in -->
+  <script>
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    document.querySelectorAll('.fade-in').forEach((el) => {
+      observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
