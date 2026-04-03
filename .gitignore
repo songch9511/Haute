@@ -17,5 +17,10 @@ snapshots/
 # Brand assets (large files)
 brand-assets/
 
+# Session state (ephemeral, per-conversation)
+.udesigner/.resumed
+.udesigner/session.json
+.udesigner/failure-log.md
+
 # Nested git repos
 templates/next-app/.git

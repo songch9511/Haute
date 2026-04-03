@@ -9,9 +9,63 @@
             "command": "if echo \"$TOOL_INPUT\" | grep -qE '\\.(tsx|jsx|html|css|vue|svelte)'; then node verifier/quick-lint.js \"$FILE_PATH\" 2>/dev/null || true; fi"
           }
         ]
+      },
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .udesigner/boulder.sh 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .udesigner/circuit-breaker.sh 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .udesigner/wisdom-extract.sh 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .udesigner/session-save.sh 2>/dev/null || true"
+          }
+        ]
       }
     ],
     "PreToolUse": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .udesigner/session-resume.sh 2>/dev/null || true"
+          }
+        ]
+      },
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .udesigner/phase-gate.sh 2>/dev/null; exit_code=$?; if [ $exit_code -eq 2 ]; then exit 2; fi; exit 0"
+          }
+        ]
+      },
       {
         "matcher": "Bash",
         "hooks": [

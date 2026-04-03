@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+/* ── Dimension E-ink Design Tokens ── */
+:root {
+  --bg-main: #FFFFFF;
+  --bg-panel: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #000000;
+  --bg-input: #FFFFFF;
+
+  --border-color: #000000;
+  --border-light: #c8c8c8;
+
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --text-muted: #555555;
+  --text-inverted: #FFFFFF;
+
+  --accent: #000000;
+
+  --font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+
+  --radius: 4px;
+  --radius-sm: 2px;
+}
+
+@theme inline {
+  --color-bg-main: var(--bg-main);
+  --color-bg-panel: var(--bg-panel);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
+  --color-border: var(--border-color);
+  --color-border-light: var(--border-light);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-inverted: var(--text-inverted);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-family);
+}
+
+/* ── Base ── */
+html {
+  overflow-x: clip;
+}
+
+body {
+  background: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  line-height: 1.6;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Marquee ── */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* ── Selection ── */
+::selection {
+  background: #000000;
+  color: #FFFFFF;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

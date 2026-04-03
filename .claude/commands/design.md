@@ -13,26 +13,48 @@ Categories: ir-deck, dashboard, landing-page, presentation, portfolio, custom
 
 ## Phase 1: Think — "아직 코드 작성하지 마라"
 
-### 1a. Context Loading
+> **Phase Gate**: `phase.json` → `{"phase": "think"}` 로 전환 후 시작
+
+### 1a. Context Loading (직접 실행)
 - Read `skills/taste-core.md`, `skills/anti-slop.md`, `skills/motion-engine.md`
 - If preset specified: read `skills/style-presets/{preset}.md`
 - Check memory for: user preferences, past feedback, project design tokens
 
-### 1b. Reference Research
-- Search for similar high-quality sites in the category
-- If found: capture screenshot + Playwright analysis (`skills/playwright-analysis.md`)
-- Identify design patterns worth adopting
+### 1b-1d. 병렬 탐색 (Agent 도구 동시 호출)
 
-### 1c. Component Search
-Before building from scratch:
-- Read `skills/uitripled.md` → search registry for matching sections
-- Read `skills/21st-dev.md` → use `21st_magic_component_inspiration` for ideas
+**반드시 단일 메시지에서 3-4개 Agent를 동시 호출한다.**
+순차 실행 금지. 독립적인 탐색은 모두 병렬.
 
-### 1d. Image Sourcing
-- Read `skills/unsplash.md`
-- Identify every image slot: hero bg, card thumbnails, avatars, product shots
-- Search Unsplash, build URLs with correct params
-- No gray boxes. Every `<img>` must have a real source.
+```
+┌─────────────────────────────────────────────────────┐
+│  하나의 메시지에서 아래 Agent를 동시 호출:            │
+│                                                      │
+│  Agent 1: Reference Research                         │
+│  → 카테고리 유사 사이트 검색 + 스크린샷 캡처          │
+│  → Playwright DOM 분석 (skills/playwright-analysis.md)│
+│                                                      │
+│  Agent 2: Component Search                           │
+│  → uitripled-registry.json에서 매칭 컴포넌트 검색     │
+│  → 21st_magic_component_inspiration으로 영감 수집     │
+│                                                      │
+│  Agent 3: Image Sourcing                             │
+│  → 모든 이미지 슬롯 식별 (hero, card, avatar)        │
+│  → Unsplash 검색 + URL 빌드                          │
+│                                                      │
+│  Agent 4 (선택): Memory & Feedback Scan              │
+│  → feedback_*, project_* 파일 전체 스캔              │
+│  → 카테고리 관련 과거 학습 요약                       │
+└─────────────────────────────────────────────────────┘
+```
+
+### Agent 프롬프트 작성 규칙
+- 각 Agent에게 **구체적 목표 + 필요 파일경로 + 출력 형식** 명시
+- "조사만 하고 코드 작성하지 마라" 반드시 포함
+- 200단어 이내로 결과 요약 요청
+
+### Think 결과물
+- 4개 Agent 결과를 종합하여 **분석 요약** 작성
+- 이것이 Plan 단계의 입력이 됨
 
 ---
 

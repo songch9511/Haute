@@ -11,29 +11,55 @@ Reproduce a reference website's visual language as a new page.
 
 ## Phase 1: Think — "아직 코드 작성하지 마라"
 
+> **Phase Gate**: `phase.json` → `{"phase": "think"}` 로 전환 후 시작
+
 **Goal**: Fully understand the reference before writing a single line.
 
-### 1a. Screenshot Capture (FIRST)
+### 1a. Screenshot Capture (FIRST — 직접 실행)
 - Capture desktop (1440×900) + mobile (375×812) screenshots via Playwright
 - Save as `ref-desktop.png`, `ref-mobile.png`
 - Crop key areas: nav, hero text, cards, each section
+- **스크린샷 완료 후 아래 병렬 탐색 시작**
 
-### 1b. Playwright DOM Analysis
-Read `skills/playwright-analysis.md` and execute the full workflow:
-1. Parent chain for nav, hero, each major section
-2. **Children of each element** — catch absolute positioned SVGs, decorative elements
-3. Scroll state comparison (before/after 300px)
-4. Pseudo-elements check (::before, ::after)
+### 1b-1c. 병렬 탐색 (Agent 도구 동시 호출)
 
-### 1c. Design Token Extraction
-From Playwright computed styles (NOT guessing):
-- Typography: font-family, size, weight, line-height, letter-spacing (exact values)
-- Colors: all bg, text, accent, border colors (computed rgba)
-- Layout: width, height, padding, border-radius, overflow, position
-- Decorative: SVG corners, background layers, clip-paths
-- Motion: scroll-driven changes, transition properties
+**스크린샷 캡처 후, 단일 메시지에서 3-4개 Agent를 동시 호출한다.**
 
-**Output**: Design Token Summary table → show to user before proceeding.
+```
+┌─────────────────────────────────────────────────────┐
+│  하나의 메시지에서 아래 Agent를 동시 호출:            │
+│                                                      │
+│  Agent 1: DOM Analysis — Nav & Hero                  │
+│  → skills/playwright-analysis.md 워크플로우 실행     │
+│  → Nav: parent chain + children + scroll state       │
+│  → Hero: parent chain + children + decorative 요소    │
+│  → 출력: 디자인 토큰 테이블                          │
+│                                                      │
+│  Agent 2: DOM Analysis — Body Sections               │
+│  → About, Benefits, Features, Pricing 등 분석        │
+│  → 각 섹션: parent chain + children + pseudo-elements │
+│  → 출력: 섹션별 디자인 토큰 테이블                    │
+│                                                      │
+│  Agent 3: Component & Image Search                   │
+│  → uitripled-registry.json 매칭 컴포넌트 검색        │
+│  → Unsplash 이미지 소싱 (hero bg, cards, avatars)    │
+│  → 21st_magic_component_inspiration 검색             │
+│                                                      │
+│  Agent 4: Memory & Past Learnings                    │
+│  → feedback_*, project_* 스캔                        │
+│  → 유사 카피 태스크의 과거 실패/성공 요약             │
+└─────────────────────────────────────────────────────┘
+```
+
+### Agent 프롬프트 작성 규칙
+- 각 Agent에게 **레퍼런스 URL + 분석 대상 섹션 + 출력 형식** 명시
+- "조사만 하고 코드 작성하지 마라" 반드시 포함
+- DOM 분석 Agent에게는 `skills/playwright-analysis.md` 경로 전달
+
+### Think 결과물
+- Agent 결과를 종합하여 **Design Token Summary** 테이블 작성
+- Typography, Colors, Layout, Decorative, Motion 카테고리별 정리
+- → 이것이 Plan 단계의 입력이 됨
 
 ---
 

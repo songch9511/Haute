@@ -108,6 +108,55 @@ if (emojiPattern.test(content)) {
   issues.push({ severity: 'warn', rule: 'anti-slop §1.7', message: 'Emoji detected in code. Use proper icon library (Phosphor, Lucide).' });
 }
 
+// ─── Comment Checker (AI Smell) ───
+
+// Strip strings and template literals before checking comments
+const contentNoStrings = content.replace(/(["'`])(?:(?!\1|\\).|\\.)*\1/gs, '""');
+
+// AI-generated explanatory comments (single-line)
+const aiCommentPatterns = [
+  { regex: /\/\/\s*This (?:component|function|hook|handler|method|module|file|class|util)/i, msg: 'Explanatory "This component..." comment' },
+  { regex: /\/\/\s*(?:Helper|Utility) (?:function|method|to|for|that)/i, msg: '"Helper function..." comment' },
+  { regex: /\/\/\s*(?:Handle|Process|Manage|Initialize|Setup|Configure|Define|Create|Render|Update|Fetch|Get|Set) the/i, msg: '"Handle the..." narration comment' },
+  { regex: /\/\/\s*(?:Import|Export)(?:s|ing)? (?:the|all|necessary|required)/i, msg: '"Importing the..." comment' },
+  { regex: /\/\/\s*(?:Main|Primary|Default|Base) (?:component|function|export|container|wrapper|layout)/i, msg: '"Main component..." comment' },
+  { regex: /\/\/\s*(?:State|Props|Context|Ref|Effect|Callback|Memo) (?:for|to|management|handling|declaration)/i, msg: '"State for..." comment' },
+  { regex: /\/\/\s*(?:Styles|Styling|CSS|Animation|Transition) (?:for|of|definition)/i, msg: '"Styles for..." comment' },
+  { regex: /\/\/\s*(?:TODO|FIXME|HACK|TEMP|TEMPORARY):\s*(?:fix|add|remove|update|implement|refactor|clean)/i, msg: 'AI-generated TODO' },
+];
+
+// AI-generated block comments
+const aiBlockCommentPatterns = [
+  { regex: /\/\*\*?\s*\n\s*\*?\s*(?:This|The|A|An) (?:component|function|hook|module|class|page|layout)/i, msg: 'Docstring narrating what code does' },
+  { regex: /\/\*\*?\s*\n\s*\*?\s*@(?:description|summary)\s/i, msg: '@description JSDoc (unnecessary narration)' },
+];
+
+let commentCount = 0;
+const lines = contentNoStrings.split('\n');
+for (const line of lines) {
+  if (/^\s*\/\//.test(line)) commentCount++;
+}
+
+// Flag if > 15% of lines are comments (AI over-commenting)
+const commentRatio = lines.length > 10 ? commentCount / lines.length : 0;
+if (commentRatio > 0.15) {
+  issues.push({ severity: 'error', rule: 'comment-check', message: `${Math.round(commentRatio * 100)}% comment lines (${commentCount}/${lines.length}). Senior engineers don't narrate. Remove obvious comments.` });
+}
+
+for (const pat of aiCommentPatterns) {
+  if (pat.regex.test(contentNoStrings)) {
+    issues.push({ severity: 'error', rule: 'comment-check', message: `AI-smell comment: ${pat.msg}. Remove or make it non-obvious.` });
+    break; // One is enough to flag
+  }
+}
+
+for (const pat of aiBlockCommentPatterns) {
+  if (pat.regex.test(contentNoStrings)) {
+    issues.push({ severity: 'error', rule: 'comment-check', message: `AI-smell block comment: ${pat.msg}. Remove narration.` });
+    break;
+  }
+}
+
 // ─── Dependency Checks ───
 
 // Unsplash URLs

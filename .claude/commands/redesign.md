@@ -11,31 +11,34 @@ Audit and upgrade an existing interface to premium design quality.
 
 ## Phase 1: Think — "아직 코드 작성하지 마라"
 
-### 1a. Context Loading
+> **Phase Gate**: `phase.json` → `{"phase": "think"}` 로 전환 후 시작
+
+### 1a. Context Loading (직접 실행)
 - Read `skills/taste-core.md`, `skills/anti-slop.md`
-- Check memory for: user preferences, project design tokens
+- Read target file(s) — framework, styling, component library 파악
 
-### 1b. Scan
-- Read target file(s)
-- Identify: framework, styling approach, component library
-- Catalog existing patterns
+### 1b-1d. 병렬 탐색 (Agent 도구 동시 호출)
 
-### 1c. Diagnose
-Run audit checklist across 6 categories:
-1. **Typography** — font choices, size scale, weight usage, line-height
-2. **Color** — palette size, contrast ratios, consistency
-3. **Spacing** — padding/margin consistency, rhythm
-4. **Interaction** — hover/active/focus states, transitions
-5. **Layout** — grid usage, responsive breakpoints, alignment
-6. **Content** — placeholder quality, data realism
+```
+┌─────────────────────────────────────────────────────┐
+│  Agent 1: 6-Category Diagnosis                       │
+│  → 대상 파일 읽고 Typography/Color/Spacing/          │
+│    Interaction/Layout/Content 진단                    │
+│  → severity (critical/warning/info) 테이블 출력      │
+│                                                      │
+│  Agent 2: Memory & Past Learnings                    │
+│  → feedback_*, project_* 스캔                        │
+│  → 유사 리디자인의 과거 성공/실패 요약                │
+│                                                      │
+│  Agent 3 (레퍼런스 제공 시): Reference Analysis      │
+│  → Playwright DOM 분석 + 스크린샷                    │
+│  → current vs reference diff 테이블                  │
+└─────────────────────────────────────────────────────┘
+```
 
-### 1d. Reference Comparison (if provided)
-If user provides reference screenshot/URL:
-- Read `skills/playwright-analysis.md`
-- Capture screenshots, extract computed styles
-- Create diff table: current vs reference for each element
-
-Output diagnosis table with severity (critical / warning / info).
+### Think 결과물
+- Agent 결과를 종합하여 **진단 테이블** 작성
+- severity별 정렬: critical → warning → info
 
 ---
 
