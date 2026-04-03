@@ -2,7 +2,6 @@
 
 import {
   motion,
-  AnimatedSection,
   springs,
 } from "@/components/motion";
 
@@ -30,59 +29,113 @@ function HeroCard({
   );
 }
 
+/* Circular progress ring for center card */
+function ProgressRing({ percent = 80, size = 180 }: { percent?: number; size?: number }) {
+  const stroke = 14;
+  const radius = (size - stroke) / 2;
+  const circumference = 2 * Math.PI * radius;
+  const offset = circumference - (percent / 100) * circumference;
+
+  return (
+    <svg width={size} height={size} className="mx-auto">
+      {/* Background track */}
+      <circle
+        cx={size / 2}
+        cy={size / 2}
+        r={radius}
+        fill="none"
+        stroke="#e8edf3"
+        strokeWidth={stroke}
+        strokeLinecap="round"
+      />
+      {/* Progress arc */}
+      <circle
+        cx={size / 2}
+        cy={size / 2}
+        r={radius}
+        fill="none"
+        stroke="#0054f9"
+        strokeWidth={stroke}
+        strokeLinecap="round"
+        strokeDasharray={circumference}
+        strokeDashoffset={offset}
+        transform={`rotate(-90 ${size / 2} ${size / 2})`}
+      />
+    </svg>
+  );
+}
+
 export function CatalisHero() {
   return (
-    <section className="pt-4 px-4 md:px-6 pb-0">
-      {/* Inner container WITH sky background (no z-index hack) */}
+    <section className="h-screen p-3">
       <div
-        className="relative min-h-[100dvh] rounded-[2rem] overflow-hidden"
+        className="relative h-full rounded-[32px] overflow-hidden"
         style={{
-          background: `
-            radial-gradient(ellipse 140% 60% at 25% 100%, rgba(255,255,255,0.9) 0%, transparent 50%),
-            radial-gradient(ellipse 110% 50% at 75% 100%, rgba(255,255,255,0.85) 0%, transparent 45%),
-            radial-gradient(ellipse 80% 40% at 50% 100%, rgba(255,255,255,0.95) 0%, transparent 35%),
-            linear-gradient(180deg, #c0d6ee 0%, #8fbee3 25%, #6aadda 50%, #5ca3d6 75%, #4a97cd 100%)
+          backgroundImage: `
+            linear-gradient(180deg, rgba(75,130,185,0.7) 0%, rgba(75,130,185,0.5) 35%, rgba(75,130,185,0.2) 60%, transparent 100%),
+            radial-gradient(ellipse 130% 50% at 40% 100%, rgba(255,255,255,0.3) 0%, transparent 50%),
+            url("https://images.unsplash.com/photo-1517483000871-1dbf64a6e1c6?w=1920&h=1080&fit=crop&auto=format&q=80")
           `,
-          backgroundColor: '#7fbde3',
+          backgroundSize: 'cover, cover, cover',
+          backgroundPosition: 'center, center, center 60%',
+          backgroundColor: '#5a9ac8',
         }}
       >
         <div className="max-w-[80rem] mx-auto px-6 md:px-[3.25rem] relative">
+          {/* Spacer for fixed nav */}
+          <div className="h-16" />
+
           {/* Centered text content */}
-          <div className="flex flex-col items-center text-center max-w-3xl mx-auto pt-24 md:pt-28">
-            {/* Badge */}
-            <AnimatedSection className="flex items-center gap-2 mb-8">
-              <span className="inline-flex items-center gap-2 px-4 py-2 bg-[#1a1a1a]/40 backdrop-blur-sm rounded-full">
-                <svg width="14" height="14" viewBox="0 0 28 28" fill="none">
-                  <path
-                    d="M14 0L16.8 11.2L28 14L16.8 16.8L14 28L11.2 16.8L0 14L11.2 11.2L14 0Z"
-                    fill="#f0c040"
-                  />
+          <div className="flex flex-col items-center text-center max-w-3xl mx-auto pt-8 md:pt-12">
+            {/* Badge — bg-white/20, matching reference */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="flex items-center gap-2 mb-8"
+            >
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2l2.09 6.26L20.18 10l-6.09 1.74L12 18l-2.09-6.26L3.82 10l6.09-1.74L12 2z" fill="white" />
                 </svg>
                 <span className="text-xs font-medium tracking-[0.08rem] uppercase text-white">
                   From Strategy to Success
                 </span>
               </span>
-            </AnimatedSection>
+            </motion.div>
 
-            {/* Heading — white on sky */}
-            <AnimatedSection delay={0.1}>
-              <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(2.5rem,7vw,4.5rem)] leading-[1.1] tracking-[-0.04em] text-white">
+            {/* Heading — 72px matching reference */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <h1 className="font-[family-name:var(--font-cormorant)] text-[clamp(2.5rem,5vw,4.5rem)] leading-[1.1] tracking-[-0.04em] text-white">
                 Build and <em className="italic">Growth</em> with
                 <br />
                 Scalable Tools
               </h1>
-            </AnimatedSection>
+            </motion.div>
 
-            {/* Description — muted white */}
-            <AnimatedSection delay={0.15} className="mt-5">
-              <p className="text-white/70 text-base md:text-lg max-w-lg mx-auto leading-relaxed">
-                Easily adapt to changes and scale your operations with our
-                flexible infrastructure, designed to support your business growth.
+            {/* Description */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-5"
+            >
+              <p className="text-white/80 text-base md:text-lg max-w-xl mx-auto leading-relaxed">
+                Easily adapt to changes and scale your operations with our flexible infrastructure, designed to support your business growth.
               </p>
-            </AnimatedSection>
+            </motion.div>
 
             {/* CTA */}
-            <AnimatedSection delay={0.2} className="flex flex-wrap justify-center gap-3 mt-8">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="flex flex-wrap justify-center gap-3 mt-8"
+            >
               <motion.a
                 href="#pricing"
                 whileHover={{ y: -1 }}
@@ -101,103 +154,92 @@ export function CatalisHero() {
               >
                 Learn More
               </motion.a>
-            </AnimatedSection>
+            </motion.div>
           </div>
 
-          {/* Fan-spread cards peeking from bottom */}
-          <div className="relative flex justify-center items-end mt-16 md:mt-24 h-[260px] md:h-[320px]">
-            {/* Left card — tilted left */}
+          {/* Fan-spread cards */}
+          <div className="relative flex justify-center items-end mt-10 md:mt-16 h-[260px] md:h-[360px]">
+            {/* Left card — hatched bar chart */}
             <HeroCard
               rotate={-8}
               delay={0.4}
-              className="absolute bottom-[-70px] left-[2%] md:left-[10%] w-52 md:w-64 p-5 z-0 origin-bottom"
+              className="absolute -bottom-8 left-[5%] md:left-[12%] w-[220px] md:w-[320px] p-5 md:p-7 z-10 origin-bottom"
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold text-[#131313]">Transactions</span>
-                <span className="text-[10px] text-emerald-600 font-medium">↑ 12%</span>
+                <span className="text-xs md:text-base font-bold text-[#131313]">Transactions</span>
               </div>
-              <p className="text-2xl md:text-3xl font-bold text-[#131313] tabular-nums mb-3">
-                85%
-              </p>
-              <div className="flex items-end gap-1 h-14">
-                {[40, 65, 50, 80, 55, 90, 70].map((h, i) => (
-                  <div
-                    key={i}
-                    className="flex-1 rounded-md"
-                    style={{
-                      height: `${h}%`,
-                      backgroundColor: `rgba(0, 84, 249, ${0.2 + (h / 100) * 0.3})`,
-                    }}
-                  />
+              <div className="flex items-baseline gap-2 mb-3">
+                <p className="text-2xl md:text-4xl font-bold text-[#131313] tabular-nums">85%</p>
+                <span className="text-[10px] md:text-xs text-emerald-600 font-semibold">↑ 12%</span>
+              </div>
+              <div className="flex items-end gap-1.5 md:gap-2 h-20 md:h-28">
+                {[45, 70, 55, 85, 60, 95, 75].map((h, i) => (
+                  <svg key={i} className="flex-1" style={{ height: `${h}%` }} viewBox="0 0 40 100" preserveAspectRatio="none">
+                    <defs>
+                      <pattern id={`hatch-${i}`} patternUnits="userSpaceOnUse" width="6" height="6" patternTransform="rotate(45)">
+                        <line x1="0" y1="0" x2="0" y2="6" stroke="rgba(0,84,249,0.35)" strokeWidth="3" />
+                      </pattern>
+                    </defs>
+                    <rect x="2" y="0" width="36" height="100" rx="8" fill={`url(#hatch-${i})`} />
+                  </svg>
                 ))}
               </div>
             </HeroCard>
 
-            {/* Center card — upright */}
+            {/* Center card — circular progress ring (matching reference) */}
             <HeroCard
               rotate={0}
               delay={0.3}
-              className="relative bottom-[-50px] w-64 md:w-80 p-6 z-20"
+              className="relative -bottom-8 w-[250px] md:w-[380px] p-6 md:p-8 z-20"
             >
-              <div className="flex items-center justify-between mb-3">
-                <span className="text-sm font-semibold text-[#131313]">Card user</span>
-                <span className="text-xs text-[#6b7280] bg-white border border-[#e5e7eb] px-3 py-1 rounded-full inline-flex items-center gap-1">
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-base md:text-lg font-bold text-[#131313]">Card user</span>
+                <span className="text-[10px] md:text-xs text-[#6b7280] bg-white border border-[#e5e7eb] px-3 py-1.5 rounded-full inline-flex items-center gap-1">
                   Monthly
-                  <svg width="10" height="10" viewBox="0 0 20 20" fill="#6b7280">
-                    <path d="M5 8l5 5 5-5z" />
-                  </svg>
+                  <svg width="12" height="12" viewBox="0 0 20 20" fill="#6b7280"><path d="M5 8l5 5 5-5z" /></svg>
                 </span>
               </div>
-              <div className="flex items-end justify-center gap-1.5 h-20 my-2">
-                {[18, 28, 40, 52, 60, 52, 40, 28, 18].map((h, i) => (
-                  <div
-                    key={i}
-                    className="w-3.5 rounded-full bg-[#0054f9]"
-                    style={{
-                      height: `${h}px`,
-                      opacity: 0.4 + (h / 60) * 0.6,
-                    }}
-                  />
-                ))}
+              {/* Circular progress ring */}
+              <div className="hidden md:block">
+                <ProgressRing percent={80} size={180} />
               </div>
-              <div className="text-center mt-2">
-                <p className="text-3xl md:text-4xl font-bold text-[#131313] tabular-nums">
-                  80%
-                </p>
-                <p className="text-xs text-[#6b7280] mt-1">Responses this month</p>
+              <div className="md:hidden">
+                <ProgressRing percent={80} size={120} />
+              </div>
+              <div className="text-center mt-4">
+                <p className="text-3xl md:text-5xl font-bold text-[#131313] tabular-nums">80%</p>
+                <p className="text-xs md:text-sm text-[#6b7280] mt-1">Responses this month</p>
               </div>
             </HeroCard>
 
-            {/* Right card — tilted right */}
+            {/* Right card — bar chart + legend */}
             <HeroCard
               rotate={8}
               delay={0.5}
-              className="absolute bottom-[-70px] right-[2%] md:right-[10%] w-48 md:w-56 p-5 z-0 origin-bottom"
+              className="absolute -bottom-8 right-[5%] md:right-[12%] w-[200px] md:w-[280px] p-5 md:p-6 z-10 origin-bottom"
             >
               <div className="flex items-center justify-between mb-3">
-                <span className="text-[10px] text-[#6b7280]">Monthly</span>
-                <svg width="10" height="10" viewBox="0 0 20 20" fill="#6b7280">
-                  <path d="M5 8l5 5 5-5z" />
-                </svg>
+                <span className="text-[10px] md:text-xs text-[#6b7280]">Monthly</span>
+                <svg width="12" height="12" viewBox="0 0 20 20" fill="#6b7280"><path d="M5 8l5 5 5-5z" /></svg>
               </div>
               <div className="flex items-center gap-3 mb-3">
-                <div className="flex gap-1.5">
+                <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-[#0054f9]" />
-                  <span className="text-[10px] text-[#6b7280]">Income</span>
+                  <span className="text-[10px] md:text-xs text-[#6b7280]">Income</span>
                 </div>
-                <div className="flex gap-1.5">
+                <div className="flex items-center gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-[#131313]" />
-                  <span className="text-[10px] text-[#6b7280]">Free Budget</span>
+                  <span className="text-[10px] md:text-xs text-[#6b7280]">Free Budget</span>
                 </div>
               </div>
-              <div className="flex items-end gap-1 h-10">
-                {[30, 50, 70, 45, 85, 60].map((h, i) => (
+              <div className="flex items-end gap-1.5 md:gap-2 h-14 md:h-20">
+                {[35, 55, 75, 50, 90, 65].map((h, i) => (
                   <div
                     key={i}
-                    className="flex-1 rounded"
+                    className="flex-1 rounded-lg"
                     style={{
                       height: `${h}%`,
-                      backgroundColor: i % 2 === 0 ? 'rgba(0,84,249,0.3)' : 'rgba(19,19,19,0.15)',
+                      backgroundColor: i % 2 === 0 ? 'rgba(0,84,249,0.35)' : 'rgba(19,19,19,0.12)',
                     }}
                   />
                 ))}

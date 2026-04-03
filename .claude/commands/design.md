@@ -9,75 +9,93 @@ Generate a premium frontend interface from scratch.
 
 Categories: ir-deck, dashboard, landing-page, presentation, portfolio, custom
 
-## Workflow
+---
 
-### 1. Context Loading
-- Read `skills/taste-core.md`
-- Read `skills/anti-slop.md`
-- Read `skills/motion-engine.md`
+## Phase 1: Think — "아직 코드 작성하지 마라"
+
+### 1a. Context Loading
+- Read `skills/taste-core.md`, `skills/anti-slop.md`, `skills/motion-engine.md`
 - If preset specified: read `skills/style-presets/{preset}.md`
-- If category has an example: read `examples/{category}/example.md`
 - Check memory for: user preferences, past feedback, project design tokens
 
-### 2. Configuration
-Set dial values (use defaults or user overrides):
+### 1b. Reference Research
+- Search for similar high-quality sites in the category
+- If found: capture screenshot + Playwright analysis (`skills/playwright-analysis.md`)
+- Identify design patterns worth adopting
+
+### 1c. Component Search
+Before building from scratch:
+- Read `skills/uitripled.md` → search registry for matching sections
+- Read `skills/21st-dev.md` → use `21st_magic_component_inspiration` for ideas
+
+### 1d. Image Sourcing
+- Read `skills/unsplash.md`
+- Identify every image slot: hero bg, card thumbnails, avatars, product shots
+- Search Unsplash, build URLs with correct params
+- No gray boxes. Every `<img>` must have a real source.
+
+---
+
+## Phase 2: Plan — "아직 코드 작성하지 마라"
+
+### 2a. Design Intent
+State briefly:
+- Layout strategy and why
+- Typography pairing and why
+- Color approach and why
+- Motion patterns and why
+- Which uitripled/21st.dev components will be used
+
+### 2b. Dial Configuration
 - DESIGN_VARIANCE: $arguments.variance or 7
 - MOTION_INTENSITY: $arguments.motion or 5
 - VISUAL_DENSITY: $arguments.density or 4
 
-### 3. Component Search (uitripled + 21st.dev)
-Before building from scratch, search existing registries:
+### 2c. Spec with Acceptance Criteria
+```
+## Spec: {name}
 
-**Step A — uitripled (local registry, first priority):**
-- Read `skills/uitripled.md` for integration guide
-- Read `skills/uitripled-registry.json` and search for components matching planned sections
-- For each match: fetch via `curl -s "https://ui.tripled.work/r/{name}.json"`
-- Customize fetched components: replace colors/fonts/spacing with preset tokens, strip anti-slop violations, rename to project convention
+### Sections & Criteria
+1. Nav — [layout, position, responsive behavior]
+2. Hero — [height, bg treatment, text hierarchy, CTA placement]
+3. Features — [grid layout, card structure, content]
+...
 
-**Step B — 21st.dev (AI generation, fills gaps):**
-- Read `skills/21st-dev.md` for integration guide
-- For sections with no uitripled match:
-  1. Use `21st_magic_component_inspiration` to find design references
-  2. Use `21st_magic_component_builder` to generate tailored components
-  3. Customize output: apply preset tokens, strip anti-slop, rename
+### Anti-Slop Pre-Check
+- [ ] No 3-equal-card rows
+- [ ] No Inter-only typography
+- [ ] No centered hero + subtitle + CTA (unless VARIANCE ≤ 4)
+- [ ] No round numbers in data
+```
 
-- If no good match from either source, build the section from scratch
+**Quality Gate**: Present to user. No coding until approved.
 
-### 4. Design Intent
-Before writing code, briefly state:
-- What layout strategy you're using and why
-- What typography pairing you chose and why
-- What color approach and why
-- What motion patterns and why
-- Which uitripled components were used as base (if any)
+---
 
-### 5. Image Sourcing
-Before writing code, source all needed images:
-- Read `skills/unsplash.md` for sourcing guide
-- Identify every image slot: hero bg, card thumbnails, avatars, product shots
-- Search Unsplash via `WebSearch` ("site:unsplash.com {keywords}") for each slot
-- Build URLs with correct size params (`w`, `h`, `fit=crop`, `auto=format`, `q=80`)
-- For Next.js: ensure `images.remotePatterns` includes `images.unsplash.com`
-- No gray boxes. No placeholder URLs. Every `<img>` / `<Image>` must have a real Unsplash source.
+## Phase 3: Execute — Spec을 따라 구현
 
-### 6. Implementation
-Generate the complete, runnable code. No placeholders. No "// add more here".
+### Per-Section Implementation
+For each section:
+1. Generate code following spec
+2. quick-lint runs automatically
+3. Screenshot → visual check → fix if needed → next section
 
-Requirements:
-- Full responsive layout (mobile-first)
+### Requirements
+- Full responsive (mobile-first, single-column below md:)
 - All states: empty, loading, error, populated
-- Real-looking data (no "John Doe", no "Lorem ipsum")
-- Proper semantic HTML
-- Accessibility (ARIA labels, contrast ratios)
+- Real-looking data, proper semantic HTML, accessibility
+- No placeholders, no "// add more here"
+- Hero/first-screen: `animate` directly, never `useInView`
 
-### 7. Verification
-After code generation:
-1. quick-lint runs automatically (PostToolUse hook)
-2. If quick-lint flags issues → fix immediately
-3. Run `/verify` on the output
-4. If verify fails → fix failed checks → re-verify (max 3 rounds)
-5. Report verification results
+---
 
-### 8. Memory Update
-- If this design introduces new patterns → note for future reference
-- If user gives feedback → save to feedback memory
+## Phase 4: Verify
+
+Run `/verify` on output. Fix failures → re-verify (max 3 rounds).
+
+---
+
+## Phase 5: Wisdom
+
+Extract learnings (Conventions, Successes, Failures, Gotchas, Commands).
+Save to memory for future tasks.

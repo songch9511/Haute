@@ -56,16 +56,13 @@ function CheckIcon() {
 
 export function CatalisPricing() {
   return (
-    <section
+    <section className="px-4 md:px-6 py-2">
+    <div
       id="pricing"
-      className="relative py-20 md:py-[5rem] overflow-hidden"
+      className="relative py-20 md:py-[5rem] overflow-hidden rounded-[2rem]"
       style={{
-        background: `
-          radial-gradient(ellipse 90% 60% at 40% 0%, rgba(255,255,255,0.4) 0%, transparent 45%),
-          radial-gradient(ellipse 70% 45% at 80% 0%, rgba(255,255,255,0.3) 0%, transparent 40%),
-          linear-gradient(180deg, #c0d9f0 0%, #7fbde3 35%, #5ca3d6 100%)
-        `,
-        backgroundColor: '#7fbde3',
+        background: 'linear-gradient(180deg, #003cc8 0%, #0040d0 30%, #0048dd 60%, #0050e8 100%)',
+        backgroundColor: '#0040d0',
       }}
     >
 
@@ -73,10 +70,10 @@ export function CatalisPricing() {
         {/* Header */}
         <AnimatedSection className="flex flex-col items-center text-center gap-4 max-w-2xl mx-auto mb-14">
           <StarBadge />
-          <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] tracking-[-0.04em] text-[#131313]">
+          <h2 className="font-[family-name:var(--font-cormorant)] text-[clamp(2rem,5vw,3.5rem)] leading-[1.15] tracking-[-0.04em] text-white">
             Simple, transparent <em className="italic">pricing</em>
           </h2>
-          <p className="text-[#4c4c4c] text-base leading-relaxed">
+          <p className="text-white/70 text-base leading-relaxed">
             Choose a plan that fits your business needs and budget.
           </p>
         </AnimatedSection>
@@ -133,6 +130,7 @@ export function CatalisPricing() {
           ))}
         </StaggerGroup>
       </div>
+    </div>
     </section>
   );
 }

@@ -10,6 +10,17 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "if echo \"$TOOL_INPUT\" | grep -qE 'git\\s+commit'; then cd verifier && npx playwright test --reporter=list --ignore-snapshots 2>&1 | tail -20; fi"
+          }
+        ]
+      }
     ]
   }
 }

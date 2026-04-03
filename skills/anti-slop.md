@@ -157,6 +157,29 @@ Every pattern below is a known "AI tell" — a design choice that signals the in
 
 ## 6. Pattern Detection Rules
 
+## 6. Interaction / Animation Bans
+
+### 6.1 Hero Content with useInView
+- **Banned:** `useInView` or scroll-triggered animation on hero/first-screen content (above the fold)
+- **Why:** `useInView({ margin: "-20%" })` causes elements near viewport top to never trigger. Badge, heading, description become invisible on page load. Playwright catches them but real browsers don't.
+- **Instead:** Use `animate` prop directly (immediate) or `initial` + `animate` with short delay.
+- **Detection:** Any element within first 400px of viewport using `useInView` or `whileInView`.
+
+### 6.2 Body Text Center-Aligned Beyond 2 Lines
+- **Banned:** `text-align: center` on paragraphs that render to 3+ lines
+- **Why:** Centered body text is harder to read. Looks amateur on long-form copy.
+- **Instead:** `text-align: left`. Center only headings, labels, single-line elements.
+
+### 6.3 Light Theme Contrast Reversal
+- **Banned:** White/light text on bright accent backgrounds (brightness > 70%)
+- **Why:** Notion copy had yellow card with white text = 1.9:1 contrast failure. Light bg needs DARK text.
+- **Instead:** If background brightness > 70%, text must be dark (`#191918` or similar).
+- **Detection:** Compute bg luminance; if > 0.7, check text luminance < 0.3.
+
+---
+
+## Verifier Rules
+
 For use by the verifier (quick-lint and Playwright checks):
 
 ```
@@ -178,6 +201,11 @@ LAYOUT_CHECKS:
   - CSS Grid row with 3+ equal-width items sharing identical structure → FAIL (bento pretender)
   - height: 100vh or h-screen → FAIL
   - flex with percentage widths for grid → WARN
+
+INTERACTION_CHECKS:
+  - useInView on element within first 400px of viewport → FAIL
+  - text-align: center on paragraph with 3+ rendered lines → WARN
+  - white/light text (luminance > 0.7) on bright bg (luminance > 0.7) → FAIL
 
 CONTENT_CHECKS:
   - "John Doe" | "Jane Smith" | "Lorem ipsum" → FAIL
