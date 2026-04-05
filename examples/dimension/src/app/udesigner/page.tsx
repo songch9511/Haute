@@ -8,14 +8,14 @@ import { UdInstall } from "@/components/udesigner/install";
 import { UdFooter } from "@/components/udesigner/footer";
 
 export const metadata = {
-  title: "UDesigner — Stop shipping AI slop",
+  title: "UDesigner — A design agent with the eye of an oracle",
   description:
-    "A design harness that writes taste into the model and catches what the model still gets wrong. Memory you can query, verify you can trust.",
+    "A high-agency design harness that writes taste into the model and catches what the model still gets wrong. Memory you can query, verify you can trust.",
 };
 
 export default function UdesignerPage() {
   return (
-    <div className="bg-[#0a0a0a] text-[#f5f5f5] min-h-screen font-[family-name:var(--font-geist-sans)]">
+    <div className="bg-[#faf6ea] text-[#120e08] min-h-screen font-[family-name:var(--font-geist-sans)] antialiased">
       <UdNav />
       <main>
         <UdHero />

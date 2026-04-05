@@ -3,9 +3,9 @@
 import { motion } from "@/components/motion";
 
 const LINKS = [
-  { href: "#pillars", label: "pillars" },
-  { href: "#benchmark", label: "benchmark" },
-  { href: "#install", label: "install" },
+  { href: "#pillars", label: "Architecture" },
+  { href: "#benchmark", label: "Benchmark" },
+  { href: "#install", label: "Session" },
 ];
 
 export function UdNav() {
@@ -13,23 +13,24 @@ export function UdNav() {
     <motion.nav
       initial={{ opacity: 0, y: -8 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[min(92vw,1040px)]"
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-[min(94vw,1280px)]"
     >
-      <div className="flex items-center justify-between gap-6 px-5 py-3 rounded-full bg-white/[0.04] backdrop-blur-xl border border-white/[0.08]">
+      <div className="flex items-baseline justify-between gap-6 px-6 md:px-8 py-3.5 rounded-full bg-[#faf7f0]/90 backdrop-blur-xl border border-[#c4ae82]/50">
         <a
           href="#top"
-          className="font-[family-name:var(--font-geist-mono)] text-[13px] text-[#f5f5f5] tracking-tight"
+          className="font-[family-name:var(--font-cormorant)] font-semibold text-[20px] italic text-[#120e08] tracking-tight leading-none"
         >
-          udesigner<span className="text-[#00d9a5]">/</span>
+          UDesigner
+          <span className="not-italic text-[#8a3a1e]">.</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden md:flex items-center gap-8">
           {LINKS.map((l) => (
             <a
               key={l.href}
               href={l.href}
-              className="font-[family-name:var(--font-geist-mono)] text-[12px] text-[#8a8a8a] hover:text-[#f5f5f5] transition-colors duration-200"
+              className="font-[family-name:var(--font-geist-sans)] text-[13px] text-[#2a1d10] hover:text-[#8a3a1e] transition-colors duration-200 tracking-[0.01em]"
             >
               {l.label}
             </a>
@@ -38,9 +39,9 @@ export function UdNav() {
 
         <a
           href="#install"
-          className="font-[family-name:var(--font-geist-mono)] text-[12px] text-[#0a0a0a] bg-[#00d9a5] hover:bg-[#00f0b5] transition-colors duration-200 px-3.5 py-1.5 rounded-full"
+          className="font-[family-name:var(--font-cormorant)] font-semibold italic text-[16px] text-[#faf7f0] bg-[#120e08] hover:bg-[#8a3a1e] transition-colors duration-300 px-5 py-1.5 rounded-full leading-none"
         >
-          $ npx udesigner
+          begin
         </a>
       </div>
     </motion.nav>

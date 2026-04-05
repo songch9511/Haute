@@ -20,47 +20,61 @@ const LINES = [
   { kind: "warn", text: "  ⚠ [no-div-onclick] × 1" },
   { kind: "warn", text: "  ⚠ [img-missing-alt] × 1" },
   { kind: "warn", text: "  ⚠ [no-ai-smell-comments] × 1" },
-  { kind: "out", text: "" },
-  { kind: "caret", text: "12 planted violations. 12 caught. Zero escapes." },
 ];
 
 function classFor(kind: string) {
-  if (kind === "cmd") return "text-[#f5f5f5]";
-  if (kind === "err") return "text-[#ff6b6b]";
-  if (kind === "warn") return "text-[#ffd166]";
-  if (kind === "caret") return "text-[#00d9a5]";
-  return "text-[#8a8a8a]";
+  if (kind === "cmd") return "text-[#f5ede0]";
+  if (kind === "err") return "text-[#d97757]";
+  if (kind === "warn") return "text-[#c9a980]";
+  return "text-[#a0917f]";
 }
 
 export function UdProof() {
   return (
-    <section className="px-6 md:px-12 py-24 md:py-28">
-      <div className="max-w-[1200px] mx-auto">
+    <section className="relative px-6 md:px-12 py-24 md:py-32">
+      <div className="max-w-[1280px] mx-auto">
+        {/* Editorial header */}
         <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-12 gap-6 mb-10 items-baseline"
+        >
+          <span className="col-span-12 md:col-span-2 font-[family-name:var(--font-geist-mono)] text-[10px] uppercase tracking-[0.22em] text-[#8a3a1e]">
+            N° I · Exhibit
+          </span>
+          <h2 className="col-span-12 md:col-span-8 font-[family-name:var(--font-cormorant)] font-semibold text-[32px] md:text-[44px] leading-[1.05] tracking-[-0.015em] text-[#120e08]">
+            The <em className="italic text-[#8a3a1e]">oracle</em> sees everything
+            <br className="hidden md:block" />
+            the model wanted to hide.
+          </h2>
+          <span className="col-span-12 md:col-span-2 font-[family-name:var(--font-geist-mono)] text-[10px] uppercase tracking-[0.22em] text-[#a0917f] md:text-right">
+            Red-team run · 2026
+          </span>
+        </motion.div>
+
+        {/* Terminal exhibit — dark plate on cream ground */}
+        <motion.figure
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+          className="relative"
         >
-          <div className="flex items-baseline justify-between mb-5">
-            <span className="font-[family-name:var(--font-geist-mono)] text-[11px] uppercase tracking-[0.14em] text-[#4a4a4a]">
-              // proof — red team run
-            </span>
-            <span className="font-[family-name:var(--font-geist-mono)] text-[11px] text-[#4a4a4a] tabular-nums">
-              2026-04-05 · e6eccce
-            </span>
-          </div>
-
-          <div className="rounded-[12px] border border-white/[0.08] bg-[#050505] overflow-hidden">
-            <div className="flex items-center gap-2 px-5 py-3 border-b border-white/[0.05]">
-              <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
-              <span className="w-2.5 h-2.5 rounded-full bg-[#2a2a2a]" />
-              <span className="ml-3 font-[family-name:var(--font-geist-mono)] text-[11px] text-[#4a4a4a]">
-                ~/udesigner — zsh
+          <div className="rounded-[6px] border border-[#120e08]/15 bg-[#120e08] overflow-hidden">
+            {/* window chrome */}
+            <div className="flex items-center gap-2 px-5 py-3 border-b border-[#2a1d10]/80">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#6b5a4a]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#6b5a4a]" />
+              <span className="w-2.5 h-2.5 rounded-full bg-[#6b5a4a]" />
+              <span className="ml-3 font-[family-name:var(--font-geist-mono)] text-[10px] uppercase tracking-[0.14em] text-[#a0917f]">
+                ~/udesigner — verification
+              </span>
+              <span className="ml-auto font-[family-name:var(--font-geist-mono)] text-[10px] uppercase tracking-[0.14em] text-[#6b5a4a]">
+                live output
               </span>
             </div>
-            <pre className="px-6 py-6 font-[family-name:var(--font-geist-mono)] text-[12.5px] leading-[1.65] overflow-x-auto">
+            {/* terminal body */}
+            <pre className="px-7 md:px-10 py-7 md:py-9 font-[family-name:var(--font-geist-mono)] text-[12.5px] leading-[1.75] overflow-x-auto">
               {LINES.map((line, i) => (
                 <div key={i} className={classFor(line.kind)}>
                   {line.text || "\u00a0"}
@@ -68,7 +82,15 @@ export function UdProof() {
               ))}
             </pre>
           </div>
-        </motion.div>
+          <figcaption className="mt-4 flex items-baseline justify-between gap-6">
+            <span className="font-[family-name:var(--font-cormorant)] font-semibold italic text-[15px] text-[#2a1d10]">
+              Twelve planted violations. Twelve caught. Zero escapes.
+            </span>
+            <span className="font-[family-name:var(--font-geist-mono)] text-[10px] uppercase tracking-[0.2em] text-[#a0917f]">
+              code-oracle · v1
+            </span>
+          </figcaption>
+        </motion.figure>
       </div>
     </section>
   );

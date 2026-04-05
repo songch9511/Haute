@@ -15,10 +15,36 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
+          href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap"
           rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
         />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,400;1,9..144,500;1,9..144,600;1,9..144,700&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap"
+          rel="stylesheet"
+        />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800&display=swap"
+          rel="stylesheet"
+        />
+        <style>{`
+          :root {
+            --font-cormorant: "Fraunces", "Cormorant Garamond", Georgia, serif;
+            --font-serif-display: "Fraunces", Georgia, serif;
+            --font-geist-sans: "Geist", system-ui, sans-serif;
+            --font-geist-mono: "Geist Mono", ui-monospace, "SF Mono", monospace;
+          }
+        `}</style>
       </head>
       <body className="min-h-dvh antialiased">{children}</body>
     </html>

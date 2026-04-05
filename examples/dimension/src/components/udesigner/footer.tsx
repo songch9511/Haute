@@ -2,63 +2,63 @@ import Link from "next/link";
 
 const COLUMNS = [
   {
-    label: "product",
+    label: "Product",
     links: [
-      { href: "#pillars", label: "architecture" },
-      { href: "#benchmark", label: "benchmark" },
-      { href: "#install", label: "install" },
+      { href: "#pillars", label: "Architecture" },
+      { href: "#benchmark", label: "Benchmark" },
+      { href: "#install", label: "Session" },
     ],
   },
   {
-    label: "verifier",
+    label: "Verifier",
     links: [
-      { href: "#", label: "code-oracle" },
-      { href: "#", label: "visual-oracle" },
-      { href: "#", label: "composite-score" },
+      { href: "#", label: "Code Oracle" },
+      { href: "#", label: "Visual Oracle" },
+      { href: "#", label: "Composite score" },
     ],
   },
   {
-    label: "memory",
+    label: "Memory",
     links: [
-      { href: "#", label: "3-tier tree" },
-      { href: "#", label: "memory tools" },
-      { href: "#", label: "shipped corpus" },
+      { href: "#", label: "Three-tier tree" },
+      { href: "#", label: "Memory tools" },
+      { href: "#", label: "Shipped corpus" },
     ],
   },
   {
-    label: "repo",
+    label: "Archive",
     links: [
-      { href: "#", label: "github" },
-      { href: "#", label: "changelog" },
-      { href: "#", label: "license" },
+      { href: "#", label: "GitHub" },
+      { href: "#", label: "Changelog" },
+      { href: "#", label: "License" },
     ],
   },
 ];
 
 export function UdFooter() {
   return (
-    <footer className="px-6 md:px-12 pt-20 md:pt-24 pb-10 bg-[#050505] border-t border-white/[0.05]">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-6 mb-16">
-          <div className="col-span-2 md:col-span-1">
-            <div className="font-[family-name:var(--font-geist-mono)] text-[13px] text-[#f5f5f5]">
-              udesigner<span className="text-[#00d9a5]">/</span>
+    <footer className="px-6 md:px-12 pt-12 pb-10 bg-[#120e08] text-[#f5ede0]">
+      <div className="max-w-[1280px] mx-auto">
+        <div className="grid grid-cols-12 gap-8 md:gap-6 mb-16 border-b border-[#3e2418] pb-14">
+          <div className="col-span-12 md:col-span-4">
+            <div className="font-[family-name:var(--font-cormorant)] font-semibold italic text-[40px] md:text-[56px] leading-[0.96] tracking-[-0.02em]">
+              UDesigner<span className="not-italic text-[#c9a980]">.</span>
             </div>
-            <p className="mt-3 font-[family-name:var(--font-geist-mono)] text-[11px] text-[#4a4a4a] leading-relaxed max-w-[180px]">
-              high-agency design harness for the ai era
+            <p className="mt-4 font-[family-name:var(--font-cormorant)] font-semibold italic text-[18px] leading-[1.5] text-[#a0917f] max-w-[30ch]">
+              A design agent with the instincts of an editor and the eye of an oracle.
             </p>
           </div>
           {COLUMNS.map((col) => (
-            <div key={col.label}>
-              <div className="font-[family-name:var(--font-geist-mono)] text-[10px] uppercase tracking-[0.14em] text-[#4a4a4a] mb-4">
+            <div key={col.label} className="col-span-6 md:col-span-2">
+              <div className="font-[family-name:var(--font-geist-mono)] text-[10px] uppercase tracking-[0.22em] text-[#8a3a1e] mb-5 pb-3 border-b border-[#3e2418]">
                 {col.label}
               </div>
-              <ul className="flex flex-col gap-2.5">
+              <ul className="flex flex-col gap-3">
                 {col.links.map((l) => (
                   <li key={l.label}>
                     <Link
                       href={l.href}
-                      className="font-[family-name:var(--font-geist-mono)] text-[12px] text-[#8a8a8a] hover:text-[#f5f5f5] transition-colors duration-200"
+                      className="font-[family-name:var(--font-cormorant)] font-semibold text-[17px] text-[#f5ede0] hover:text-[#c9a980] transition-colors duration-200"
                     >
                       {l.label}
                     </Link>
@@ -69,12 +69,12 @@ export function UdFooter() {
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 pt-6 border-t border-white/[0.05]">
-          <div className="font-[family-name:var(--font-geist-mono)] text-[11px] text-[#4a4a4a]">
-            // last verified: 2026-04-05 · commit e6eccce · code 99/100
+        <div className="flex flex-col md:flex-row items-start md:items-baseline justify-between gap-3">
+          <div className="font-[family-name:var(--font-geist-mono)] text-[10px] uppercase tracking-[0.22em] text-[#6b5a4a]">
+            Last verified · 2026-04-05 · commit de0a66e · code 99/100
           </div>
-          <div className="font-[family-name:var(--font-geist-mono)] text-[11px] text-[#4a4a4a]">
-            read-only oracle · no mutation · lossless recall
+          <div className="font-[family-name:var(--font-cormorant)] font-semibold italic text-[15px] text-[#a0917f]">
+            Read-only oracle. No mutation. Lossless recall.
           </div>
         </div>
       </div>
