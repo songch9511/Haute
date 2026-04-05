@@ -1,0 +1,68 @@
+{
+  "_doc": "Visual patterns the user has explicitly rejected. Visual Oracle must penalize these. Updated after each session's wisdom phase.",
+  "_updated": "2026-04-06",
+  "rejected_patterns": [
+    {
+      "pattern": "box-shadow on cards/panels",
+      "context": "User said '그림자 제거' — shadow-lg, shadow-md on card surfaces is visual noise",
+      "sessions": ["v3.2-editorial"]
+    },
+    {
+      "pattern": "gratuitous border-b dividers on headings",
+      "context": "6+ border-b dividers flagged as decorative spam in editorial redesign",
+      "sessions": ["v3.2-editorial"]
+    },
+    {
+      "pattern": "zig-zag alternating layout",
+      "context": "Oracle recommended +8 delta but user explicitly rejected as too predictable/dated",
+      "sessions": ["v3.2-editorial"]
+    },
+    {
+      "pattern": "3-equal bento card row",
+      "context": "Recurring issue across multiple sessions. Even col-span-2 on one item doesn't fix if any row has 3 equal items",
+      "sessions": ["v3.0-dimension", "v3.2-editorial"]
+    },
+    {
+      "pattern": "whileInView on body sections creating invisible void",
+      "context": "3500px of blank space in Playwright fullPage capture. Use animate with delay instead",
+      "sessions": ["v3.2-editorial"]
+    },
+    {
+      "pattern": "uniform py-24 section padding",
+      "context": "Every section same vertical rhythm = monotonous. Vary padding per section",
+      "sessions": ["v3.2-editorial"]
+    },
+    {
+      "pattern": "center-aligned everything (>60%)",
+      "context": "Too many centered sections reads as AI default. At least 40% should be left-aligned or asymmetric",
+      "sessions": ["v3.0-dimension"]
+    },
+    {
+      "pattern": "purple-to-blue gradient",
+      "context": "LILA BAN — the single most recognizable AI default color combination",
+      "sessions": ["v3.0-dimension"]
+    },
+    {
+      "pattern": "Unsplash/placeholder image URLs",
+      "context": "Anti-slop verifier flags external placeholders. Use CSS gradients or local SVG",
+      "sessions": ["v3.0-dimension", "v3.1-journey"]
+    }
+  ],
+  "validated_approaches": [
+    {
+      "pattern": "per-section Code Oracle verify during execution",
+      "context": "Caught motion.width animation live — cheap loop, high value",
+      "sessions": ["v3.2-editorial"]
+    },
+    {
+      "pattern": "single bundled PR for editorial polish",
+      "context": "User confirmed splitting would be churn for this type of work",
+      "sessions": ["v3.2-editorial"]
+    },
+    {
+      "pattern": "hover:shadow-sm as interaction feedback",
+      "context": "Subtle hover-only shadow is acceptable — not the same as static shadow on surfaces",
+      "sessions": ["v3.2-editorial"]
+    }
+  ]
+}

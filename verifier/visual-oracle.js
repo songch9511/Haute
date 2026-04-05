@@ -28,9 +28,11 @@ const path = require('path');
 const { spawnSync } = require('child_process');
 
 const VERIFIER_ROOT = __dirname;
+const PROJECT_ROOT = path.resolve(VERIFIER_ROOT, '..');
 const SCHEMA_PATH = path.join(VERIFIER_ROOT, 'visual-oracle-schema.json');
 const PROMPT_PATH = path.join(VERIFIER_ROOT, 'visual-oracle.md');
 const CAPTURE_DIR = path.join(VERIFIER_ROOT, '.visual-oracle-captures');
+const FEEDBACK_DIGEST_PATH = path.join(PROJECT_ROOT, '.udesigner', 'feedback-digest.json');
 
 function parseArgs(argv) {
   const args = { mode: null, value: null, reference: null, out: null };
@@ -102,12 +104,39 @@ function captureScreenshots(url) {
 // Payload assembly — prompt for sub-agent
 // ─────────────────────────────────────────────────────────────────
 
+function loadFeedbackDigest() {
+  if (!fs.existsSync(FEEDBACK_DIGEST_PATH)) return '';
+  try {
+    const digest = JSON.parse(fs.readFileSync(FEEDBACK_DIGEST_PATH, 'utf8'));
+    if (!digest.rejected_patterns || digest.rejected_patterns.length === 0) return '';
+    const lines = [
+      '',
+      '## User Feedback History (auto-injected)',
+      '',
+      'The user has **explicitly rejected** these visual patterns in prior sessions. Penalize them in your scoring:',
+      '',
+    ];
+    for (const r of digest.rejected_patterns) {
+      lines.push(`- **${r.pattern}**: ${r.context}`);
+    }
+    if (digest.validated_approaches && digest.validated_approaches.length > 0) {
+      lines.push('', 'Patterns the user has **validated** (do not penalize):');
+      for (const v of digest.validated_approaches) {
+        lines.push(`- **${v.pattern}**: ${v.context}`);
+      }
+    }
+    lines.push('');
+    return lines.join('\n');
+  } catch { return ''; }
+}
+
 function buildAgentPayload(url, captures, reference) {
   const promptContent = fs.existsSync(PROMPT_PATH) ? fs.readFileSync(PROMPT_PATH, 'utf8') : '(visual-oracle.md missing)';
+  const feedbackSection = loadFeedbackDigest();
   const schemaContent = fs.existsSync(SCHEMA_PATH) ? fs.readFileSync(SCHEMA_PATH, 'utf8') : '{}';
 
   return {
-    instructions: promptContent,
+    instructions: promptContent + feedbackSection,
     schema: JSON.parse(schemaContent),
     target: url,
     reference: reference || null,
