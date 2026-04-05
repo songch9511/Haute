@@ -11,10 +11,13 @@
     "verify:animation": "npx playwright test checks/animation-check.spec.ts",
     "verify:responsive": "npx playwright test checks/responsive-check.spec.ts",
     "verify:antislop": "npx playwright test checks/anti-slop-scan.spec.ts",
-    "verify:visual": "npx playwright test checks/visual-regression.spec.ts",
-    "lint": "node quick-lint.js"
+    "verify:layout": "npx playwright test checks/layout-diversity.spec.ts",
+    "verify:code": "node code-oracle.js",
+    "verify:code:json": "node code-oracle.js --json"
   },
   "devDependencies": {
+    "@babel/parser": "^7.29.2",
+    "@babel/traverse": "^7.29.0",
     "@playwright/test": "^1.50.0"
   }
 }

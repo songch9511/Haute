@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "updated_at": "2026-04-05",
+  "map": {
+    "financial": ["2026-04-05-catalis"],
+    "analytics": ["2026-04-05-catalis"],
+    "fintech": ["2026-04-05-catalis"],
+    "saas landing": ["2026-04-05-catalis"],
+    "editorial": ["2026-04-05-catalis"],
+    "serif display": ["2026-04-05-catalis"],
+    "hero fan cards": ["2026-04-05-catalis"],
+    "warm neutral": ["2026-04-05-catalis"]
+  }
+}

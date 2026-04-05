@@ -1,0 +1,35 @@
+{
+  "schema_version": "0.1-lightweight",
+  "note": "Phase 0 hand-generated lightweight fingerprint. To be replaced by ast-grep output in Phase 2.",
+  "component_count": 12,
+  "client_components": ["hero", "navbar", "about", "benefits", "features", "core-features", "pricing", "testimonials", "cta"],
+  "server_components": ["page", "footer", "blog"],
+  "motion_usage": {
+    "library": "framer-motion (via @/components/motion wrapper)",
+    "custom_wrapper_path": "@/components/motion",
+    "hero_uses_useInView": false,
+    "hero_uses_immediate_animate": true
+  },
+  "layout_patterns": {
+    "page_root": "single-scroll vertical flow (page.tsx composes section components)",
+    "hero": "center-stack + fan-spread-cards",
+    "about": "split",
+    "benefits": "grid",
+    "features": "split-alternating",
+    "core_features": "grid-icon-cards",
+    "pricing": "3-tier-horizontal",
+    "testimonials": "grid",
+    "blog": "grid",
+    "cta": "center-stack",
+    "footer": "multi-column"
+  },
+  "banned_patterns_used": [],
+  "detected_signals": {
+    "uses_real_images": true,
+    "uses_backdrop_blur": true,
+    "uses_arbitrary_hex": true,
+    "uses_design_token_css_vars": true,
+    "has_rotated_cards": true
+  },
+  "ast_fingerprint": null
+}

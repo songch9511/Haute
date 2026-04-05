@@ -1,0 +1,59 @@
+{
+  "id": "2026-04-05-catalis",
+  "slug": "catalis",
+  "title": "Kova — Financial Analytics Platform",
+  "created_at": "2026-04-05",
+  "cluster": "warm-editorial",
+  "tags": [
+    "fintech",
+    "landing",
+    "analytics",
+    "editorial",
+    "serif-display",
+    "warm-neutral",
+    "card-hero"
+  ],
+  "triggers": [
+    "financial",
+    "analytics",
+    "fintech",
+    "saas landing",
+    "editorial",
+    "serif display",
+    "hero fan cards",
+    "warm neutral"
+  ],
+  "source": {
+    "paths": [
+      "examples/dimension/src/app/catalis/page.tsx",
+      "examples/dimension/src/components/catalis/navbar.tsx",
+      "examples/dimension/src/components/catalis/hero.tsx",
+      "examples/dimension/src/components/catalis/about.tsx",
+      "examples/dimension/src/components/catalis/benefits.tsx",
+      "examples/dimension/src/components/catalis/features.tsx",
+      "examples/dimension/src/components/catalis/core-features.tsx",
+      "examples/dimension/src/components/catalis/pricing.tsx",
+      "examples/dimension/src/components/catalis/testimonials.tsx",
+      "examples/dimension/src/components/catalis/blog.tsx",
+      "examples/dimension/src/components/catalis/cta.tsx",
+      "examples/dimension/src/components/catalis/footer.tsx",
+      "examples/dimension/src/components/catalis/star-badge.tsx"
+    ],
+    "commit": "fd4766174dda2f35b02056a69f407fd1f16407cb",
+    "snapshot_dir": null
+  },
+  "verdict": {
+    "composite": null,
+    "visual": null,
+    "code": null,
+    "mechanical": null,
+    "notes": "Phase 0 backfill — no Oracle verdict recorded. Entry is historically known-good (shipped)."
+  },
+  "artifacts": {
+    "screenshot_desktop": null,
+    "screenshot_mobile": null,
+    "embedding": null
+  },
+  "parent": null,
+  "status": "shipped"
+}

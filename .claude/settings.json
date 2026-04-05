@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if echo \"$TOOL_INPUT\" | grep -qE '\\.(tsx|jsx|html|css|vue|svelte)'; then node verifier/quick-lint.js \"$FILE_PATH\" 2>/dev/null || true; fi"
+            "command": "if echo \"$TOOL_INPUT\" | grep -qE '\\.(tsx|jsx)'; then node verifier/code-oracle.js \"$FILE_PATH\" 2>/dev/null || true; fi"
           }
         ]
       },
@@ -71,7 +71,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "if echo \"$TOOL_INPUT\" | grep -qE 'git\\s+commit'; then cd verifier && npx playwright test --reporter=list --ignore-snapshots 2>&1 | tail -20; fi"
+            "command": "if echo \"$TOOL_INPUT\" | grep -qE 'git\\s+commit'; then cd verifier && node composite-score.js 2>&1 | tail -25; fi"
           }
         ]
       }

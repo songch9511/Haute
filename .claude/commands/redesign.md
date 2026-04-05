@@ -14,16 +14,16 @@ Audit and upgrade an existing interface to premium design quality.
 > **Phase Gate**: `phase.json` → `{"phase": "think"}` 로 전환 후 시작
 
 ### 1a. Context Loading (직접 실행)
-- Read `skills/taste-core.md`, `skills/anti-slop.md`
+- Read `skills/taste-core.md`, `skills/anti-slop.md`, `skills/layout-patterns.md` (summary, first 40 lines)
 - Read target file(s) — framework, styling, component library 파악
 
 ### 1b-1d. 병렬 탐색 (Agent 도구 동시 호출)
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│  Agent 1: 6-Category Diagnosis                       │
+│  Agent 1: 7-Category Diagnosis                       │
 │  → 대상 파일 읽고 Typography/Color/Spacing/          │
-│    Interaction/Layout/Content 진단                    │
+│    Interaction/Layout/Content/Layout Diversity 진단   │
 │  → severity (critical/warning/info) 테이블 출력      │
 │                                                      │
 │  Agent 2: Memory & Past Learnings                    │
@@ -77,7 +77,7 @@ Present fix plan with **measurable acceptance criteria**:
 
 For each fix in priority order:
 1. Apply the fix
-2. quick-lint runs automatically
+2. code-oracle (Pillar B Code Lane) runs automatically via PostToolUse hook
 3. Screenshot → verify improvement → next fix
 
 **Rules**:
