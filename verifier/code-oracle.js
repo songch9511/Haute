@@ -763,19 +763,49 @@ rules.push({
   run({ code, file }) {
     const violations = [];
     const lines = code.split('\n');
-    // Only flag font vars used in component files, not in layout/globals where they're defined
     const basename = file.split('/').pop() || '';
     if (basename === 'layout.tsx' || basename === 'globals.css') return [];
+
+    // Walk up to find layout.tsx and globals.css, collect defined --font-* vars
+    const definedVars = new Set();
+    let dir = path.dirname(file);
+    for (let depth = 0; depth < 8; depth++) {
+      for (const candidate of ['layout.tsx', 'globals.css']) {
+        const candidatePath = path.join(dir, candidate);
+        if (fs.existsSync(candidatePath)) {
+          const content = fs.readFileSync(candidatePath, 'utf8');
+          const varMatches = content.match(/--font-[\w-]+/g);
+          if (varMatches) varMatches.forEach(v => definedVars.add('var(' + v + ')'));
+        }
+      }
+      // Also check app/ directory structure (Next.js convention)
+      const appDir = path.join(dir, 'app');
+      if (fs.existsSync(appDir)) {
+        for (const candidate of ['layout.tsx', 'globals.css']) {
+          const candidatePath = path.join(appDir, candidate);
+          if (fs.existsSync(candidatePath)) {
+            const content = fs.readFileSync(candidatePath, 'utf8');
+            const varMatches = content.match(/--font-[\w-]+/g);
+            if (varMatches) varMatches.forEach(v => definedVars.add('var(' + v + ')'));
+          }
+        }
+      }
+      const parent = path.dirname(dir);
+      if (parent === dir) break;
+      dir = parent;
+    }
 
     lines.forEach((line, i) => {
       const matches = line.match(/var\(--font-[\w-]+\)/g);
       if (matches) {
         for (const m of matches) {
-          violations.push({
-            file,
-            line: i + 1,
-            message: `${m} — verify this variable is defined in layout.tsx (next/font) or globals.css; undefined vars silently fall back to browser default serif`,
-          });
+          if (!definedVars.has(m)) {
+            violations.push({
+              file,
+              line: i + 1,
+              message: `${m} — not found in any layout.tsx or globals.css up the directory tree; undefined vars silently fall back to browser default serif`,
+            });
+          }
         }
       }
     });
