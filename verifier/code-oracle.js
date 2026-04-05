@@ -665,6 +665,147 @@ rules.push({
 });
 
 // ─────────────────────────────────────────────────────────────────
+// L2.21–L2.25 — sum.md don'ts sync (v3.2 post-mortem)
+// ─────────────────────────────────────────────────────────────────
+
+// L2.21 — whileInView on non-hero body sections
+rules.push({
+  id: 'no-whileInView-on-body',
+  severity: 'error',
+  category: 'motion',
+  description: 'whileInView on body sections creates invisible void in Playwright fullPage capture — use immediate animate with delay',
+  run({ ast, file }) {
+    if (!ast || isHeroFile(file)) return [];
+    const violations = [];
+    traverse(ast, {
+      JSXAttribute(pathNode) {
+        if (pathNode.node.name.name === 'whileInView') {
+          violations.push({
+            file,
+            line: pathNode.node.loc && pathNode.node.loc.start.line,
+            message: 'whileInView on body section — Playwright fullPage won\'t trigger viewport intersection; use animate with delay instead',
+          });
+        }
+      },
+    });
+    return violations;
+  },
+});
+
+// L2.22 — box-shadow on cards/panels/surfaces
+rules.push({
+  id: 'no-box-shadow-on-surface',
+  severity: 'error',
+  category: 'color',
+  description: 'box-shadow on card/panel surfaces is visual noise — use border or elevation via spacing only',
+  run({ code, file }) {
+    const violations = [];
+    const lines = code.split('\n');
+    lines.forEach((line, i) => {
+      // shadow-* in Tailwind className (exclude shadow-none, shadow-inner, hover:shadow-*)
+      if (/\bshadow-(?!none|inner)/.test(line) && !/\/\//.test(line.split('shadow')[0])) {
+        // Skip hover-only shadows (intentional interaction feedback)
+        if (/hover:shadow-/.test(line) && !/\bshadow-(?!none|inner)/.test(line.replace(/hover:shadow-\S+/g, ''))) return;
+        // Check if it's in a className context (rough heuristic)
+        if (/className/.test(line) || /class=/.test(line) || /`[^`]*shadow-/.test(line)) {
+          violations.push({
+            file,
+            line: i + 1,
+            message: 'shadow-* on element — remove for flat design; use border-[0.5px] or spacing for depth',
+          });
+        }
+      }
+      // Inline boxShadow style prop
+      if (/boxShadow\s*:/.test(line) && !/\/\//.test(line.split('boxShadow')[0])) {
+        violations.push({
+          file,
+          line: i + 1,
+          message: 'boxShadow inline style — remove entirely or use border for separation',
+        });
+      }
+    });
+    return violations;
+  },
+});
+
+// L2.23 — gratuitous section dividers (border-b spam on headings/sections)
+rules.push({
+  id: 'no-gratuitous-dividers',
+  severity: 'warn',
+  category: 'layout',
+  description: 'border-b dividers on headings/sections are decorative noise in modern design — keep only if structurally essential',
+  run({ code, file }) {
+    const violations = [];
+    let borderBCount = 0;
+    const lines = code.split('\n');
+    lines.forEach((line, i) => {
+      if (/\bborder-b\b/.test(line) && /className/.test(line)) {
+        borderBCount++;
+        if (borderBCount > 2) {
+          violations.push({
+            file,
+            line: i + 1,
+            message: `border-b divider #${borderBCount} — likely gratuitous; modern design uses spacing/color-shift for separation`,
+          });
+        }
+      }
+    });
+    return violations;
+  },
+});
+
+// L2.24 — undefined CSS variable fonts (silent fallback to serif)
+rules.push({
+  id: 'no-undefined-css-var-fonts',
+  severity: 'error',
+  category: 'css',
+  description: 'CSS var(--font-*) usage must have a matching definition in layout.tsx or globals.css — silent fallback causes wrong font rendering',
+  run({ code, file }) {
+    const violations = [];
+    const lines = code.split('\n');
+    // Only flag font vars used in component files, not in layout/globals where they're defined
+    const basename = file.split('/').pop() || '';
+    if (basename === 'layout.tsx' || basename === 'globals.css') return [];
+
+    lines.forEach((line, i) => {
+      const matches = line.match(/var\(--font-[\w-]+\)/g);
+      if (matches) {
+        for (const m of matches) {
+          violations.push({
+            file,
+            line: i + 1,
+            message: `${m} — verify this variable is defined in layout.tsx (next/font) or globals.css; undefined vars silently fall back to browser default serif`,
+          });
+        }
+      }
+    });
+    return violations;
+  },
+});
+
+// L2.25 — Wikimedia upload path URLs (frequent 404s, hotlink-unfriendly)
+rules.push({
+  id: 'no-wikimedia-upload-path',
+  severity: 'error',
+  category: 'content',
+  description: 'upload.wikimedia.org URLs are unstable (404, throttled) — use Unsplash API or local assets',
+  run({ code, file }) {
+    const violations = [];
+    const lines = code.split('\n');
+    lines.forEach((line, i) => {
+      if (/upload\.wikimedia\.org\/wikipedia\/commons\//.test(line)) {
+        violations.push({
+          file,
+          line: i + 1,
+          message: 'Wikimedia Commons URL — unstable for production; use curated assets or Unsplash',
+        });
+      }
+    });
+    return violations;
+  },
+});
+
+// ─────────────────────────────────────────────────────────────────
 // Runner
 // ─────────────────────────────────────────────────────────────────
 
