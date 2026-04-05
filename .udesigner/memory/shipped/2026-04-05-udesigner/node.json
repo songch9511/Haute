@@ -39,7 +39,7 @@
       "examples/dimension/src/components/udesigner/install.tsx",
       "examples/dimension/src/components/udesigner/footer.tsx"
     ],
-    "commit": "pending",
+    "commit": "a5a007a",
     "snapshot_dir": null
   },
   "verdict_history": [
