@@ -1,0 +1,83 @@
+{
+  "id": "2026-04-06-sola",
+  "slug": "sola",
+  "title": "Sola — Minimal Skincare E-commerce Landing",
+  "created_at": "2026-04-06",
+  "cluster": "commerce-minimal-warm",
+  "tags": [
+    "e-commerce",
+    "skincare",
+    "minimal",
+    "warm-cream",
+    "product-photography",
+    "outfit-sans",
+    "sienna-accent",
+    "typography-first",
+    "text-only-sections",
+    "3-products"
+  ],
+  "triggers": [
+    "e-commerce",
+    "skincare",
+    "minimal product",
+    "warm cream",
+    "product photography",
+    "boutique beauty",
+    "glossier class",
+    "aesop class",
+    "necessaire class",
+    "byredo class",
+    "clean beauty",
+    "editorial commerce",
+    "typography first"
+  ],
+  "source": {
+    "paths": [
+      "examples/dimension/src/app/sola/page.tsx",
+      "examples/dimension/src/components/sola/nav.tsx",
+      "examples/dimension/src/components/sola/hero.tsx",
+      "examples/dimension/src/components/sola/philosophy.tsx",
+      "examples/dimension/src/components/sola/products.tsx",
+      "examples/dimension/src/components/sola/lifestyle.tsx",
+      "examples/dimension/src/components/sola/ingredients.tsx",
+      "examples/dimension/src/components/sola/testimonials.tsx",
+      "examples/dimension/src/components/sola/cta.tsx",
+      "examples/dimension/src/components/sola/footer.tsx"
+    ],
+    "commit": "pending",
+    "snapshot_dir": null
+  },
+  "verdict_history": [
+    {
+      "phase": "v1 baseline (scaffold + Unsplash cleanup + text-only sections)",
+      "composite": 88,
+      "visual": 77,
+      "code": 100,
+      "mechanical": 86,
+      "verdict_label": "APPROVE_WARNING",
+      "measured_at": "2026-04-06T06:00:00Z",
+      "notes": "Replaced 3 broken Unsplash images (green tile hero, broccoli philosophy, spa mask lifestyle). 4→3 products. Photography sections: hero, products, CTA. Text-only sections: philosophy, lifestyle, ingredients. Code Lane 100 on first run — all 26 rules passed."
+    },
+    {
+      "phase": "v1.1 hero scale + sienna pullquote display (both majors fixed)",
+      "composite": 90,
+      "visual": 83,
+      "code": 100,
+      "mechanical": 86,
+      "verdict_label": "APPROVE",
+      "measured_at": "2026-04-06T06:20:00Z",
+      "notes": "Hero title scaled to clamp(3.5rem,10vw,10rem) with 4-line break and italic peach emphasis. Sienna pullquote scaled to clamp(3.5rem,8.5vw,9rem) with italic on key phrase. Both fixes addressed Visual Oracle major findings. APPROVE reached in 2 rounds — fastest to date."
+    }
+  ],
+  "verdict": {
+    "latest_composite": 90,
+    "latest_verdict_label": "APPROVE",
+    "notes": "Second shipped entry to reach APPROVE. Fastest iteration: 2 rounds vs UDesigner's 7. Code Lane was clean from first scan. Visual majors were both typography-scale issues — no architectural or image-placement bugs needed."
+  },
+  "artifacts": {
+    "screenshot_desktop": null,
+    "screenshot_mobile": null,
+    "embedding": null
+  },
+  "status": "shipped-validated"
+}

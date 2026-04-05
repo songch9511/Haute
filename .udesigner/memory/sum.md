@@ -9,8 +9,9 @@ The taste profile spans deliberately different worlds rather than a single house
 - **`knowledge-tool-dark`** — Inter sans throughout on soft dark `#1e1e1e` ground, purple HSL accent, centered hero with screenshot-as-hero mockup. Obsidian/Prism clone — creative productivity tier. Source-only backfill, unverified.
 - **`mono-dark-tech`** — Geist Mono dominant on brutal `#0a0a0a` ground, signal-green accent, asymmetric title hero. Originally held UDesigner v1 (composite 86) but **migrated out in v3.4 per user feedback**. Cluster definition retained as a valid aesthetic option with zero current members.
 
-**Cluster distribution** *(3 shipped / 4 clusters defined)*:
+**Cluster distribution** *(4 shipped / 5 clusters defined)*:
 - `editorial-romantic` — 1 (UDesigner v3.4, composite **93 ✅ APPROVE**, status: validated) ⭐ highest score
+- `commerce-minimal-warm` — 1 (Sola skincare, composite **90 ✅ APPROVE**, status: validated) ⭐ fastest (2 rounds)
 - `warm-editorial` — 1 (Catalis, composite 61, status: provisional-with-defects)
 - `knowledge-tool-dark` — 1 (Obsidian/Prism, composite null, status: backfilled-unverified)
 - `mono-dark-tech` — 0 members (deprecated-by-migration, definition retained)
@@ -46,4 +47,8 @@ The taste profile spans deliberately different worlds rather than a single house
 
 **Wikimedia image lesson** *(encoded 2026-04-06)*: Don't guess `upload.wikimedia.org/wikipedia/commons/<hash>/<filename>` paths — the hash depends on the MD5 of the filename and is easy to get wrong (404). Use `commons.wikimedia.org/wiki/Special:FilePath/<filename>?width=<N>` which resolves the hash server-side, or download to local `public/art/` for production reliability (avoids hotlink/CORS).
 
-**Open trajectory**: Compactor (Phase 5) will begin reshaping this file at cluster count ≥ 5 or member count ≥ 8. Until then, manual curation on Wisdom phase. Current state is strong enough to start a Phase 4 (Dual-path RAG) experiment — 3 shipped across 4 clusters gives clustering logic something real to retrieve against.
+**Sola 2-round iteration lesson** *(encoded 2026-04-06)*: Sola e-commerce landing reached APPROVE (composite 90) in only 2 iteration rounds vs UDesigner's 7 rounds. Key factors: (1) Code Lane was 100/100 on first scan — sum.md rules are now fully encoded in code-oracle, eliminating the biggest iteration sink from prior sessions. (2) Only 2 Visual Oracle majors (typography scale) with no architectural bugs. (3) Unsplash image curation was done upfront (download local → visual-verify → discard broken) before embedding in source — no runtime 404 surprises. (4) 3 text-only sections reduced image dependency — typography carries the page. **Lesson**: if Code Lane is clean on round 1, APPROVE is typically reachable in 1-2 Visual Oracle rounds. The generation-time gap has meaningfully closed since the UDesigner editorial session.
+
+**Unsplash image roulette lesson** *(encoded 2026-04-06)*: Unsplash photo IDs are not semantically reliable. `photo-1615485290382` was tagged "botanical ingredients close-up" in the alt text but resolved to a broccoli cross-section. `photo-1616394584738` was tagged "woman natural skin editorial" but resolved to a spa green face mask treatment — the opposite of the "nothing extra" brand position. **Rule**: always download Unsplash photos to `public/<project>/` FIRST, visually verify via Read tool, then embed. Never use remote Unsplash URLs directly in source — they are equivalent to random image generators. WebFetch to Unsplash search is blocked (403); curate via manual ID testing + local download.
+
+**Open trajectory**: Compactor (Phase 5) will begin reshaping this file at cluster count ≥ 5 or member count ≥ 8 — threshold NOW REACHED (5 clusters). Compactor design should begin. Until automated, manual curation continues. Phase 4 (Dual-path RAG) is also now viable — 4 shipped across 5 clusters is real retrieval territory.

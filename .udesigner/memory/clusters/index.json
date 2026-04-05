@@ -29,6 +29,15 @@
       "status": "backfilled-unverified",
       "note": "Source-only Phase 6 B backfill. Not validated by Visual Oracle. Obsidian/Prism clone — creative productivity tier."
     },
+    "commerce-minimal-warm": {
+      "centroid_embedding": null,
+      "member_count": 1,
+      "tags": ["e-commerce", "skincare", "minimal", "warm-cream", "outfit-sans", "sienna-accent", "product-photography", "typography-first"],
+      "members": ["2026-04-06-sola"],
+      "last_updated": "2026-04-06",
+      "status": "validated-composite-90",
+      "note": "Boutique e-commerce tier (Glossier/Aesop/Nécessaire class). Sola reached APPROVE in 2 rounds — fastest to date. Code Lane was clean from first scan."
+    },
     "editorial-romantic": {
       "centroid_embedding": null,
       "member_count": 1,
