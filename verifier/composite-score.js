@@ -64,17 +64,39 @@ function parseArgs(argv) {
 // Visual Lane — read pre-computed verdict
 // ─────────────────────────────────────────────────────────────────
 
+function recomputeVisualComposite(scores) {
+  if (!scores) return null;
+  const keys = ['first_impression_impact', 'composition_balance', 'typography_drama', 'color_harmony', 'ai_slop_smell', 'agency_tier_similarity'];
+  for (const k of keys) {
+    if (typeof scores[k] !== 'number') return null;
+  }
+  const sum =
+    scores.first_impression_impact +
+    scores.composition_balance +
+    scores.typography_drama +
+    scores.color_harmony +
+    (11 - scores.ai_slop_smell) +
+    scores.agency_tier_similarity;
+  return Math.max(0, Math.min(100, Math.round((sum / 6) * 10)));
+}
+
 function runVisualLane(verdictPath) {
   if (!verdictPath) return { present: false, reason: 'no --visual-verdict provided' };
   if (!fs.existsSync(verdictPath)) return { present: false, reason: `verdict file not found: ${verdictPath}` };
   try {
     const verdict = JSON.parse(fs.readFileSync(verdictPath, 'utf8'));
-    if (typeof verdict.composite_visual !== 'number') {
-      return { present: false, reason: 'verdict missing composite_visual field' };
+    // Always recompute from scores — agent-reported composite_visual is advisory only.
+    // This is the design invariant: the script is source of truth for arithmetic,
+    // the agent is source of truth for the 1-10 judgments.
+    const computed = recomputeVisualComposite(verdict.scores);
+    if (computed === null) {
+      return { present: false, reason: 'verdict missing valid scores object' };
     }
     return {
       present: true,
-      score: verdict.composite_visual,
+      score: computed,
+      reported_score: typeof verdict.composite_visual === 'number' ? verdict.composite_visual : null,
+      score_drift: typeof verdict.composite_visual === 'number' ? computed - verdict.composite_visual : null,
       raw_verdict: verdict,
       critique_count: (verdict.critique || []).length,
       weakest: verdict.weakest_section || null,
@@ -212,8 +234,14 @@ function main() {
   if (!args.skipVisual) {
     const visual = runVisualLane(args.visualVerdict);
     lanes.visual = visual;
-    if (visual.present) console.log(`   Visual:     ${visual.score}/100  (45%)`);
-    else console.log(`   Visual:     — skipped (${visual.reason})`);
+    if (visual.present) {
+      const drift = visual.score_drift != null && visual.score_drift !== 0
+        ? `  (recomputed from scores; agent reported ${visual.reported_score}, drift ${visual.score_drift >= 0 ? '+' : ''}${visual.score_drift})`
+        : '';
+      console.log(`   Visual:     ${visual.score}/100  (45%)${drift}`);
+    } else {
+      console.log(`   Visual:     — skipped (${visual.reason})`);
+    }
   }
 
   // Code Lane
