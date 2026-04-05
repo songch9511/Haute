@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1-lightweight",
+  "note": "Phase 6 B source-only backfill. Not inspected section-by-section; structural claims derive from page.tsx + hero.tsx + nav.tsx reads only.",
+  "component_count": 11,
+  "client_components": ["nav", "hero", "features", "plugins", "sync", "publish", "testimonials", "pricing", "cta", "graph"],
+  "server_components": ["footer", "page"],
+  "motion_usage": {
+    "library": "framer-motion (unconfirmed — hero read showed no motion wrapper)",
+    "hero_uses_useInView": "unknown",
+    "hero_uses_immediate_animate": "unknown",
+    "uses_css_transitions": true
+  },
+  "layout_patterns": {
+    "page_root": "fixed nav + vertical scroll sections",
+    "nav": "fixed full-width pill-less with 5-link row and CTA",
+    "hero": "centered stack (headline + subtitle + 2 CTAs) + full-width screenshot mockup",
+    "screenshot_hero": "fake macOS window with traffic-light dots + vault sidebar + content area",
+    "body_sections": "unknown — not inspected in backfill (features, plugins, sync, publish, testimonials, pricing, cta)"
+  },
+  "banned_patterns_detected": [],
+  "detected_signals": {
+    "uses_real_images": false,
+    "uses_fake_screenshot_mockup": true,
+    "uses_backdrop_blur": true,
+    "uses_arbitrary_hex": true,
+    "uses_hsl_css_vars": false,
+    "uses_hsl_inline": true,
+    "uses_radial_gradient_bg": true,
+    "uses_mono_dominant_typography": false,
+    "uses_serif_display": false
+  },
+  "layout_diversity_unchecked": true,
+  "ast_fingerprint": null,
+  "risks_for_next_verify": [
+    "centered-everything rule may fire if >60% of sections use text-center — not verified in backfill",
+    "useInView on hero unconfirmed",
+    "motion prop compliance unverified"
+  ]
+}

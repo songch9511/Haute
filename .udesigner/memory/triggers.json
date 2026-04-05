@@ -21,6 +21,17 @@
     "tech tier landing": ["2026-04-05-udesigner"],
     "ci tool": ["2026-04-05-udesigner"],
     "verifier landing": ["2026-04-05-udesigner"],
-    "landing": ["2026-04-05-catalis", "2026-04-05-udesigner"]
+    "landing": ["2026-04-05-catalis", "2026-04-05-udesigner", "2026-04-05-obsidian"],
+
+    "obsidian": ["2026-04-05-obsidian"],
+    "note taking": ["2026-04-05-obsidian"],
+    "knowledge tool": ["2026-04-05-obsidian"],
+    "vault": ["2026-04-05-obsidian"],
+    "productivity app": ["2026-04-05-obsidian"],
+    "purple accent": ["2026-04-05-obsidian"],
+    "dark productivity": ["2026-04-05-obsidian"],
+    "soft dark": ["2026-04-05-obsidian"],
+    "screenshot hero": ["2026-04-05-obsidian"],
+    "notion clone": ["2026-04-05-obsidian"]
   }
 }

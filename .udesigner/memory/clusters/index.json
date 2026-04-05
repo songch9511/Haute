@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "updated_at": "2026-04-05",
   "clusters": {
     "warm-editorial": {
@@ -19,6 +19,15 @@
       "last_updated": "2026-04-05",
       "status": "validated-composite-86",
       "note": "First cluster with live-verified composite score (86/100 APPROVE_WARNING via full 3-lane Oracle)."
+    },
+    "knowledge-tool-dark": {
+      "centroid_embedding": null,
+      "member_count": 1,
+      "tags": ["productivity", "knowledge-tool", "soft-dark", "inter-sans", "purple-accent", "centered-hero", "screenshot-as-hero"],
+      "members": ["2026-04-05-obsidian"],
+      "last_updated": "2026-04-05",
+      "status": "backfilled-unverified",
+      "note": "Source-only Phase 6 B backfill. Not validated by Visual Oracle. Prism/Obsidian clone — creative productivity tier, distinct from mono-dark-tech developer tier."
     }
   }
 }

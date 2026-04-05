@@ -8,9 +8,12 @@ The taste profile spans two intentionally different axes, not a unified style:
 
 - **`mono-dark-tech`** — tech-tier mono-dominant (Geist Mono / JetBrains) on near-black grounds (`#0a0a0a`), single signal-green accent (`#00d9a5`) used only for active states and key numbers. Brutal anti-slop restraint, real data over marketing prose, editorial confidence via asymmetry + scale contrast rather than ornamentation. UDesigner self-landing is the representative — first entry to reach APPROVE_WARNING (86/100) via full 3-lane composite on live render.
 
-**Cluster distribution** *(2 shipped)*:
+**Cluster distribution** *(3 shipped across 3 clusters)*:
 - `mono-dark-tech` — 1 (UDesigner, composite 86/100, status: validated)
+- `knowledge-tool-dark` — 1 (Obsidian/Prism, composite null, status: backfilled-unverified)
 - `warm-editorial` — 1 (Catalis, composite 61/100, status: provisional-with-defects)
+
+A third cluster `knowledge-tool-dark` was added in Phase 6 B from the Obsidian route backfill. It is the "creative productivity" dark tier (Obsidian · Notion · Roam lineage — Inter sans, soft dark `#1e1e1e` ground, purple HSL accent, centered hero with screenshot-as-hero mockup). Distinct from `mono-dark-tech` which is the "engineering infrastructure" dark tier (mono-dominant, brutal `#0a0a0a`, signal-green accent, asymmetric hero). Same dark axis, opposite discipline.
 
 **Cross-cluster constants** *(shared don'ts regardless of aesthetic)*:
 - Equal-children bento grids (especially 3-equal card rows with icon+title+body)
