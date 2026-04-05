@@ -135,6 +135,7 @@ skills/
 ├── reference-learning.md  # Agency site analysis methodology
 ├── content-layout-map.md  # Content → layout routing
 ├── playwright-analysis.md # Reference DOM analysis
+├── popover-patterns.md    # Native Popover API + @starting-style (on-demand: overlay UI)
 ├── 21st-dev.md / unsplash.md / uitripled.md
 └── style-presets/         # soft, brutalist, minimal, obsidian, catalis, notion
 ```

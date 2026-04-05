@@ -357,7 +357,34 @@ Phase 0 착수 전 선행 슬라이스. 리서치 결과(oklch + color-mix, CSS 
 ### Deferred (다음 슬라이스 후보)
 
 - `framer-motion` → `motion/react` 패키지 경로 이전 (Code Oracle 레퍼런스 포함)
-- `@starting-style` + Popover API를 tooltip/dropdown 프리셋으로 skill 편입
 - Cross-document View Transitions (`@view-transition { navigation: auto }`) 패턴
 - Magic UI / Aceternity / Motion Primitives 컴포넌트 화이트리스트 정책 결정
 - Tailwind config를 oklch 네이티브 팔레트로 전환 (브레이킹 검토 필요)
+
+---
+
+## Slice 2 — 2026-04-06: Popover API + @starting-style presets (capability add)
+
+리서치 Addendum 에 있던 "`@starting-style` + Popover" 항목을 skill 로 편입. Capability 추가 슬라이스이므로 Code Oracle 규칙 없이 guidance 만 적용 (false positive 위험 회피). 다음 `/design` 에서 overlay UI 가 스펙에 포함되면 on-demand 로드.
+
+### Shipped
+
+| 파일 | 변경 |
+|------|------|
+| `skills/popover-patterns.md` | 신규 (242줄). Tooltip, dropdown menu, `<dialog>` confirm, toast, anchor-positioning fallback, Motion interop, accessibility, rules. 300줄 하드캡 준수. |
+| `skills/anti-slop.md` §6.6 | "Custom modal boilerplate when Popover fits" — guidance only. Ban 아님. Verifier 규칙 추가 없음. |
+| `.claude/commands/design.md` Phase 1b | Conditional load: 스펙에 tooltip/dropdown/menu/modal/dialog/toast/popover/select/combobox 언급 시 `popover-patterns.md` 로드. |
+| `.claude/commands/design.md` Skills Loaded 라인 | `popover-patterns (on-demand)` 명시. |
+| `CLAUDE.md` Skill Loading 섹션 | `skills/` 트리에 `popover-patterns.md` 추가, on-demand 주석. |
+
+### Severity policy
+
+- **Code Oracle 규칙 추가 없음.** 이 슬라이스는 capability 추가이므로 false-positive-prone 한 "custom modal 감지" 규칙을 REJECT 로 걸면 정당한 예외(drawer, sheet, full-screen, stacked, shared-element FLIP)를 차단합니다. 1~2 태스크 운용 후 adoption data 를 보고 warn 승격 여부 결정.
+- 기존 shipped 페이지 영향 없음. Regression 창구 없음.
+
+### Deferred (remaining)
+
+- `framer-motion` → `motion/react` 패키지 경로 이전
+- Cross-document View Transitions 패턴 skill
+- Magic UI / Aceternity 화이트리스트 정책 (planner/interview 세션 필요)
+- Tailwind config oklch 네이티브 전환

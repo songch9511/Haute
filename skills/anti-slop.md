@@ -186,6 +186,13 @@ Every pattern below is a known "AI tell" — a design choice that signals the in
 - **Instead:** Declare one oklch token, derive states with `color-mix()`. See `taste-core.md` §3 Modern color layer.
 - **Detection:** Count arbitrary-value hover/active classes with explicit `#rrggbb` in className literals. Fail at 3+.
 
+### 6.6 Custom modal/dropdown boilerplate when Popover API fits (guidance, not ban)
+- **Avoid:** Hand-rolled modal with `fixed inset-0 bg-black/50 z-50` backdrop + `useState(open)` + custom ESC handler + custom focus trap, when the overlay is a tooltip, dropdown, menu, context menu, toast, or confirm dialog.
+- **Why:** Browser provides light dismiss, ESC, top-layer stacking, focus trap (for `<dialog>`), and focus return for free via the `popover` attribute and `<dialog>`. `@starting-style` + `transition-behavior: allow-discrete` handles enter/exit animation without `AnimatePresence`. Custom z-index stacking fights the native top layer.
+- **Instead:** `skills/popover-patterns.md` canonical templates. Baseline 2024 on Chrome/Edge/Safari/Firefox.
+- **When custom IS correct:** persistent drawer/sheet, multi-step wizard, full-screen overlay with scroll orchestration, stacked/nested dialogs, shared-element FLIP animation. See `popover-patterns.md` decision table.
+- **Status:** Guidance only this slice — no Code Oracle rule yet. May upgrade to warn after adoption data.
+
 ---
 
 ## 7. Verifier Rules

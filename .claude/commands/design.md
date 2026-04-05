@@ -41,6 +41,7 @@ Categories: ir-deck, dashboard, landing-page, presentation, portfolio, custom
 - Read `skills/taste-core.md`, `skills/anti-slop.md`, `skills/motion.md`
 - Read `skills/layout-patterns.md` (summary section only), `skills/visual-rhythm.md`, `skills/content-layout-map.md`
 - If preset specified: read `skills/style-presets/{preset}.md`
+- **Conditional load** — if the spec or prompt mentions any overlay UI (tooltip, dropdown, menu, context menu, modal, dialog, toast, snackbar, popover, select, combobox): read `skills/popover-patterns.md` before coding those components. Default to native Popover API + `<dialog>` unless the decision table in that skill routes to custom.
 - Legacy memory 보조 스캔: user preferences, past feedback, project design tokens (Memory Pull의 cluster/shipped가 primary source — 여기선 보완)
 
 ### 1c-1e. 병렬 탐색 (Agent 도구 동시 호출)
@@ -152,4 +153,4 @@ Extract learnings (Conventions, Successes, Failures, Gotchas, Commands).
 Save to memory for future tasks.
 
 ## Skills Loaded
-taste-core, anti-slop, motion, layout-patterns (summary), visual-rhythm, content-layout-map, 21st-dev, unsplash, [preset]
+taste-core, anti-slop, motion, layout-patterns (summary), visual-rhythm, content-layout-map, 21st-dev, unsplash, [preset], popover-patterns (on-demand when overlay UI is in spec)
