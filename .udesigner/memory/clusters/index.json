@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "updated_at": "2026-04-05",
   "clusters": {
     "warm-editorial": {
@@ -7,7 +7,18 @@
       "member_count": 1,
       "tags": ["editorial", "serif-display", "warm-neutral", "asymmetric-hero", "card-based"],
       "members": ["2026-04-05-catalis"],
-      "last_updated": "2026-04-05"
+      "last_updated": "2026-04-05",
+      "status": "provisional-with-defects",
+      "note": "source-only backfill; Catalis ships with REJECT-level Visual Oracle findings. See node verdict_history."
+    },
+    "mono-dark-tech": {
+      "centroid_embedding": null,
+      "member_count": 1,
+      "tags": ["tech-tier", "mono-dominant", "dark", "signal-accent", "terminal-ux", "anti-slop-brutal", "real-data"],
+      "members": ["2026-04-05-udesigner"],
+      "last_updated": "2026-04-05",
+      "status": "validated-composite-86",
+      "note": "First cluster with live-verified composite score (86/100 APPROVE_WARNING via full 3-lane Oracle)."
     }
   }
 }

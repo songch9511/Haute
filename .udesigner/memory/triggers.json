@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "updated_at": "2026-04-05",
   "map": {
     "financial": ["2026-04-05-catalis"],
@@ -9,6 +9,18 @@
     "editorial": ["2026-04-05-catalis"],
     "serif display": ["2026-04-05-catalis"],
     "hero fan cards": ["2026-04-05-catalis"],
-    "warm neutral": ["2026-04-05-catalis"]
+    "warm neutral": ["2026-04-05-catalis"],
+
+    "design tool": ["2026-04-05-udesigner"],
+    "developer tool": ["2026-04-05-udesigner"],
+    "dark mono": ["2026-04-05-udesigner"],
+    "terminal": ["2026-04-05-udesigner"],
+    "brutalist tech": ["2026-04-05-udesigner"],
+    "vercel-class": ["2026-04-05-udesigner"],
+    "mono landing": ["2026-04-05-udesigner"],
+    "tech tier landing": ["2026-04-05-udesigner"],
+    "ci tool": ["2026-04-05-udesigner"],
+    "verifier landing": ["2026-04-05-udesigner"],
+    "landing": ["2026-04-05-catalis", "2026-04-05-udesigner"]
   }
 }

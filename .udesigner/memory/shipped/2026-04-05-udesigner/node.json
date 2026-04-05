@@ -1,0 +1,79 @@
+{
+  "id": "2026-04-05-udesigner",
+  "slug": "udesigner",
+  "title": "UDesigner — Stop shipping AI slop (self-landing)",
+  "created_at": "2026-04-05",
+  "cluster": "mono-dark-tech",
+  "tags": [
+    "landing",
+    "tool",
+    "developer-tool",
+    "design-tool",
+    "mono",
+    "dark",
+    "tech-tier",
+    "editorial-dark",
+    "terminal-ux"
+  ],
+  "triggers": [
+    "design tool",
+    "developer tool",
+    "dark mono",
+    "terminal",
+    "brutalist tech",
+    "vercel-class",
+    "mono landing",
+    "tech tier landing",
+    "ci tool",
+    "verifier landing"
+  ],
+  "source": {
+    "paths": [
+      "examples/dimension/src/app/udesigner/page.tsx",
+      "examples/dimension/src/components/udesigner/nav.tsx",
+      "examples/dimension/src/components/udesigner/hero.tsx",
+      "examples/dimension/src/components/udesigner/proof.tsx",
+      "examples/dimension/src/components/udesigner/pillars.tsx",
+      "examples/dimension/src/components/udesigner/how-it-works.tsx",
+      "examples/dimension/src/components/udesigner/benchmark.tsx",
+      "examples/dimension/src/components/udesigner/install.tsx",
+      "examples/dimension/src/components/udesigner/footer.tsx"
+    ],
+    "commit": "pending",
+    "snapshot_dir": null
+  },
+  "verdict_history": [
+    {
+      "phase": "Phase 6 dogfood C — initial Visual Oracle",
+      "composite": null,
+      "visual": null,
+      "code": 100,
+      "mechanical": null,
+      "verdict_label": "CRITICAL_BUG",
+      "measured_at": "2026-04-05T14:20:00Z",
+      "notes": "whileInView on body sections → sections invisible in fullPage screenshot. Visual Oracle correctly flagged '3500px black void' — the tool caught a real rendering bug caused by framer-motion + Playwright interaction. Visual raw score 65, REJECT. Dogfood finding #4."
+    },
+    {
+      "phase": "Phase 6 dogfood C — post-fix composite",
+      "composite": 86,
+      "visual": 73,
+      "code": 100,
+      "mechanical": 86,
+      "verdict_label": "APPROVE_WARNING",
+      "measured_at": "2026-04-05T14:30:00Z",
+      "notes": "After whileInView → animate fix across 5 files. Visual 76 reported, 73 computed (drift -3). Code Lane perfect 100 (0 err, 0 warn, 86 arbitrary-hex info). Mechanical 65/76 specs. Composite 86 passes MVP threshold (≥80). Remaining major critiques: five-phases 4-equal cards (AI feature grid feel), install CTA too small with dead space. Minor: hero meta column disconnection, pillars parallelism, fix-loop hierarchy. Acceptable for first shipment — opens refinement vectors for next iteration."
+    }
+  ],
+  "verdict": {
+    "latest_composite": 86,
+    "latest_verdict_label": "APPROVE_WARNING",
+    "notes": "First shipped entry to reach APPROVE_WARNING via full 3-lane composite on live render."
+  },
+  "artifacts": {
+    "screenshot_desktop": "verifier/.visual-oracle-captures/localhost_3000_udesigner-desktop.png",
+    "screenshot_mobile": "verifier/.visual-oracle-captures/localhost_3000_udesigner-mobile.png",
+    "embedding": null
+  },
+  "parent": null,
+  "status": "shipped"
+}

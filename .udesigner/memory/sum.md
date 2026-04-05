@@ -1,12 +1,34 @@
 # Taste Summary
 
-**Aesthetic aspirations** *(from source-only backfill + cluster profile, not yet validated across multiple clean shipments)*: editorial typography-forward design with serif display faces (Cormorant class) paired with geometric sans body. Generous whitespace, asymmetric hero composition (fan-spread / offset / overlap), restrained accent color on warm off-white grounds. 1.5–2rem rounded radii. Subtle spring motion, y-offset entry ≤ 80px.
+**Aesthetic range** *(2 shipped — trajectory still early, two distinct clusters):*
 
-**Cluster distribution** *(1 shipped — insufficient for trend inference)*:
-- `warm-editorial` — 1 (Catalis, `shipped-with-defects` — see note below)
+The taste profile spans two intentionally different axes, not a unified style:
 
-**Strong don'ts**: equal-children bento grids, `useInView` on hero sections, `whileHover.boxShadow` (non-transform motion), gradient button backgrounds via CSS shorthand, arbitrary Tailwind hex literals in place of tokens, center-aligned layouts > 60% of sections, uniform `py-24` section rhythm.
+- **`warm-editorial`** — serif display (Cormorant class) + geometric sans body, warm off-white grounds (`#fafafa`), restrained saturated accent, asymmetric fan-spread hero compositions, 1.5–2rem rounded radii. Editorial drama via italic emphasis and generous whitespace. Catalis (fintech-analytics landing) is the representative but ships with REJECT-level Visual Oracle findings — source-only backfill, defect-aware.
 
-**Honest note on backfill**: Phase 0 populated this taste profile from **source code inspection only** — no live render, no Visual Oracle pass. The Phase 3 MVP live test (composite 61/100, REJECT) revealed that Catalis has 3 blocker-severity rendering issues (hero whitespace gutter, empty mid-page band, flat blue CTA block) that source-only analysis missed. **Lesson encoded**: future Memory Push must include at least one Visual Oracle pass before cluster membership is claimed. Source tokens alone are insufficient evidence of aesthetic quality.
+- **`mono-dark-tech`** — tech-tier mono-dominant (Geist Mono / JetBrains) on near-black grounds (`#0a0a0a`), single signal-green accent (`#00d9a5`) used only for active states and key numbers. Brutal anti-slop restraint, real data over marketing prose, editorial confidence via asymmetry + scale contrast rather than ornamentation. UDesigner self-landing is the representative — first entry to reach APPROVE_WARNING (86/100) via full 3-lane composite on live render.
 
-**Open trajectory**: Compactor will rewrite this file automatically at cluster count ≥ 5 (Phase 5). Until then, manual curation by the implementing agent on Wisdom phase.
+**Cluster distribution** *(2 shipped)*:
+- `mono-dark-tech` — 1 (UDesigner, composite 86/100, status: validated)
+- `warm-editorial` — 1 (Catalis, composite 61/100, status: provisional-with-defects)
+
+**Cross-cluster constants** *(shared don'ts regardless of aesthetic)*:
+- Equal-children bento grids (especially 3-equal card rows with icon+title+body)
+- `useInView` on hero sections (hero must animate immediately on mount)
+- `whileInView` on body sections (incompatible with Playwright `fullPage: true` capture — intersection observer does not fire, sections render invisible in Visual Oracle evidence)
+- `whileHover.boxShadow` or other non-transform motion props (use CSS `hover:shadow-*` + `transition-shadow` instead)
+- `motion.width` animations (use `scaleX` + `origin-left`)
+- Purple/violet-to-blue gradients (LILA BAN)
+- CSS `background:` shorthand with gradient — must be `backgroundImage` + `backgroundColor` separately
+- Center-aligned layouts exceeding 60% of sections
+- Uniform `py-24` section rhythm
+- Marketing fluff ("Elevate", "Seamless", "Unleash", "Next-generation")
+- Placeholder names (John Doe, Jane Doe, Acme Corp, Nova Corp) and Lorem ipsum
+- `div` with `onClick` (use `button` with `type="button"`)
+- `img` without `alt`
+
+**Source-only backfill lesson** *(encoded 2026-04-05 after dogfood)*: Phase 0 backfill populated `warm-editorial` from source code inspection only — Visual Oracle never ran. The Phase 3 MVP live test revealed 3 blocker-severity rendering issues in Catalis that pure source analysis missed. **Rule going forward**: future Memory Push must include at least one live Visual Oracle pass before a shipped entry is claimed as cluster exemplar. Source tokens + AST fingerprint are insufficient evidence of aesthetic quality.
+
+**Dogfood lesson (Phase 6 C)**: `whileInView` + Playwright fullPage capture is incompatible — intersection observer does not fire for layout-based screenshots. This was discovered live when UDesigner landing's 3500px body void was caught by Visual Oracle. All body-section entry animations must use immediate `animate` or CSS transitions, not `whileInView`. The existing "hero must use immediate animate" rule now extends to the entire page when Playwright is the default verification path.
+
+**Open trajectory**: 2 shipped across 2 clusters — still insufficient for trend inference but enough to establish dual-aesthetic baseline. Compactor (Phase 5) will begin reshaping this file at cluster count ≥ 5 or member count ≥ 8. Until then, manual curation on Wisdom phase.

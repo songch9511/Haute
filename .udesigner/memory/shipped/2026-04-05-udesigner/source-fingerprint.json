@@ -1,0 +1,64 @@
+{
+  "schema_version": "0.1-lightweight",
+  "note": "Phase 1 hand-generated after Phase 3 dogfood test. To be replaced by ast-grep output in Phase 2+.",
+  "component_count": 8,
+  "client_components": ["nav", "hero", "proof", "pillars", "how-it-works", "benchmark", "install"],
+  "server_components": ["footer", "page"],
+  "motion_usage": {
+    "library": "framer-motion (via @/components/motion wrapper)",
+    "custom_wrapper_path": "@/components/motion",
+    "hero_uses_useInView": false,
+    "hero_uses_immediate_animate": true,
+    "body_uses_whileInView": false,
+    "body_uses_immediate_animate": true,
+    "rationale": "whileInView incompatible with Playwright fullPage capture (intersection observer does not fire)"
+  },
+  "layout_patterns": {
+    "page_root": "fixed pill nav + scroll flow sections",
+    "nav": "sticky pill with backdrop-blur",
+    "hero": "asymmetric 60-40 left-title + right stat cards",
+    "proof": "full-width terminal code block (real code-oracle output)",
+    "pillars_a": "60-40 split with memory tree ASCII",
+    "pillars_b": "40-60 inverted split with animated weight bars (scaleX)",
+    "how_it_works": "horizontal scroll strip snap-x",
+    "benchmark": "2-col data tables (before/after)",
+    "install": "single-line terminal card",
+    "footer": "4-col mono links + timestamp"
+  },
+  "code_oracle_summary": {
+    "files_scanned": 8,
+    "rules_run": 20,
+    "errors": 0,
+    "warnings": 0,
+    "info": 86,
+    "score": 100,
+    "note": "86 info = arbitrary-hex-tailwind (not scored, pending Phase 3+ token cross-ref)"
+  },
+  "detected_signals": {
+    "uses_real_images": false,
+    "uses_backdrop_blur": true,
+    "uses_arbitrary_hex": true,
+    "uses_design_token_css_vars": true,
+    "uses_mono_dominant_typography": true,
+    "uses_horizontal_scroll": true,
+    "uses_real_content": true,
+    "uses_placeholder_content": false
+  },
+  "bugs_caught_during_build": [
+    {
+      "rule": "motion-transform-opacity-only",
+      "file": "pillars.tsx",
+      "initial_code": "initial={{width:0}} whileInView={{width:Nvar}}",
+      "fix": "initial={{scaleX:0}} animate={{scaleX:1}} + origin-left + width static",
+      "lane": "code"
+    },
+    {
+      "rule": "whileInView-opacity-invisible (not in code oracle rules, caught by visual)",
+      "file": "proof.tsx, pillars.tsx, how-it-works.tsx, benchmark.tsx, install.tsx",
+      "initial_code": "initial={{opacity:0}} whileInView={{opacity:1}}",
+      "fix": "whileInView → animate (immediate)",
+      "lane": "visual"
+    }
+  ],
+  "ast_fingerprint": null
+}
