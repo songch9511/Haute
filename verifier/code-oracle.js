@@ -835,6 +835,34 @@ rules.push({
   },
 });
 
+// L2.26 — motion initial opacity:0 on non-interactive elements (invisible before JS hydration)
+rules.push({
+  id: 'no-motion-initial-opacity-zero',
+  severity: 'warn',
+  category: 'motion',
+  description: 'motion.* with initial={{ opacity: 0 }} hides content until JS loads — use CSS @keyframes for section-level reveals',
+  run({ code, file }) {
+    const violations = [];
+    const lines = code.split('\n');
+    lines.forEach((line, i) => {
+      // Detect <motion.div/section/etc with initial={{ opacity: 0
+      if (/initial\s*=\s*\{\s*\{[^}]*opacity\s*:\s*0/.test(line)) {
+        // Skip if it's whileHover/whileTap context (interactive, OK)
+        if (/whileHover|whileTap|AnimatePresence|exit\s*=/.test(line)) return;
+        // Check surrounding lines for interactive context
+        const context = lines.slice(Math.max(0, i - 2), Math.min(lines.length, i + 3)).join(' ');
+        if (/whileHover|whileTap|AnimatePresence|exit\s*=|layoutId/.test(context)) return;
+        violations.push({
+          file,
+          line: i + 1,
+          message: 'motion initial={{ opacity: 0 }} — content invisible until JS hydrates; use CSS @keyframes animation for section reveals instead',
+        });
+      }
+    });
+    return violations;
+  },
+});
+
 // ─────────────────────────────────────────────────────────────────
 // Runner
 // ─────────────────────────────────────────────────────────────────
