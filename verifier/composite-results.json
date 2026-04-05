@@ -1,0 +1,67 @@
+{
+  "composite_score": 80,
+  "verdict": "APPROVE_WARNING",
+  "lanes": {
+    "visual": {
+      "present": true,
+      "score": 80,
+      "raw_verdict": {
+        "target": "http://localhost:3000/catalis",
+        "reference": null,
+        "scores": {
+          "first_impression_impact": 8,
+          "composition_balance": 7,
+          "typography_drama": 9,
+          "color_harmony": 8,
+          "ai_slop_smell": 3,
+          "agency_tier_similarity": 7
+        },
+        "composite_visual": 80,
+        "verdict": "APPROVE_WARNING",
+        "critique": [
+          {
+            "section": "Benefits",
+            "issue": "3 equal cards",
+            "severity": "major"
+          }
+        ],
+        "weakest_section": "Benefits",
+        "suggested_fix": {
+          "section": "Benefits",
+          "change": "Break symmetry",
+          "expected_delta": 6
+        },
+        "reference_similarity": null,
+        "timestamp": "2026-04-05T00:00:00Z"
+      },
+      "critique_count": 1,
+      "weakest": "Benefits",
+      "suggested_fix": {
+        "section": "Benefits",
+        "change": "Break symmetry",
+        "expected_delta": 6
+      }
+    },
+    "code": {
+      "present": true,
+      "score": 79,
+      "errors": 4,
+      "warnings": 1,
+      "info": 102,
+      "files": 12,
+      "rules_run": 20
+    }
+  },
+  "effective_weights": {
+    "visual": 0.529,
+    "code": 0.471
+  },
+  "lanes_present": [
+    "visual",
+    "code"
+  ],
+  "target_url": null,
+  "target_dir": "examples/dimension/src/components/catalis",
+  "reference_url": null,
+  "timestamp": "2026-04-05T04:57:20.457Z"
+}

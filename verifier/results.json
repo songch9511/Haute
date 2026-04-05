@@ -11,7 +11,7 @@
     "grepInvert": null,
     "maxFailures": 0,
     "metadata": {
-      "actualWorkers": 2
+      "actualWorkers": 1
     },
     "preserveOutput": "always",
     "projects": [
@@ -20,7 +20,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 1
         },
         "id": "desktop",
         "name": "desktop",
@@ -36,7 +36,7 @@
         "repeatEach": 1,
         "retries": 0,
         "metadata": {
-          "actualWorkers": 2
+          "actualWorkers": 1
         },
         "id": "mobile",
         "name": "mobile",
@@ -67,28 +67,28 @@
     },
     "shard": null,
     "tags": [],
-    "updateSnapshots": "changed",
+    "updateSnapshots": "missing",
     "updateSourceMethod": "patch",
     "version": "1.59.1",
-    "workers": 4,
+    "workers": 1,
     "webServer": null
   },
   "suites": [
     {
-      "title": "visual-regression.spec.ts",
-      "file": "visual-regression.spec.ts",
+      "title": "animation-check.spec.ts",
+      "file": "animation-check.spec.ts",
       "column": 0,
       "line": 0,
       "specs": [],
       "suites": [
         {
-          "title": "Visual Regression",
-          "file": "visual-regression.spec.ts",
-          "line": 13,
+          "title": "Animation Checks",
+          "file": "animation-check.spec.ts",
+          "line": 103,
           "column": 6,
           "specs": [
             {
-              "title": "desktop screenshot matches baseline",
+              "title": "no banned property animations (width, height, top, left, etc.)",
               "ok": true,
               "tags": [],
               "tests": [
@@ -103,16 +103,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 53670,
+                      "duration": 1985,
                       "errors": [],
-                      "stdout": [
-                        {
-                          "text": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/visual-regression.spec.ts-snapshots/desktop-baseline-desktop-darwin.png does not match, writing actual.\n"
-                        }
-                      ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-02T16:17:03.560Z",
+                      "startTime": "2026-04-04T19:32:01.162Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -120,13 +116,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "78e23c5201ba1ea12e76-fdb5d3dbfc6197dcbaff",
-              "file": "visual-regression.spec.ts",
-              "line": 14,
+              "id": "54f51c2a550234f2a354-522041b0a7a9844ae07c",
+              "file": "animation-check.spec.ts",
+              "line": 112,
               "column": 7
             },
             {
-              "title": "mobile screenshot matches baseline",
+              "title": "no linear easing on non-rotation animations",
               "ok": true,
               "tags": [],
               "tests": [
@@ -141,12 +137,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 110,
+                      "duration": 1348,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-02T16:17:57.335Z",
+                      "startTime": "2026-04-04T19:32:03.377Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -154,13 +150,81 @@
                   "status": "expected"
                 }
               ],
-              "id": "78e23c5201ba1ea12e76-54690c47d953554fd0c1",
-              "file": "visual-regression.spec.ts",
-              "line": 53,
+              "id": "54f51c2a550234f2a354-273f4e7a249ff831f86f",
+              "file": "animation-check.spec.ts",
+              "line": 124,
               "column": 7
             },
             {
-              "title": "desktop screenshot matches baseline",
+              "title": "no animation exceeds 800ms",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1437,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:04.731Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "54f51c2a550234f2a354-7013cfd7315b85f26103",
+              "file": "animation-check.spec.ts",
+              "line": 135,
+              "column": 7
+            },
+            {
+              "title": "prefers-reduced-motion is respected",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1720,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:06.174Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "54f51c2a550234f2a354-d455e393689650baed89",
+              "file": "animation-check.spec.ts",
+              "line": 142,
+              "column": 7
+            },
+            {
+              "title": "no banned property animations (width, height, top, left, etc.)",
               "ok": true,
               "tags": [],
               "tests": [
@@ -172,15 +236,15 @@
                   "projectName": "mobile",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 118,
+                      "duration": 3579,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-02T16:17:03.562Z",
+                      "startTime": "2026-04-04T19:33:09.751Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -188,13 +252,13 @@
                   "status": "expected"
                 }
               ],
-              "id": "78e23c5201ba1ea12e76-57ea9fcfae89c3aa017d",
-              "file": "visual-regression.spec.ts",
-              "line": 14,
+              "id": "54f51c2a550234f2a354-9c6b4ddc356f116971f5",
+              "file": "animation-check.spec.ts",
+              "line": 112,
               "column": 7
             },
             {
-              "title": "mobile screenshot matches baseline",
+              "title": "no linear easing on non-rotation animations",
               "ok": true,
               "tags": [],
               "tests": [
@@ -206,19 +270,237 @@
                   "projectName": "mobile",
                   "results": [
                     {
-                      "workerIndex": 1,
-                      "parallelIndex": 1,
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4805,
+                      "duration": 1508,
                       "errors": [],
-                      "stdout": [
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:13.432Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "54f51c2a550234f2a354-22cc44cce9aa766122f9",
+              "file": "animation-check.spec.ts",
+              "line": 124,
+              "column": 7
+            },
+            {
+              "title": "no animation exceeds 800ms",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1126,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:14.948Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "54f51c2a550234f2a354-46ddcf5641e9e4eee595",
+              "file": "animation-check.spec.ts",
+              "line": 135,
+              "column": 7
+            },
+            {
+              "title": "prefers-reduced-motion is respected",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 836,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:16.080Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "54f51c2a550234f2a354-1b3ee3abdb1aee903c47",
+              "file": "animation-check.spec.ts",
+              "line": 142,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "anti-slop-scan.spec.ts",
+      "file": "anti-slop-scan.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Anti-Slop Scan",
+          "file": "anti-slop-scan.spec.ts",
+          "line": 217,
+          "column": 6,
+          "specs": [
+            {
+              "title": "no generic centered hero pattern",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1869,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:07.904Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-9dd79b0d7072b26bb865",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 226,
+              "column": 7
+            },
+            {
+              "title": "no three-column equal card grid",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 0,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1342,
+                      "error": {
+                        "message": "Error: 3 equal-width cards with identical structure detected. Use bento grid, varied sizes, or list format.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+                        "stack": "Error: 3 equal-width cards with identical structure detected. Use bento grid, varied sizes, or list format.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/anti-slop-scan.spec.ts:237:7",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/anti-slop-scan.spec.ts",
+                          "column": 7,
+                          "line": 237
+                        },
+                        "snippet": "  235 |       report.threeEqualCards,\n  236 |       '3 equal-width cards with identical structure detected. Use bento grid, varied sizes, or list format.'\n> 237 |     ).toBe(false);\n      |       ^\n  238 |   });\n  239 |\n  240 |   test('no placeholder names', async () => {"
+                      },
+                      "errors": [
                         {
-                          "text": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/visual-regression.spec.ts-snapshots/mobile-baseline-mobile-darwin.png does not match, writing actual.\n"
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/anti-slop-scan.spec.ts",
+                            "column": 7,
+                            "line": 237
+                          },
+                          "message": "Error: 3 equal-width cards with identical structure detected. Use bento grid, varied sizes, or list format.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n\n  235 |       report.threeEqualCards,\n  236 |       '3 equal-width cards with identical structure detected. Use bento grid, varied sizes, or list format.'\n> 237 |     ).toBe(false);\n      |       ^\n  238 |   });\n  239 |\n  240 |   test('no placeholder names', async () => {\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/anti-slop-scan.spec.ts:237:7"
                         }
                       ],
+                      "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-04-02T16:17:03.781Z",
+                      "startTime": "2026-04-04T19:32:09.779Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/anti-slop-scan-Anti-Slop-S-2e5d0-hree-column-equal-card-grid-desktop/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/anti-slop-scan-Anti-Slop-S-2e5d0-hree-column-equal-card-grid-desktop/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/anti-slop-scan.spec.ts",
+                        "column": 7,
+                        "line": 237
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-4b1b599f5a0db8b9bc36",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 233,
+              "column": 7
+            },
+            {
+              "title": "no placeholder names",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1318,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:11.435Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -226,9 +508,2734 @@
                   "status": "expected"
                 }
               ],
-              "id": "78e23c5201ba1ea12e76-ceb4b1cab4801405f15d",
-              "file": "visual-regression.spec.ts",
-              "line": 53,
+              "id": "d27a08b1831658d54096-44bac04537842c5e640e",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 240,
+              "column": 7
+            },
+            {
+              "title": "no lorem ipsum",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1275,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:12.838Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-a1a30dda88352b575c39",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 247,
+              "column": 7
+            },
+            {
+              "title": "no marketing fluff words",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1536,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:14.120Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-91c4d5a7d58d45ab8d64",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 251,
+              "column": 7
+            },
+            {
+              "title": "no external placeholder images",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1276,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:15.665Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-7943f337ea4eefa7feaf",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 260,
+              "column": 7
+            },
+            {
+              "title": "minimal round numbers in data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1450,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:16.947Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-fedfa5ac38c34dc8752e",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 267,
+              "column": 7
+            },
+            {
+              "title": "no bento pretender grid rows (3+ equal-width items at rendered level)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 834,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:18.404Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-1defa6484f1640c9b481",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 277,
+              "column": 7
+            },
+            {
+              "title": "no consecutive sections with identical grid-template-columns",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 852,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:19.245Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-76ec26f7b08a5598d42c",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 285,
+              "column": 7
+            },
+            {
+              "title": "sections have varied background colors (rhythm)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 830,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:20.103Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-305148a20a2686ed5825",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 294,
+              "column": 7
+            },
+            {
+              "title": "no generic centered hero pattern",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 6239,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:16.951Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-201f645f7cb83c486535",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 226,
+              "column": 7
+            },
+            {
+              "title": "no three-column equal card grid",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 6,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 780,
+                      "error": {
+                        "message": "Error: 3 equal-width cards with identical structure detected. Use bento grid, varied sizes, or list format.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m",
+                        "stack": "Error: 3 equal-width cards with identical structure detected. Use bento grid, varied sizes, or list format.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/anti-slop-scan.spec.ts:237:7",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/anti-slop-scan.spec.ts",
+                          "column": 7,
+                          "line": 237
+                        },
+                        "snippet": "  235 |       report.threeEqualCards,\n  236 |       '3 equal-width cards with identical structure detected. Use bento grid, varied sizes, or list format.'\n> 237 |     ).toBe(false);\n      |       ^\n  238 |   });\n  239 |\n  240 |   test('no placeholder names', async () => {"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/anti-slop-scan.spec.ts",
+                            "column": 7,
+                            "line": 237
+                          },
+                          "message": "Error: 3 equal-width cards with identical structure detected. Use bento grid, varied sizes, or list format.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mfalse\u001b[39m\nReceived: \u001b[31mtrue\u001b[39m\n\n  235 |       report.threeEqualCards,\n  236 |       '3 equal-width cards with identical structure detected. Use bento grid, varied sizes, or list format.'\n> 237 |     ).toBe(false);\n      |       ^\n  238 |   });\n  239 |\n  240 |   test('no placeholder names', async () => {\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/anti-slop-scan.spec.ts:237:7"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:23.198Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/anti-slop-scan-Anti-Slop-S-2e5d0-hree-column-equal-card-grid-mobile/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/anti-slop-scan-Anti-Slop-S-2e5d0-hree-column-equal-card-grid-mobile/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/anti-slop-scan.spec.ts",
+                        "column": 7,
+                        "line": 237
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-8ce8b0c6707b4ab80b3b",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 233,
+              "column": 7
+            },
+            {
+              "title": "no placeholder names",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 772,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:24.355Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-4e2bc4a71f7a8975e806",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 240,
+              "column": 7
+            },
+            {
+              "title": "no lorem ipsum",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 764,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:25.214Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-986e96abf1268546fb24",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 247,
+              "column": 7
+            },
+            {
+              "title": "no marketing fluff words",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 759,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:25.984Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-0954acd3be3fd52dbb59",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 251,
+              "column": 7
+            },
+            {
+              "title": "no external placeholder images",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 760,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:26.752Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-531421da9df9c043beea",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 260,
+              "column": 7
+            },
+            {
+              "title": "minimal round numbers in data",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 759,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:27.518Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-f6f27d3df2fabd54db28",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 267,
+              "column": 7
+            },
+            {
+              "title": "no bento pretender grid rows (3+ equal-width items at rendered level)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 763,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:28.284Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-d20a84367eef87d50f1f",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 277,
+              "column": 7
+            },
+            {
+              "title": "no consecutive sections with identical grid-template-columns",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 761,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:29.053Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-f2f04d495a5363ce3119",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 285,
+              "column": 7
+            },
+            {
+              "title": "sections have varied background colors (rhythm)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2506,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:29.822Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "d27a08b1831658d54096-5b00cacc4b6e3289ca98",
+              "file": "anti-slop-scan.spec.ts",
+              "line": 294,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "color-audit.spec.ts",
+      "file": "color-audit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Color Checks",
+          "file": "color-audit.spec.ts",
+          "line": 154,
+          "column": 6,
+          "specs": [
+            {
+              "title": "no pure #000000 background",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 827,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:20.944Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ca80eb02e6778f34d97f-50f4175fcf8ebf75f367",
+              "file": "color-audit.spec.ts",
+              "line": 163,
+              "column": 7
+            },
+            {
+              "title": "no neon glow box-shadows",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 848,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:21.777Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ca80eb02e6778f34d97f-aa81eff8bace264f970f",
+              "file": "color-audit.spec.ts",
+              "line": 167,
+              "column": 7
+            },
+            {
+              "title": "WCAG AA contrast ratios",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 1,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 865,
+                      "error": {
+                        "message": "Error: Contrast failures:\nspan.ml-3: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\ndiv.text-[11px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection#features.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.mb-12: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:sticky: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.w-full: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.space-y-16: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[12px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.masonry-3: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.28:1 (fg: rgb(255, 255, 255), bg: rgb(34, 197, 94))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.47:1 (fg: rgb(255, 255, 255), bg: rgb(99, 102, 241))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.15:1 (fg: rgb(255, 255, 255), bg: rgb(245, 158, 11))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 3.53:1 (fg: rgb(255, 255, 255), bg: rgb(236, 72, 153))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.23:1 (fg: rgb(255, 255, 255), bg: rgb(139, 92, 246))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.49:1 (fg: rgb(255, 255, 255), bg: rgb(20, 184, 166))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nh2.font-heading: 1.01:1 (fg: rgb(17, 17, 17), bg: rgba(0, 0, 0, 0))\np.text-[16px]: 3.95:1 (fg: rgb(107, 114, 128), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m78\u001b[39m",
+                        "stack": "Error: Contrast failures:\nspan.ml-3: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\ndiv.text-[11px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection#features.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.mb-12: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:sticky: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.w-full: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.space-y-16: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[12px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.masonry-3: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.28:1 (fg: rgb(255, 255, 255), bg: rgb(34, 197, 94))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.47:1 (fg: rgb(255, 255, 255), bg: rgb(99, 102, 241))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.15:1 (fg: rgb(255, 255, 255), bg: rgb(245, 158, 11))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 3.53:1 (fg: rgb(255, 255, 255), bg: rgb(236, 72, 153))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.23:1 (fg: rgb(255, 255, 255), bg: rgb(139, 92, 246))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.49:1 (fg: rgb(255, 255, 255), bg: rgb(20, 184, 166))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nh2.font-heading: 1.01:1 (fg: rgb(17, 17, 17), bg: rgba(0, 0, 0, 0))\np.text-[16px]: 3.95:1 (fg: rgb(107, 114, 128), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m78\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/color-audit.spec.ts:176:83",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/color-audit.spec.ts",
+                          "column": 83,
+                          "line": 176
+                        },
+                        "snippet": "  174 |         (c) => `${c.selector}: ${c.ratio}:1 (fg: ${c.fg}, bg: ${c.bg})`\n  175 |       );\n> 176 |       expect(data.contrasts.length, `Contrast failures:\\n${failures.join('\\n')}`).toBe(0);\n      |                                                                                   ^\n  177 |     }\n  178 |   });\n  179 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/color-audit.spec.ts",
+                            "column": 83,
+                            "line": 176
+                          },
+                          "message": "Error: Contrast failures:\nspan.ml-3: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\ndiv.text-[11px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection#features.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.mb-12: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:sticky: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.w-full: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.space-y-16: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[12px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.masonry-3: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.28:1 (fg: rgb(255, 255, 255), bg: rgb(34, 197, 94))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.47:1 (fg: rgb(255, 255, 255), bg: rgb(99, 102, 241))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.15:1 (fg: rgb(255, 255, 255), bg: rgb(245, 158, 11))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 3.53:1 (fg: rgb(255, 255, 255), bg: rgb(236, 72, 153))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.23:1 (fg: rgb(255, 255, 255), bg: rgb(139, 92, 246))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.49:1 (fg: rgb(255, 255, 255), bg: rgb(20, 184, 166))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nh2.font-heading: 1.01:1 (fg: rgb(17, 17, 17), bg: rgba(0, 0, 0, 0))\np.text-[16px]: 3.95:1 (fg: rgb(107, 114, 128), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m78\u001b[39m\n\n  174 |         (c) => `${c.selector}: ${c.ratio}:1 (fg: ${c.fg}, bg: ${c.bg})`\n  175 |       );\n> 176 |       expect(data.contrasts.length, `Contrast failures:\\n${failures.join('\\n')}`).toBe(0);\n      |                                                                                   ^\n  177 |     }\n  178 |   });\n  179 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/color-audit.spec.ts:176:83"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:22.630Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/color-audit-Color-Checks-WCAG-AA-contrast-ratios-desktop/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/color-audit-Color-Checks-WCAG-AA-contrast-ratios-desktop/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/color-audit.spec.ts",
+                        "column": 83,
+                        "line": 176
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ca80eb02e6778f34d97f-c7d79c6dfa87a36b4595",
+              "file": "color-audit.spec.ts",
+              "line": 171,
+              "column": 7
+            },
+            {
+              "title": "palette size <= 8 unique hue families",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9581,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:24.319Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ca80eb02e6778f34d97f-fab4537e02fc04c5c24e",
+              "file": "color-audit.spec.ts",
+              "line": 180,
+              "column": 7
+            },
+            {
+              "title": "no pure #000000 background",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 7003,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:32.340Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ca80eb02e6778f34d97f-c2c4d7ab29fcefc1bc94",
+              "file": "color-audit.spec.ts",
+              "line": 163,
+              "column": 7
+            },
+            {
+              "title": "no neon glow box-shadows",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 826,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:39.349Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ca80eb02e6778f34d97f-4042c82cc939724fb212",
+              "file": "color-audit.spec.ts",
+              "line": 167,
+              "column": 7
+            },
+            {
+              "title": "WCAG AA contrast ratios",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 7,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 819,
+                      "error": {
+                        "message": "Error: Contrast failures:\nspan.ml-3: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\ndiv.text-[11px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection#features.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.mb-12: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:sticky: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.w-full: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.space-y-16: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[12px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.masonry-3: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.28:1 (fg: rgb(255, 255, 255), bg: rgb(34, 197, 94))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.47:1 (fg: rgb(255, 255, 255), bg: rgb(99, 102, 241))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.15:1 (fg: rgb(255, 255, 255), bg: rgb(245, 158, 11))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 3.53:1 (fg: rgb(255, 255, 255), bg: rgb(236, 72, 153))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.23:1 (fg: rgb(255, 255, 255), bg: rgb(139, 92, 246))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.49:1 (fg: rgb(255, 255, 255), bg: rgb(20, 184, 166))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m76\u001b[39m",
+                        "stack": "Error: Contrast failures:\nspan.ml-3: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\ndiv.text-[11px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection#features.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.mb-12: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:sticky: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.w-full: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.space-y-16: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[12px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.masonry-3: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.28:1 (fg: rgb(255, 255, 255), bg: rgb(34, 197, 94))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.47:1 (fg: rgb(255, 255, 255), bg: rgb(99, 102, 241))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.15:1 (fg: rgb(255, 255, 255), bg: rgb(245, 158, 11))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 3.53:1 (fg: rgb(255, 255, 255), bg: rgb(236, 72, 153))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.23:1 (fg: rgb(255, 255, 255), bg: rgb(139, 92, 246))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.49:1 (fg: rgb(255, 255, 255), bg: rgb(20, 184, 166))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m76\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/color-audit.spec.ts:176:83",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/color-audit.spec.ts",
+                          "column": 83,
+                          "line": 176
+                        },
+                        "snippet": "  174 |         (c) => `${c.selector}: ${c.ratio}:1 (fg: ${c.fg}, bg: ${c.bg})`\n  175 |       );\n> 176 |       expect(data.contrasts.length, `Contrast failures:\\n${failures.join('\\n')}`).toBe(0);\n      |                                                                                   ^\n  177 |     }\n  178 |   });\n  179 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/color-audit.spec.ts",
+                            "column": 83,
+                            "line": 176
+                          },
+                          "message": "Error: Contrast failures:\nspan.ml-3: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\ndiv.text-[11px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection#features.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.mb-12: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-2: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\ndiv.md:col-span-4: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.mt-6: 1.03:1 (fg: rgb(240, 240, 240), bg: rgb(243, 244, 245))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.grid: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.md:sticky: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.w-full: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.space-y-16: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[12px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nsection.bg-bg-light: 1.09:1 (fg: rgb(240, 240, 240), bg: rgb(250, 250, 250))\ndiv.mx-auto: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.text-center: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.masonry-3: 1.09:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.28:1 (fg: rgb(255, 255, 255), bg: rgb(34, 197, 94))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.47:1 (fg: rgb(255, 255, 255), bg: rgb(99, 102, 241))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.15:1 (fg: rgb(255, 255, 255), bg: rgb(245, 158, 11))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 3.53:1 (fg: rgb(255, 255, 255), bg: rgb(236, 72, 153))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 4.23:1 (fg: rgb(255, 255, 255), bg: rgb(139, 92, 246))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.bg-bg-light-elevated: 1.14:1 (fg: rgb(240, 240, 240), bg: rgb(255, 255, 255))\ndiv.flex: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\ndiv.w-9: 2.49:1 (fg: rgb(255, 255, 255), bg: rgb(20, 184, 166))\ndiv: 1.14:1 (fg: rgb(240, 240, 240), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 1.1:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\nspan.text-[14px]: 2.18:1 (fg: rgb(138, 143, 147), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.76:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\na.text-[14px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\np.text-[13px]: 2.95:1 (fg: rgb(90, 95, 99), bg: rgba(0, 0, 0, 0))\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m76\u001b[39m\n\n  174 |         (c) => `${c.selector}: ${c.ratio}:1 (fg: ${c.fg}, bg: ${c.bg})`\n  175 |       );\n> 176 |       expect(data.contrasts.length, `Contrast failures:\\n${failures.join('\\n')}`).toBe(0);\n      |                                                                                   ^\n  177 |     }\n  178 |   });\n  179 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/color-audit.spec.ts:176:83"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:40.180Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/color-audit-Color-Checks-WCAG-AA-contrast-ratios-mobile/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/color-audit-Color-Checks-WCAG-AA-contrast-ratios-mobile/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/color-audit.spec.ts",
+                        "column": 83,
+                        "line": 176
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "ca80eb02e6778f34d97f-ded509617ad7dc2fb5b2",
+              "file": "color-audit.spec.ts",
+              "line": 171,
+              "column": 7
+            },
+            {
+              "title": "palette size <= 8 unique hue families",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10118,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:41.548Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "ca80eb02e6778f34d97f-4fbded61bd6eac4992af",
+              "file": "color-audit.spec.ts",
+              "line": 180,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "layout-diversity.spec.ts",
+      "file": "layout-diversity.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Layout Diversity",
+          "file": "layout-diversity.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "no consecutive identical grids",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 2,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 982,
+                      "error": {
+                        "message": "Error: Sections 1–3 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: Sections 1–3 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                          "column": 11,
+                          "line": 35
+                        },
+                        "snippet": "  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 1–3 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 2–4 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 3–5 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 4–6 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 5–7 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 6–8 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:34.017Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/layout-diversity-Layout-Di-24bc7-consecutive-identical-grids-desktop/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/layout-diversity-Layout-Di-24bc7-consecutive-identical-grids-desktop/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                        "column": 11,
+                        "line": 35
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2e55d6f456368737b267-200c46e85638195b0f8f",
+              "file": "layout-diversity.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "varied section heights (padding diversity)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 888,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:35.385Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e55d6f456368737b267-6e9c854839094758a8a1",
+              "file": "layout-diversity.spec.ts",
+              "line": 56,
+              "column": 7
+            },
+            {
+              "title": "not all sections centered",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 867,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:36.372Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e55d6f456368737b267-adb7eee201a0214b5551",
+              "file": "layout-diversity.spec.ts",
+              "line": 81,
+              "column": 7
+            },
+            {
+              "title": "no consecutive identical grids",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 8,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2750,
+                      "error": {
+                        "message": "Error: Sections 1–3 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m",
+                        "stack": "Error: Sections 1–3 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                          "column": 11,
+                          "line": 35
+                        },
+                        "snippet": "  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 1–3 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 2–4 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 3–5 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 4–6 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 5–7 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        },
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                            "column": 11,
+                            "line": 35
+                          },
+                          "message": "Error: Sections 6–8 share identical grid: \"none\". Use varied layouts — alternate between full-bleed, split, bento, and list formats.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeTruthy\u001b[2m()\u001b[22m\n\nReceived: \u001b[31mfalse\u001b[39m\n\n  33 |           `Sections ${i + 1}–${i + 3} share identical grid: \"${gridPatterns[i]}\". ` +\n  34 |             'Use varied layouts — alternate between full-bleed, split, bento, and list formats.'\n> 35 |         ).toBeTruthy();\n     |           ^\n  36 |       }\n  37 |     }\n  38 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts:35:11"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:51.751Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/layout-diversity-Layout-Di-24bc7-consecutive-identical-grids-mobile/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/layout-diversity-Layout-Di-24bc7-consecutive-identical-grids-mobile/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/layout-diversity.spec.ts",
+                        "column": 11,
+                        "line": 35
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "2e55d6f456368737b267-d6cd15c7a76e90d3f657",
+              "file": "layout-diversity.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "varied section heights (padding diversity)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1536,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:54.845Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e55d6f456368737b267-c30cb7a94ae99b2d91a7",
+              "file": "layout-diversity.spec.ts",
+              "line": 56,
+              "column": 7
+            },
+            {
+              "title": "not all sections centered",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 3209,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:56.463Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "2e55d6f456368737b267-c929174fb7a513513113",
+              "file": "layout-diversity.spec.ts",
+              "line": 81,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "responsive-check.spec.ts",
+      "file": "responsive-check.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Responsive Checks",
+          "file": "responsive-check.spec.ts",
+          "line": 9,
+          "column": 6,
+          "specs": [
+            {
+              "title": "no horizontal overflow at any viewport",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 841,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:37.249Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6acb6bb468857d23a4e-0b976c9fb0d0c1f1a01c",
+              "file": "responsive-check.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "mobile single-column layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 91,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:38.096Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6acb6bb468857d23a4e-9bf0e548e3c9fe431d87",
+              "file": "responsive-check.spec.ts",
+              "line": 21,
+              "column": 7
+            },
+            {
+              "title": "touch targets >= 44x44px on mobile",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 114,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:38.193Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6acb6bb468857d23a4e-faddd37b2905b110565f",
+              "file": "responsive-check.spec.ts",
+              "line": 88,
+              "column": 7
+            },
+            {
+              "title": "no h-screen / 100vh usage",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 337,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:38.312Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6acb6bb468857d23a4e-68cbff16ee7390fee74f",
+              "file": "responsive-check.spec.ts",
+              "line": 130,
+              "column": 7
+            },
+            {
+              "title": "no horizontal overflow at any viewport",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1796,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:59.681Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6acb6bb468857d23a4e-b91738bd82ea13804c0d",
+              "file": "responsive-check.spec.ts",
+              "line": 10,
+              "column": 7
+            },
+            {
+              "title": "mobile single-column layout",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1537,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:01.482Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6acb6bb468857d23a4e-10725665da5193dc6ebb",
+              "file": "responsive-check.spec.ts",
+              "line": 21,
+              "column": 7
+            },
+            {
+              "title": "touch targets >= 44x44px on mobile",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 9,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 2681,
+                      "error": {
+                        "message": "Error: 1 touch targets too small: a(\"Dimension\"): 109×26px. Min 44×44px.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m",
+                        "stack": "Error: 1 touch targets too small: a(\"Dimension\"): 109×26px. Min 44×44px.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/responsive-check.spec.ts:126:9",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/responsive-check.spec.ts",
+                          "column": 9,
+                          "line": 126
+                        },
+                        "snippet": "  124 |         smallTargets.length,\n  125 |         `${smallTargets.length} touch targets too small: ${details}. Min 44×44px.`\n> 126 |       ).toBe(0);\n      |         ^\n  127 |     }\n  128 |   });\n  129 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/responsive-check.spec.ts",
+                            "column": 9,
+                            "line": 126
+                          },
+                          "message": "Error: 1 touch targets too small: a(\"Dimension\"): 109×26px. Min 44×44px.\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32m0\u001b[39m\nReceived: \u001b[31m1\u001b[39m\n\n  124 |         smallTargets.length,\n  125 |         `${smallTargets.length} touch targets too small: ${details}. Min 44×44px.`\n> 126 |       ).toBe(0);\n      |         ^\n  127 |     }\n  128 |   });\n  129 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/responsive-check.spec.ts:126:9"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:03.025Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/responsive-check-Responsiv-6c606-h-targets-44x44px-on-mobile-mobile/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/responsive-check-Responsiv-6c606-h-targets-44x44px-on-mobile-mobile/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/responsive-check.spec.ts",
+                        "column": 9,
+                        "line": 126
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "a6acb6bb468857d23a4e-d7f714a32707f28d39ad",
+              "file": "responsive-check.spec.ts",
+              "line": 88,
+              "column": 7
+            },
+            {
+              "title": "no h-screen / 100vh usage",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 913,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:06.062Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "a6acb6bb468857d23a4e-82c1df9885eec7684412",
+              "file": "responsive-check.spec.ts",
+              "line": 130,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "spacing-audit.spec.ts",
+      "file": "spacing-audit.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Spacing Checks",
+          "file": "spacing-audit.spec.ts",
+          "line": 77,
+          "column": 6,
+          "specs": [
+            {
+              "title": "grid adherence > 70% (4px multiples)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 820,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:38.657Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bc74053e523eb75d2d04-ec499af462d7ec352fc9",
+              "file": "spacing-audit.spec.ts",
+              "line": 86,
+              "column": 7
+            },
+            {
+              "title": "most section paddings >= 48px / py-12",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 812,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:39.483Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bc74053e523eb75d2d04-78b28d63c9a20c312295",
+              "file": "spacing-audit.spec.ts",
+              "line": 93,
+              "column": 7
+            },
+            {
+              "title": "card padding minimum (>= 16px / p-4)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 829,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:40.301Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bc74053e523eb75d2d04-bd4253d1370547d954a5",
+              "file": "spacing-audit.spec.ts",
+              "line": 107,
+              "column": 7
+            },
+            {
+              "title": "spacing consistency within similar elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 10301,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:41.137Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bc74053e523eb75d2d04-b4bced9f012be3f75880",
+              "file": "spacing-audit.spec.ts",
+              "line": 117,
+              "column": 7
+            },
+            {
+              "title": "section spacing variation exists (rhythm)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 938,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:51.450Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bc74053e523eb75d2d04-09629b19232780a71be8",
+              "file": "spacing-audit.spec.ts",
+              "line": 128,
+              "column": 7
+            },
+            {
+              "title": "grid adherence > 70% (4px multiples)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1300,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:07.063Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bc74053e523eb75d2d04-c868b75bd3d50ed3a431",
+              "file": "spacing-audit.spec.ts",
+              "line": 86,
+              "column": 7
+            },
+            {
+              "title": "most section paddings >= 48px / py-12",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2226,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:08.370Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bc74053e523eb75d2d04-c3eec0b62ced08c69160",
+              "file": "spacing-audit.spec.ts",
+              "line": 93,
+              "column": 7
+            },
+            {
+              "title": "card padding minimum (>= 16px / p-4)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1432,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:10.604Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bc74053e523eb75d2d04-a2f8c38a67d639284247",
+              "file": "spacing-audit.spec.ts",
+              "line": 107,
+              "column": 7
+            },
+            {
+              "title": "spacing consistency within similar elements",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1673,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:12.043Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bc74053e523eb75d2d04-300bd7cabbbf6ea25af1",
+              "file": "spacing-audit.spec.ts",
+              "line": 117,
+              "column": 7
+            },
+            {
+              "title": "section spacing variation exists (rhythm)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1388,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:13.723Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "bc74053e523eb75d2d04-eb1c41406f59ed1d6855",
+              "file": "spacing-audit.spec.ts",
+              "line": 128,
+              "column": 7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "typography-check.spec.ts",
+      "file": "typography-check.spec.ts",
+      "column": 0,
+      "line": 0,
+      "specs": [],
+      "suites": [
+        {
+          "title": "Typography Checks",
+          "file": "typography-check.spec.ts",
+          "line": 74,
+          "column": 6,
+          "specs": [
+            {
+              "title": "no Inter as sole font",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 931,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:52.400Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-efcdded734c2918af51c",
+              "file": "typography-check.spec.ts",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "has intentional font choice (not system stack only)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 9660,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:32:53.338Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-e1284de265bb5137c269",
+              "file": "typography-check.spec.ts",
+              "line": 95,
+              "column": 7
+            },
+            {
+              "title": "font family count is 1-3",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 3,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 921,
+                      "error": {
+                        "message": "Error: 4 font families: ui-sans-serif, Geist, Cabinet Grotesk, Geist Mono\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m3\u001b[39m\nReceived:    \u001b[31m4\u001b[39m",
+                        "stack": "Error: 4 font families: ui-sans-serif, Geist, Cabinet Grotesk, Geist Mono\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m3\u001b[39m\nReceived:    \u001b[31m4\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts:105:98",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                          "column": 98,
+                          "line": 105
+                        },
+                        "snippet": "  103 |       (f) => !['sans-serif', 'serif', 'monospace', 'system-ui', 'inherit'].includes(f.toLowerCase())\n  104 |     );\n> 105 |     expect(customFonts.length, `${customFonts.length} font families: ${customFonts.join(', ')}`).toBeLessThanOrEqual(3);\n      |                                                                                                  ^\n  106 |     expect(customFonts.length, 'No custom fonts found').toBeGreaterThanOrEqual(1);\n  107 |   });\n  108 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                            "column": 98,
+                            "line": 105
+                          },
+                          "message": "Error: 4 font families: ui-sans-serif, Geist, Cabinet Grotesk, Geist Mono\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m3\u001b[39m\nReceived:    \u001b[31m4\u001b[39m\n\n  103 |       (f) => !['sans-serif', 'serif', 'monospace', 'system-ui', 'inherit'].includes(f.toLowerCase())\n  104 |     );\n> 105 |     expect(customFonts.length, `${customFonts.length} font families: ${customFonts.join(', ')}`).toBeLessThanOrEqual(3);\n      |                                                                                                  ^\n  106 |     expect(customFonts.length, 'No custom fonts found').toBeGreaterThanOrEqual(1);\n  107 |   });\n  108 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts:105:98"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:03.004Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/typography-check-Typography-Checks-font-family-count-is-1-3-desktop/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/typography-check-Typography-Checks-font-family-count-is-1-3-desktop/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                        "column": 98,
+                        "line": 105
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-cdecda71092818744488",
+              "file": "typography-check.spec.ts",
+              "line": 101,
+              "column": 7
+            },
+            {
+              "title": "heading/body size contrast >= 2.5:1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 905,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:04.281Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-908bb823427872f752cf",
+              "file": "typography-check.spec.ts",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "H1 not oversized (max 72px / 4.5rem)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 876,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:05.280Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-fa75084172a35dab1917",
+              "file": "typography-check.spec.ts",
+              "line": 119,
+              "column": 7
+            },
+            {
+              "title": "font weight diversity (2-4 weights)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 872,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:06.165Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-e78ca8fe2cb802061f8a",
+              "file": "typography-check.spec.ts",
+              "line": 126,
+              "column": 7
+            },
+            {
+              "title": "heading line-height is tight (1.0-1.3)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 4,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 897,
+                      "error": {
+                        "message": "Error: h3 line-height ratio 1.60 — too loose\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m1.35\u001b[39m\nReceived:    \u001b[31m1.5999999999999999\u001b[39m",
+                        "stack": "Error: h3 line-height ratio 1.60 — too loose\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m1.35\u001b[39m\nReceived:    \u001b[31m1.5999999999999999\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts:141:90",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                          "column": 90,
+                          "line": 141
+                        },
+                        "snippet": "  139 |         `${lh.tag} line-height ratio ${lh.ratio.toFixed(2)} — should be 1.0-1.3`\n  140 |       ).toBeGreaterThanOrEqual(1.0);\n> 141 |       expect(lh.ratio, `${lh.tag} line-height ratio ${lh.ratio.toFixed(2)} — too loose`).toBeLessThanOrEqual(1.35);\n      |                                                                                          ^\n  142 |     }\n  143 |   });\n  144 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                            "column": 90,
+                            "line": 141
+                          },
+                          "message": "Error: h3 line-height ratio 1.60 — too loose\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m1.35\u001b[39m\nReceived:    \u001b[31m1.5999999999999999\u001b[39m\n\n  139 |         `${lh.tag} line-height ratio ${lh.ratio.toFixed(2)} — should be 1.0-1.3`\n  140 |       ).toBeGreaterThanOrEqual(1.0);\n> 141 |       expect(lh.ratio, `${lh.tag} line-height ratio ${lh.ratio.toFixed(2)} — too loose`).toBeLessThanOrEqual(1.35);\n      |                                                                                          ^\n  142 |     }\n  143 |   });\n  144 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts:141:90"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:07.046Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/typography-check-Typograph-f3c88-ne-height-is-tight-1-0-1-3--desktop/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/typography-check-Typograph-f3c88-ne-height-is-tight-1-0-1-3--desktop/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                        "column": 90,
+                        "line": 141
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-84ba2772eb50d12dd34e",
+              "file": "typography-check.spec.ts",
+              "line": 134,
+              "column": 7
+            },
+            {
+              "title": "body line-height is readable (1.4-1.8)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "desktop",
+                  "projectName": "desktop",
+                  "results": [
+                    {
+                      "workerIndex": 5,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 934,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:33:08.249Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-db9dac94b5168b95a991",
+              "file": "typography-check.spec.ts",
+              "line": 145,
+              "column": 7
+            },
+            {
+              "title": "no Inter as sole font",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 2037,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:15.121Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-877c2cee06a4cb795de8",
+              "file": "typography-check.spec.ts",
+              "line": 84,
+              "column": 7
+            },
+            {
+              "title": "has intentional font choice (not system stack only)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1983,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:17.164Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-a1deb060a50ef8f23c83",
+              "file": "typography-check.spec.ts",
+              "line": 95,
+              "column": 7
+            },
+            {
+              "title": "font family count is 1-3",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 10,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1595,
+                      "error": {
+                        "message": "Error: 4 font families: ui-sans-serif, Geist, Cabinet Grotesk, Geist Mono\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m3\u001b[39m\nReceived:    \u001b[31m4\u001b[39m",
+                        "stack": "Error: 4 font families: ui-sans-serif, Geist, Cabinet Grotesk, Geist Mono\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m3\u001b[39m\nReceived:    \u001b[31m4\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts:105:98",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                          "column": 98,
+                          "line": 105
+                        },
+                        "snippet": "  103 |       (f) => !['sans-serif', 'serif', 'monospace', 'system-ui', 'inherit'].includes(f.toLowerCase())\n  104 |     );\n> 105 |     expect(customFonts.length, `${customFonts.length} font families: ${customFonts.join(', ')}`).toBeLessThanOrEqual(3);\n      |                                                                                                  ^\n  106 |     expect(customFonts.length, 'No custom fonts found').toBeGreaterThanOrEqual(1);\n  107 |   });\n  108 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                            "column": 98,
+                            "line": 105
+                          },
+                          "message": "Error: 4 font families: ui-sans-serif, Geist, Cabinet Grotesk, Geist Mono\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m3\u001b[39m\nReceived:    \u001b[31m4\u001b[39m\n\n  103 |       (f) => !['sans-serif', 'serif', 'monospace', 'system-ui', 'inherit'].includes(f.toLowerCase())\n  104 |     );\n> 105 |     expect(customFonts.length, `${customFonts.length} font families: ${customFonts.join(', ')}`).toBeLessThanOrEqual(3);\n      |                                                                                                  ^\n  106 |     expect(customFonts.length, 'No custom fonts found').toBeGreaterThanOrEqual(1);\n  107 |   });\n  108 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts:105:98"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:19.152Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/typography-check-Typography-Checks-font-family-count-is-1-3-mobile/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/typography-check-Typography-Checks-font-family-count-is-1-3-mobile/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                        "column": 98,
+                        "line": 105
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-639d5c9e3ada2d029d1f",
+              "file": "typography-check.spec.ts",
+              "line": 101,
+              "column": 7
+            },
+            {
+              "title": "heading/body size contrast >= 2.5:1",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1461,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:21.047Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-e35ef19e200ded8e07c6",
+              "file": "typography-check.spec.ts",
+              "line": 109,
+              "column": 7
+            },
+            {
+              "title": "H1 not oversized (max 72px / 4.5rem)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1389,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:22.588Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-2fab5036a0d3ed8b52bb",
+              "file": "typography-check.spec.ts",
+              "line": 119,
+              "column": 7
+            },
+            {
+              "title": "font weight diversity (2-4 weights)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1303,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:23.985Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-245a290cc23b42a1ebf3",
+              "file": "typography-check.spec.ts",
+              "line": 126,
+              "column": 7
+            },
+            {
+              "title": "heading line-height is tight (1.0-1.3)",
+              "ok": false,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 11,
+                      "parallelIndex": 0,
+                      "status": "failed",
+                      "duration": 1720,
+                      "error": {
+                        "message": "Error: h3 line-height ratio 1.60 — too loose\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m1.35\u001b[39m\nReceived:    \u001b[31m1.5999999999999999\u001b[39m",
+                        "stack": "Error: h3 line-height ratio 1.60 — too loose\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m1.35\u001b[39m\nReceived:    \u001b[31m1.5999999999999999\u001b[39m\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts:141:90",
+                        "location": {
+                          "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                          "column": 90,
+                          "line": 141
+                        },
+                        "snippet": "  139 |         `${lh.tag} line-height ratio ${lh.ratio.toFixed(2)} — should be 1.0-1.3`\n  140 |       ).toBeGreaterThanOrEqual(1.0);\n> 141 |       expect(lh.ratio, `${lh.tag} line-height ratio ${lh.ratio.toFixed(2)} — too loose`).toBeLessThanOrEqual(1.35);\n      |                                                                                          ^\n  142 |     }\n  143 |   });\n  144 |"
+                      },
+                      "errors": [
+                        {
+                          "location": {
+                            "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                            "column": 90,
+                            "line": 141
+                          },
+                          "message": "Error: h3 line-height ratio 1.60 — too loose\n\n\u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBeLessThanOrEqual\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m)\u001b[22m\n\nExpected: <= \u001b[32m1.35\u001b[39m\nReceived:    \u001b[31m1.5999999999999999\u001b[39m\n\n  139 |         `${lh.tag} line-height ratio ${lh.ratio.toFixed(2)} — should be 1.0-1.3`\n  140 |       ).toBeGreaterThanOrEqual(1.0);\n> 141 |       expect(lh.ratio, `${lh.tag} line-height ratio ${lh.ratio.toFixed(2)} — too loose`).toBeLessThanOrEqual(1.35);\n      |                                                                                          ^\n  142 |     }\n  143 |   });\n  144 |\n    at /Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts:141:90"
+                        }
+                      ],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:25.294Z",
+                      "annotations": [],
+                      "attachments": [
+                        {
+                          "name": "screenshot",
+                          "contentType": "image/png",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/typography-check-Typograph-f3c88-ne-height-is-tight-1-0-1-3--mobile/test-failed-1.png"
+                        },
+                        {
+                          "name": "error-context",
+                          "contentType": "text/markdown",
+                          "path": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/test-results/typography-check-Typograph-f3c88-ne-height-is-tight-1-0-1-3--mobile/error-context.md"
+                        }
+                      ],
+                      "errorLocation": {
+                        "file": "/Users/daniel/Library/CloudStorage/GoogleDrive-songch9511@gmail.com/My Drive/Agents/UDesigner/verifier/checks/typography-check.spec.ts",
+                        "column": 90,
+                        "line": 141
+                      }
+                    }
+                  ],
+                  "status": "unexpected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-7f8a048a04a9a41487e7",
+              "file": "typography-check.spec.ts",
+              "line": 134,
+              "column": 7
+            },
+            {
+              "title": "body line-height is readable (1.4-1.8)",
+              "ok": true,
+              "tags": [],
+              "tests": [
+                {
+                  "timeout": 30000,
+                  "annotations": [],
+                  "expectedStatus": "passed",
+                  "projectId": "mobile",
+                  "projectName": "mobile",
+                  "results": [
+                    {
+                      "workerIndex": 12,
+                      "parallelIndex": 0,
+                      "status": "passed",
+                      "duration": 1507,
+                      "errors": [],
+                      "stdout": [],
+                      "stderr": [],
+                      "retry": 0,
+                      "startTime": "2026-04-04T19:34:27.311Z",
+                      "annotations": [],
+                      "attachments": []
+                    }
+                  ],
+                  "status": "expected"
+                }
+              ],
+              "id": "e3ee513ba468d15f40ed-7d051e00b642b3bc7276",
+              "file": "typography-check.spec.ts",
+              "line": 145,
               "column": 7
             }
           ]
@@ -238,11 +3245,11 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-04-02T16:17:03.228Z",
-    "duration": 54553.591,
-    "expected": 4,
+    "startTime": "2026-04-04T19:32:00.820Z",
+    "duration": 148104.446,
+    "expected": 65,
     "skipped": 0,
-    "unexpected": 0,
+    "unexpected": 11,
     "flaky": 0
   }
 }

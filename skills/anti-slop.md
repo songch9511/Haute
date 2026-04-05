@@ -155,8 +155,6 @@ Every pattern below is a known "AI tell" — a design choice that signals the in
 
 ---
 
-## 6. Pattern Detection Rules
-
 ## 6. Interaction / Animation Bans
 
 ### 6.1 Hero Content with useInView
@@ -178,7 +176,7 @@ Every pattern below is a known "AI tell" — a design choice that signals the in
 
 ---
 
-## Verifier Rules
+## 7. Verifier Rules
 
 For use by the verifier (quick-lint and Playwright checks):
 
@@ -213,3 +211,31 @@ CONTENT_CHECKS:
   - "Acme" | "Nexus" | "Synergy" → WARN
   - "Elevate" | "Seamless" | "Unleash" | "Empower" → WARN
 ```
+
+---
+
+## 8. Layout Rhythm Bans
+
+### 8.1 Consecutive Identical Grids
+- **Banned:** 3+ consecutive `<section>` elements using the same grid-template-columns pattern.
+- **Why:** Creates visual monotony — the #1 AI layout tell. Agencies deliberately vary grid structures between sections.
+- **Instead:** Each section must use a different layout pattern. After a 3-column grid, use full-width, 2-column asymmetric, or editorial layout.
+- **Detection:** Extract computed `grid-template-columns` from each section. Fail if 3+ consecutive sections match.
+
+### 8.2 Uniform Section Heights
+- **Banned:** All sections using identical vertical padding (e.g., every section is `py-24`).
+- **Why:** Creates a metronomic rhythm that feels mechanical. Real pages have breathing room variation.
+- **Instead:** Vary section padding: compact (py-12), standard (py-16), breathing (py-24), dramatic (py-32). See `visual-rhythm.md` for pacing templates.
+- **Detection:** Check computed padding-top/padding-bottom on `<section>` elements. Warn if >60% share the same value.
+
+### 8.3 Centered-Everything Pages
+- **Banned:** Pages where every section uses `text-center` or `mx-auto` with centered content alignment.
+- **Why:** Symmetry everywhere kills visual interest. Agencies use left-aligned sections, asymmetric layouts, and mixed alignments.
+- **Instead:** Mix centered hero with left-aligned features, right-aligned CTAs. At least 40% of sections should NOT be center-aligned.
+- **Detection:** Count sections with `text-center` or all-centered children. Fail if >60% of sections are centered.
+
+### 8.4 Identical Section Backgrounds
+- **Banned:** 3+ consecutive sections with the same background color/treatment.
+- **Why:** Removes visual "chapters" — sections blur together without background variation.
+- **Instead:** Alternate backgrounds: light → dark → light, or white → gray → white → accent. Use full-bleed color sections as visual anchors.
+- **Detection:** Compare computed background-color on consecutive sections. Warn if 3+ match.

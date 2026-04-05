@@ -1,42 +1,58 @@
 @import "tailwindcss";
 
-/* ── Dimension E-ink Design Tokens ── */
+/* ── Dimension v3 Design Tokens ── */
 :root {
-  --bg-main: #FFFFFF;
-  --bg-panel: #FFFFFF;
-  --bg-card: #FFFFFF;
-  --bg-card-hover: #000000;
-  --bg-input: #FFFFFF;
+  --bg-primary: #0e1011;
+  --bg-elevated: #161819;
+  --bg-surface: #1e2022;
+  --bg-light: #fafafa;
+  --bg-light-elevated: #ffffff;
+  --bg-light-surface: #f3f4f5;
 
-  --border-color: #000000;
-  --border-light: #c8c8c8;
+  --border-color: #2a2d2f;
+  --border-light: #e2e4e6;
 
-  --text-primary: #000000;
-  --text-secondary: #000000;
-  --text-muted: #555555;
-  --text-inverted: #FFFFFF;
+  --text-primary: #f0f0f0;
+  --text-secondary: #8a8f93;
+  --text-muted: #5a5f63;
+  --text-dark: #111111;
+  --text-dark-secondary: #6b7280;
 
-  --accent: #000000;
+  --accent: #22c55e;
+  --accent-hover: #16a34a;
+  --accent-bg: #166534;
+  --accent-text: #4ade80;
 
-  --font-family: 'Pretendard Variable', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  --font-heading: 'Cabinet Grotesk', sans-serif;
+  --font-body: 'Geist', sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', monospace;
 
-  --radius: 4px;
-  --radius-sm: 2px;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
 }
 
 @theme inline {
-  --color-bg-main: var(--bg-main);
-  --color-bg-panel: var(--bg-panel);
-  --color-bg-card: var(--bg-card);
-  --color-bg-card-hover: var(--bg-card-hover);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-surface: var(--bg-surface);
+  --color-bg-light: var(--bg-light);
+  --color-bg-light-elevated: var(--bg-light-elevated);
+  --color-bg-light-surface: var(--bg-light-surface);
   --color-border: var(--border-color);
   --color-border-light: var(--border-light);
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-muted: var(--text-muted);
-  --color-text-inverted: var(--text-inverted);
+  --color-text-dark: var(--text-dark);
+  --color-text-dark-secondary: var(--text-dark-secondary);
   --color-accent: var(--accent);
-  --font-sans: var(--font-family);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-bg: var(--accent-bg);
+  --color-accent-text: var(--accent-text);
+  --font-heading: var(--font-heading);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 /* ── Base ── */
@@ -45,29 +61,19 @@ html {
 }
 
 body {
-  background: var(--bg-main);
+  background: var(--bg-primary);
   color: var(--text-primary);
-  font-family: var(--font-family);
+  font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: clip;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* ── Marquee ── */
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
-}
-
 /* ── Selection ── */
 ::selection {
-  background: #000000;
-  color: #FFFFFF;
+  background: var(--accent);
+  color: var(--bg-primary);
 }
 
 /* ── Reduced Motion ── */
@@ -75,5 +81,42 @@ body {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Masonry columns for testimonials ── */
+.masonry-3 {
+  column-count: 3;
+  column-gap: 1rem;
+}
+.masonry-3 > * {
+  break-inside: avoid;
+  margin-bottom: 1rem;
+}
+@media (max-width: 768px) {
+  .masonry-3 {
+    column-count: 1;
+  }
+}
+@media (min-width: 769px) and (max-width: 1024px) {
+  .masonry-3 {
+    column-count: 2;
+  }
+}
+
+/* ── Timeline spine ── */
+.timeline-spine::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border-color);
+  transform: translateX(-50%);
+}
+@media (max-width: 768px) {
+  .timeline-spine::before {
+    left: 1.5rem;
   }
 }

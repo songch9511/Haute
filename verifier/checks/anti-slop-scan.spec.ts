@@ -14,6 +14,9 @@ interface SlopReport {
   loremIpsum: boolean;
   marketingFluff: string[];
   externalImages: string[];
+  bentoPretenderRows: number;
+  consecutiveIdenticalGrids: number;
+  uniformBackgroundSections: boolean;
 }
 
 async function scanForSlop(page: any): Promise<SlopReport> {
@@ -147,6 +150,55 @@ async function scanForSlop(page: any): Promise<SlopReport> {
       }
     });
 
+    // ── Bento Pretender: CSS Grid rows with 3+ equal-width items (rendered level) ──
+    let bentoPretenderRows = 0;
+    document.querySelectorAll('*').forEach((el) => {
+      const style = getComputedStyle(el);
+      if (style.display !== 'grid') return;
+      const children = [...el.children];
+      if (children.length < 3) return;
+
+      // Group children by visual row
+      const byRow = new Map<number, Element[]>();
+      children.forEach((child) => {
+        const rect = child.getBoundingClientRect();
+        if (rect.width < 10 || rect.height < 10) return;
+        const rowKey = Math.round(rect.top / 5) * 5;
+        if (!byRow.has(rowKey)) byRow.set(rowKey, []);
+        byRow.get(rowKey)!.push(child);
+      });
+
+      for (const rowItems of byRow.values()) {
+        if (rowItems.length < 3) continue;
+        const widths = rowItems.map((c) => c.getBoundingClientRect().width);
+        const allVisible = widths.every((w) => w > 80);
+        const allEqual = allVisible && (Math.max(...widths) - Math.min(...widths) < 5);
+        if (allEqual) bentoPretenderRows++;
+      }
+    });
+
+    // ── Consecutive sections with identical grid-template-columns ──
+    const sections = [...document.querySelectorAll('section')];
+    let consecutiveIdenticalGrids = 0;
+    for (let i = 1; i < sections.length; i++) {
+      const prev = getComputedStyle(sections[i - 1]).gridTemplateColumns;
+      const curr = getComputedStyle(sections[i]).gridTemplateColumns;
+      if (prev === curr && prev !== 'none' && prev !== '') {
+        consecutiveIdenticalGrids++;
+      }
+    }
+
+    // ── Uniform background sections (section rhythm) ──
+    // Flag if >70% of sections share the exact same background color
+    let uniformBackgroundSections = false;
+    if (sections.length >= 3) {
+      const bgColors = sections.map((s) => getComputedStyle(s).backgroundColor);
+      const freq: Record<string, number> = {};
+      for (const bg of bgColors) freq[bg] = (freq[bg] || 0) + 1;
+      const maxCount = Math.max(...Object.values(freq));
+      if (maxCount / bgColors.length > 0.7) uniformBackgroundSections = true;
+    }
+
     return {
       centeredHero,
       threeEqualCards,
@@ -155,6 +207,9 @@ async function scanForSlop(page: any): Promise<SlopReport> {
       loremIpsum,
       marketingFluff,
       externalImages,
+      bentoPretenderRows,
+      consecutiveIdenticalGrids,
+      uniformBackgroundSections,
     };
   });
 }
@@ -217,5 +272,30 @@ test.describe('Anti-Slop Scan', () => {
         `${report.roundNumbers.length} round numbers: ${report.roundNumbers.join(', ')}. Use specific, odd numbers.`
       ).toBeLessThanOrEqual(2);
     }
+  });
+
+  test('no bento pretender grid rows (3+ equal-width items at rendered level)', async () => {
+    expect(
+      report.bentoPretenderRows,
+      `${report.bentoPretenderRows} grid row(s) with 3+ equal-width items detected. ` +
+        'True bento grids use varied column spans — avoid uniform card rows masquerading as bento.'
+    ).toBe(0);
+  });
+
+  test('no consecutive sections with identical grid-template-columns', async () => {
+    // Allow at most 1 consecutive match (some repetition is unavoidable)
+    expect(
+      report.consecutiveIdenticalGrids,
+      `${report.consecutiveIdenticalGrids} consecutive section pair(s) share identical grid-template-columns. ` +
+        'Vary layout structure between sections.'
+    ).toBeLessThanOrEqual(1);
+  });
+
+  test('sections have varied background colors (rhythm)', async () => {
+    expect(
+      report.uniformBackgroundSections,
+      'More than 70% of sections share the same background color. ' +
+        'Alternate backgrounds (e.g., white/muted/dark) to create visual rhythm.'
+    ).toBe(false);
   });
 });

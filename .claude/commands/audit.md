@@ -10,7 +10,9 @@ Generate a comprehensive quality report without modifying code.
 ## Workflow
 
 ### 1. Scan
-- Read `skills/anti-slop.md` for banned patterns
+- Read `skills/anti-slop.md` for banned patterns (including section 8: Layout Rhythm Bans)
+- Read `skills/layout-patterns.md` summary (first 40 lines) for layout vocabulary
+- Read `skills/visual-rhythm.md` for page-level pacing assessment
 - Read all target frontend files
 - Parse: HTML structure, CSS properties, class names, inline styles
 
@@ -48,6 +50,19 @@ Check for banned patterns:
 - Properties being animated
 - Duration ranges
 - Performance flags (animating layout properties)
+
+#### G. Layout Diversity
+- Count distinct grid patterns across sections
+- Check for consecutive identical layouts (anti-slop 8.1)
+- Verify section height variation (anti-slop 8.2)
+- Check centering diversity — not all sections center-aligned (anti-slop 8.3)
+- Background alternation patterns (anti-slop 8.4)
+
+#### H. Visual Rhythm
+- Section spacing variation (not all same py-XX)
+- Density wave assessment (dense/sparse alternation)
+- Background color transitions (chapter breaks)
+- Overall page pacing against templates in `visual-rhythm.md`
 
 ### 3. Scoring
 

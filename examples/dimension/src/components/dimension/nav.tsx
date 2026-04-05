@@ -2,59 +2,65 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image from "next/image";
+
+const links = ["Features", "Plugins", "Pricing"];
 
 export function Nav() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-20 border-b border-border bg-bg-main">
-      <nav className="mx-auto max-w-[1600px] h-full px-10 flex items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06]" style={{ height: 64 }}>
+      <div className="absolute inset-0 bg-bg-primary/80 backdrop-blur-xl" />
+      <nav
+        className="relative z-10 mx-auto h-full flex items-center justify-between"
+        style={{ maxWidth: 1280, padding: "0 24px" }}
+      >
         {/* Logo */}
-        <a href="#" className="relative w-[140px] h-[40px]">
-          <Image
-            src="/logo.svg"
-            alt="The Dimension Company"
-            fill
-            className="object-contain object-left"
-            priority
-          />
+        <a href="#" className="flex items-center gap-2.5 min-h-[44px]">
+          <svg width="26" height="26" viewBox="0 0 32 32" fill="none">
+            <path d="M16 2L28 16L16 30L4 16Z" stroke="currentColor" strokeWidth="1.5" />
+            <path d="M16 8L22 16L16 24L10 16Z" stroke="currentColor" strokeWidth="1" />
+            <circle cx="16" cy="16" r="2" fill="currentColor" />
+          </svg>
+          <span className="text-[16px] font-semibold font-heading text-text-primary">
+            Dimension
+          </span>
         </a>
 
-        {/* Center links — zoo.dev style uppercase */}
-        <div className="hidden lg:flex items-center gap-10">
-          {["Product", "Docs", "Pricing", "Enterprise"].map((link) => (
+        {/* Desktop links — center */}
+        <div className="hidden md:flex items-center gap-1">
+          {links.map((l) => (
             <a
-              key={link}
-              href={`#${link.toLowerCase()}`}
-              className="text-[11px] font-medium tracking-[0.15em] uppercase hover:opacity-40 transition-opacity duration-150"
+              key={l}
+              href={`#${l.toLowerCase()}`}
+              className="px-4 py-2 text-[14px] text-text-secondary hover:text-text-primary transition-colors duration-150"
             >
-              {link}
+              {l}
             </a>
           ))}
         </div>
 
-        {/* Right actions */}
-        <div className="hidden lg:flex items-center gap-3">
+        {/* Desktop CTA — right */}
+        <div className="hidden md:flex items-center gap-3">
           <a
             href="#"
-            className="text-[11px] font-medium tracking-[0.12em] uppercase border border-border px-4 py-2 rounded-[var(--radius)] hover:bg-accent hover:text-text-inverted transition-colors duration-150"
+            className="text-[14px] text-text-secondary hover:text-text-primary transition-colors duration-150"
           >
-            Sign In
+            Log in
           </a>
           <a
-            href="#waitlist"
-            className="text-[11px] font-medium tracking-[0.12em] uppercase bg-accent text-text-inverted px-4 py-2 rounded-[var(--radius)] hover:opacity-80 transition-opacity duration-150"
+            href="#start"
+            className="inline-flex items-center justify-center text-[13px] font-medium bg-accent text-bg-primary px-5 h-9 rounded-lg hover:bg-accent-hover transition-colors"
           >
-            Join Waitlist
+            Start Free
           </a>
         </div>
 
         {/* Mobile hamburger */}
         <button
-          className="lg:hidden w-10 h-10 flex items-center justify-center"
+          className="md:hidden w-11 h-11 flex items-center justify-center"
           onClick={() => setOpen(!open)}
-          aria-label="Toggle menu"
+          aria-label="Menu"
         >
           <div className="relative w-5 h-3">
             <span
@@ -75,30 +81,32 @@ export function Nav() {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="lg:hidden border-b border-border bg-bg-main overflow-hidden"
+            className="md:hidden relative z-10 bg-bg-primary/95 backdrop-blur-xl border-b border-white/[0.06]"
           >
-            <div className="px-10 py-8 flex flex-col gap-5">
-              {["Product", "Docs", "Pricing", "Enterprise"].map((link) => (
+            <div className="py-3">
+              {links.map((l) => (
                 <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  className="text-[14px] font-medium tracking-[0.1em] uppercase border-b border-border-light pb-3"
+                  key={l}
+                  href={`#${l.toLowerCase()}`}
+                  className="block px-6 py-3 text-[15px] text-text-secondary hover:text-text-primary"
                   onClick={() => setOpen(false)}
                 >
-                  {link}
+                  {l}
                 </a>
               ))}
-              <a
-                href="#waitlist"
-                className="mt-2 text-center text-[13px] font-semibold bg-accent text-text-inverted px-5 py-3 rounded-[var(--radius)]"
-                onClick={() => setOpen(false)}
-              >
-                Join Waitlist
-              </a>
+              <div className="px-5 pt-2 pb-3">
+                <a
+                  href="#start"
+                  className="block text-center text-[14px] font-medium bg-accent text-bg-primary py-3 rounded-lg"
+                  onClick={() => setOpen(false)}
+                >
+                  Start Free
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

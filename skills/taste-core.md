@@ -98,6 +98,8 @@ Choose ONE accent color. Use sparingly — max 10% of visible surface area.
 - All text must pass WCAG AA (4.5:1 normal text, 3:1 large text)
 - Gradients: subtle and functional only (e.g., fade to transparent for overflow). No decorative gradients.
 - No colored shadows (especially not neon glow)
+- Opacity technique: prefer `hsla()` or `/opacity` over layering elements with `opacity` prop (avoids unintended child transparency)
+- WCAG requires TWO accent shades: `--accent-bg` (darker, for buttons) + `--accent-text` (lighter, for links). A single accent fails both white-on-accent and accent-on-dark checks.
 
 ### Light Mode
 When light mode is needed, invert the scale:
@@ -112,7 +114,11 @@ When light mode is needed, invert the scale:
 
 ---
 
-## 4. Layout
+## 4. Layout & Spacing
+
+> **Layout patterns and section composition:** See `layout-patterns.md` for layout vocabulary (15+ patterns with code).
+> **Section pacing and visual rhythm:** See `visual-rhythm.md` for page-level composition templates.
+> **Content-to-layout routing:** See `content-layout-map.md` for deciding which layout fits each content type.
 
 ### Grid System
 - Use CSS Grid (not flexbox percentage math) for page-level layout
@@ -136,8 +142,10 @@ Use 8px base unit. All spacing values should be multiples of 4px.
 ```
 
 ### Section Spacing
-- Between major sections: py-24 to py-32 (96–128px)
-- Between subsections: py-12 to py-16 (48–64px)
+- Between major sections: VARY padding (see `visual-rhythm.md`). Never use the same py-XX on every section.
+- Compact: py-12 to py-16 (48–64px) — stat bars, logo strips, transitions
+- Standard: py-16 to py-24 (64–96px) — features, content sections
+- Breathing: py-24 to py-32 (96–128px) — hero, CTA, dramatic pauses
 - Inside cards/containers: p-6 to p-8 (24–32px)
 
 ### Responsive Breakpoints
@@ -155,6 +163,8 @@ xl:  1280px  (desktop)
 - Full-height sections: use `min-h-[100dvh]` (NOT `h-screen`)
 - No horizontal scroll on any viewport
 - Touch targets: minimum 44×44px on mobile
+- Z-index stacking context: use inline `style={{ zIndex }}` on sections, not wrapper div classes
+- `backgroundImage` + `backgroundColor` separately, never `background` shorthand (avoids computed bg transparency trap)
 
 ---
 
