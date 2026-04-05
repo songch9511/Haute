@@ -1,0 +1,140 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UDesigner Visual Oracle Verdict",
+  "description": "Structured output from the Visual Lane — a read-only vision agent that evaluates rendered design screenshots.",
+  "type": "object",
+  "required": ["scores", "composite_visual", "verdict", "critique", "weakest_section", "suggested_fix"],
+  "properties": {
+    "target": {
+      "type": "string",
+      "description": "URL or image path evaluated"
+    },
+    "reference": {
+      "type": ["string", "null"],
+      "description": "Reference URL or image path, if provided"
+    },
+    "scores": {
+      "type": "object",
+      "description": "Rubric scores 1-10 (higher = better, except ai_slop_smell where lower = better)",
+      "required": [
+        "first_impression_impact",
+        "composition_balance",
+        "typography_drama",
+        "color_harmony",
+        "ai_slop_smell",
+        "agency_tier_similarity"
+      ],
+      "properties": {
+        "first_impression_impact": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "5-second visual impact for a senior designer. Is the first screen memorable, not generic?"
+        },
+        "composition_balance": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Visual weight distribution across sections. Are section transitions thoughtful? Is the eye guided?"
+        },
+        "typography_drama": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Type hierarchy confidence — scale contrast, tracking, single-word emphasis, font pairing quality"
+        },
+        "color_harmony": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Palette coherence, contrast choices, accent restraint, saturation discipline"
+        },
+        "ai_slop_smell": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "Inverse scale — 1 = pristine, 10 = reeks of AI defaults (3-equal bento, center everything, purple-blue gradient, generic icons)"
+        },
+        "agency_tier_similarity": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "How close to Agency tier (journey-digital, pagebreak) or Tech tier (Vercel, Framer, Stripe) standards"
+        }
+      }
+    },
+    "composite_visual": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Aggregated 0-100 visual score. Formula: 10*(impact + composition + typography + color + (11 - ai_slop_smell) + agency_tier) / 6"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": ["APPROVE", "APPROVE_WARNING", "REJECT"],
+      "description": "APPROVE ≥ 90 visual / APPROVE_WARNING 70-89 / REJECT < 70"
+    },
+    "critique": {
+      "type": "array",
+      "description": "Specific issues, 1-5 bullet points. Each must name a concrete section and a concrete defect.",
+      "items": {
+        "type": "object",
+        "required": ["section", "issue", "severity"],
+        "properties": {
+          "section": {
+            "type": "string",
+            "description": "Section name as visible in the design (e.g., 'Hero', 'Pricing grid')"
+          },
+          "issue": {
+            "type": "string",
+            "description": "Concrete description of the defect (NOT vague — must reference specific visual attribute)"
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["blocker", "major", "minor"]
+          }
+        }
+      },
+      "minItems": 0,
+      "maxItems": 10
+    },
+    "weakest_section": {
+      "type": "string",
+      "description": "Single section name that most drags the composite down"
+    },
+    "suggested_fix": {
+      "type": "object",
+      "description": "ONE targeted fix. Must be actionable (section + change), never vague.",
+      "required": ["section", "change", "expected_delta"],
+      "properties": {
+        "section": { "type": "string" },
+        "change": {
+          "type": "string",
+          "description": "Exact change instruction (e.g., 'Hero title: increase from text-5xl to text-7xl, add italic emphasis on single word')"
+        },
+        "expected_delta": {
+          "type": "integer",
+          "description": "Expected composite_visual improvement if applied (1-20)"
+        }
+      }
+    },
+    "reference_similarity": {
+      "type": ["object", "null"],
+      "description": "Only populated when reference provided",
+      "properties": {
+        "semantic_match": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10,
+          "description": "How closely the vibe matches the reference (not pixels — aesthetic DNA)"
+        },
+        "divergences": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Named aspects where the output meaningfully differs from the reference"
+        }
+      }
+    },
+    "timestamp": { "type": "string", "format": "date-time" }
+  }
+}
