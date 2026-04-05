@@ -42,18 +42,38 @@
     "commit": "fd4766174dda2f35b02056a69f407fd1f16407cb",
     "snapshot_dir": null
   },
+  "verdict_history": [
+    {
+      "phase": "Phase 3 MVP live test (commit a7ed395)",
+      "composite": 61,
+      "visual": 37,
+      "code": 79,
+      "mechanical": 86,
+      "verdict_label": "REJECT",
+      "measured_at": "2026-04-05T13:55:00Z",
+      "notes": "Full 3-lane composite on live http://localhost:3000/catalis. Visual Oracle flagged 3 blockers (hero whitespace gutter, empty mid-page band, flat blue CTA placeholder) and 1 major (AI-slop equal-column card grid). Code Lane flagged 4 whileHover.boxShadow motion-prop errors across benefits/core-features/features/pricing. Mechanical 65/76. Phase 0 backfill was source-only — REJECT is calibrated truth not regression."
+    },
+    {
+      "phase": "Phase 6 step B — Code fix loop",
+      "code": 99,
+      "visual": null,
+      "mechanical": null,
+      "composite": null,
+      "verdict_label": "CODE_ONLY",
+      "measured_at": "2026-04-05T14:10:00Z",
+      "notes": "4 whileHover.boxShadow → CSS hover:shadow-* transition-shadow (motion keeps only y-offset). Code Lane: 79 → 99 (+20). Visual/Mechanical not re-run in this pass (would require dev server restart + new Visual Oracle sub-agent). Only remaining Code Lane warning: no-h-screen on hero.tsx:70 (intentional full-viewport hero, stylistic)."
+    }
+  ],
   "verdict": {
-    "composite": null,
-    "visual": null,
-    "code": null,
-    "mechanical": null,
-    "notes": "Phase 0 backfill — no Oracle verdict recorded. Entry is historically known-good (shipped)."
+    "latest_code_score": 99,
+    "latest_verdict_label": "CODE_ONLY_PASS",
+    "notes": "See verdict_history for full composite measurements. Latest composite not yet recomputed post-fix."
   },
   "artifacts": {
-    "screenshot_desktop": null,
-    "screenshot_mobile": null,
+    "screenshot_desktop": "verifier/.visual-oracle-captures/localhost_3000_catalis-desktop.png",
+    "screenshot_mobile": "verifier/.visual-oracle-captures/localhost_3000_catalis-mobile.png",
     "embedding": null
   },
   "parent": null,
-  "status": "shipped"
+  "status": "shipped-with-defects"
 }

@@ -97,9 +97,9 @@ export function CatalisBenefits() {
           {benefits.map((b, i) => (
             <StaggerItem key={b.title}>
               <motion.div
-                whileHover={{ y: -4, boxShadow: "0 12px 32px rgba(0,0,0,0.15)" }}
+                whileHover={{ y: -4 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="bg-white rounded-[2rem] p-7 shadow-[0_0_32px_rgba(0,0,0,0.07)] flex flex-col gap-4 h-full"
+                className="bg-white rounded-[2rem] p-7 shadow-[0_0_32px_rgba(0,0,0,0.07)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] transition-shadow duration-200 flex flex-col gap-4 h-full"
               >
                 <div className="w-11 h-11 rounded-xl bg-[#0054f9]/5 flex items-center justify-center">
                   {b.icon}

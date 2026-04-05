@@ -213,9 +213,9 @@ export function CatalisFeatures() {
           {features.map((f) => (
             <StaggerItem key={f.title}>
               <motion.div
-                whileHover={{ y: -3, boxShadow: "0 12px 32px rgba(0,0,0,0.1)" }}
+                whileHover={{ y: -3 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="bg-white rounded-[2rem] p-7 shadow-[0_0_32px_rgba(0,0,0,0.07)] flex flex-col gap-4 h-full"
+                className="bg-white rounded-[2rem] p-7 shadow-[0_0_32px_rgba(0,0,0,0.07)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.1)] transition-shadow duration-200 flex flex-col gap-4 h-full"
               >
                 <span className="self-start text-[10px] font-semibold tracking-[0.06rem] uppercase text-[#0054f9] bg-[#0054f9]/5 border border-[#0054f9]/15 px-3.5 py-1.5 rounded-full">
                   {f.tag}

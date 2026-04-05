@@ -83,9 +83,9 @@ export function CatalisPricing() {
           {plans.map((plan) => (
             <StaggerItem key={plan.name}>
               <motion.div
-                whileHover={{ y: -4, boxShadow: "0 12px 32px rgba(0,0,0,0.15)" }}
+                whileHover={{ y: -4 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="bg-white rounded-[2rem] p-8 flex flex-col gap-6 h-full shadow-[0_0_32px_rgba(0,0,0,0.07)]"
+                className="bg-white rounded-[2rem] p-8 flex flex-col gap-6 h-full shadow-[0_0_32px_rgba(0,0,0,0.07)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.15)] transition-shadow duration-200"
               >
                 <div>
                   <div className="flex items-center gap-2 mb-4">
