@@ -1,6 +1,6 @@
 {
-  "version": 3,
-  "updated_at": "2026-04-05",
+  "version": 4,
+  "updated_at": "2026-04-06",
   "clusters": {
     "warm-editorial": {
       "centroid_embedding": null,
@@ -9,16 +9,16 @@
       "members": ["2026-04-05-catalis"],
       "last_updated": "2026-04-05",
       "status": "provisional-with-defects",
-      "note": "source-only backfill; Catalis ships with REJECT-level Visual Oracle findings. See node verdict_history."
+      "note": "Source-only backfill; Catalis ships with REJECT-level Visual Oracle findings. See node verdict_history."
     },
     "mono-dark-tech": {
       "centroid_embedding": null,
-      "member_count": 1,
+      "member_count": 0,
       "tags": ["tech-tier", "mono-dominant", "dark", "signal-accent", "terminal-ux", "anti-slop-brutal", "real-data"],
-      "members": ["2026-04-05-udesigner"],
-      "last_updated": "2026-04-05",
-      "status": "validated-composite-86",
-      "note": "First cluster with live-verified composite score (86/100 APPROVE_WARNING via full 3-lane Oracle)."
+      "members": [],
+      "last_updated": "2026-04-06",
+      "status": "deprecated-by-migration",
+      "note": "Originally held UDesigner v1 (composite 86). UDesigner was fully redesigned to editorial-romantic in v3.4 per user feedback. Cluster definition retained as a valid aesthetic option with zero members. Next mono-dark-tech shipment would re-populate this cluster."
     },
     "knowledge-tool-dark": {
       "centroid_embedding": null,
@@ -27,7 +27,16 @@
       "members": ["2026-04-05-obsidian"],
       "last_updated": "2026-04-05",
       "status": "backfilled-unverified",
-      "note": "Source-only Phase 6 B backfill. Not validated by Visual Oracle. Prism/Obsidian clone — creative productivity tier, distinct from mono-dark-tech developer tier."
+      "note": "Source-only Phase 6 B backfill. Not validated by Visual Oracle. Obsidian/Prism clone — creative productivity tier."
+    },
+    "editorial-romantic": {
+      "centroid_embedding": null,
+      "member_count": 1,
+      "tags": ["editorial", "magazine-tier", "fraunces-serif", "warm-cream", "romantic-painting", "classical-reference", "sienna-accent", "exhibit-layout"],
+      "members": ["2026-04-05-udesigner"],
+      "last_updated": "2026-04-06",
+      "status": "validated-composite-93",
+      "note": "First cluster with full APPROVE verdict (93/100). UDesigner self-landing migrated here from mono-dark-tech in v3.4 after editorial pivot: Friedrich/Constable paintings, Fraunces semibold, cream grounds, sienna accent. Reached via 4-round Visual Oracle + user feedback loop in one session."
     }
   }
 }

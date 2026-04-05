@@ -54,26 +54,21 @@ export function UdHowItWorks() {
         </motion.div>
       </div>
 
-      {/* Horizontal scroll strip — flat editorial columns */}
-      <div className="overflow-x-auto snap-x snap-mandatory scroll-pl-6 md:scroll-pl-12 pb-6 px-6 md:px-12">
-        <div className="flex gap-0 w-max items-start">
+      {/* Horizontal scroll strip — centered editorial columns, scroll only when overflowed */}
+      <div className="max-w-[1360px] mx-auto overflow-x-auto snap-x snap-mandatory scroll-pl-6 md:scroll-pl-12 pb-6 px-6 md:px-12">
+        <div className="flex gap-0 items-start justify-start md:justify-center">
           {STEPS.map((step, i) => (
             <motion.figure
               key={step.n}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
-              className="snap-start w-[280px] md:w-[320px] shrink-0 flex flex-col pr-8 md:pr-10 pl-7 md:pl-8 border-l border-[#c4ae82]"
+              className="snap-start w-[240px] md:w-[248px] shrink-0 flex flex-col pr-6 md:pr-7 pl-6 md:pl-7 border-l border-[#c4ae82]"
             >
-              <div className="flex items-baseline justify-between mb-5">
-                <span className="font-[family-name:var(--font-geist-mono)] text-[10px] uppercase tracking-[0.24em] text-[#8a3a1e]">
-                  Movement
-                </span>
-                <span className="font-[family-name:var(--font-cormorant)] font-semibold italic text-[52px] md:text-[64px] leading-[0.8] text-[#120e08]">
-                  {step.n}
-                </span>
+              <div className="mb-6 font-[family-name:var(--font-geist-mono)] text-[10px] uppercase tracking-[0.24em] text-[#8a3a1e]">
+                Movement · <span className="text-[#6b5a4a]">{step.n}</span>
               </div>
-              <h3 className="font-[family-name:var(--font-cormorant)] font-semibold text-[34px] md:text-[38px] leading-[0.96] tracking-[-0.02em] text-[#120e08]">
+              <h3 className="font-[family-name:var(--font-cormorant)] font-semibold text-[38px] md:text-[44px] leading-[0.96] tracking-[-0.02em] text-[#120e08]">
                 {step.title}
               </h3>
               <p className="mt-5 text-[14px] md:text-[15px] leading-[1.65] text-[#2a1d10] font-[family-name:var(--font-geist-sans)] max-w-[32ch]">

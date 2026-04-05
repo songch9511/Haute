@@ -110,7 +110,7 @@ export function UdHero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-8 font-[family-name:var(--font-geist-mono)] text-[11px] md:text-[12px] text-[#faf6ea]/70 tracking-wide"
+          className="mt-8 font-[family-name:var(--font-geist-mono)] text-[13px] md:text-[15px] text-[#faf6ea]/80 tracking-wide"
           style={{ textShadow: "0 1px 16px rgba(18,14,8,0.55)" }}
         >
           <span className="text-[#ffd4a8]">$</span>{" "}

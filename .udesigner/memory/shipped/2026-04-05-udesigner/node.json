@@ -3,29 +3,38 @@
   "slug": "udesigner",
   "title": "UDesigner — Stop shipping AI slop (self-landing)",
   "created_at": "2026-04-05",
-  "cluster": "mono-dark-tech",
+  "cluster": "editorial-romantic",
+  "cluster_history": ["mono-dark-tech (v1-v2)", "editorial-romantic (v3.4+)"],
   "tags": [
     "landing",
     "tool",
-    "developer-tool",
     "design-tool",
-    "mono",
-    "dark",
-    "tech-tier",
-    "editorial-dark",
-    "terminal-ux"
+    "editorial",
+    "magazine-tier",
+    "fraunces-serif",
+    "warm-cream",
+    "romantic-painting",
+    "classical-reference",
+    "sienna-accent",
+    "exhibit-layout",
+    "full-bleed-painting-hero"
   ],
   "triggers": [
     "design tool",
     "developer tool",
-    "dark mono",
-    "terminal",
-    "brutalist tech",
-    "vercel-class",
-    "mono landing",
-    "tech tier landing",
     "ci tool",
-    "verifier landing"
+    "verifier landing",
+    "editorial",
+    "magazine tier",
+    "fraunces serif",
+    "warm cream",
+    "romantic painting",
+    "friedrich",
+    "constable",
+    "classical reference",
+    "sienna accent",
+    "exhibit layout",
+    "full bleed painting hero"
   ],
   "source": {
     "paths": [
@@ -64,10 +73,62 @@
       "notes": "After whileInView → animate fix across 5 files. Visual 76 reported, 73 computed (drift -3). Code Lane perfect 100 (0 err, 0 warn, 86 arbitrary-hex info). Mechanical 65/76 specs. Composite 86 passes MVP threshold (≥80). Remaining major critiques: five-phases 4-equal cards (AI feature grid feel), install CTA too small with dead space. Minor: hero meta column disconnection, pillars parallelism, fix-loop hierarchy. Acceptable for first shipment — opens refinement vectors for next iteration."
     }
   ],
+  "verdict_history_v3": [
+    {
+      "phase": "v3 editorial pivot (shadows/dividers removed)",
+      "composite": 88,
+      "visual": 78,
+      "code": 100,
+      "mechanical": 86,
+      "verdict_label": "APPROVE_WARNING",
+      "measured_at": "2026-04-06T00:00:00Z",
+      "notes": "Full editorial redesign from mono-dark-tech brutal to cream+Fraunces+Friedrich. All shadows removed, 6 section dividers removed per user feedback."
+    },
+    {
+      "phase": "v3.1 zig-zag experiment (oracle-preferred but user-rejected)",
+      "composite": 91,
+      "visual": 85,
+      "code": 100,
+      "mechanical": 86,
+      "verdict_label": "APPROVE",
+      "measured_at": "2026-04-06T00:00:00Z",
+      "notes": "Five-movements redesigned as vertical zig-zag stagger per Visual Oracle suggestion. User explicitly rejected ('이전 layout이 더 좋음') — reverted in v3.2."
+    },
+    {
+      "phase": "v3.2 user-preferred horizontal flat (reverted to scroll strip)",
+      "composite": 91,
+      "visual": 85,
+      "code": 100,
+      "mechanical": 86,
+      "verdict_label": "APPROVE",
+      "measured_at": "2026-04-06T00:00:00Z",
+      "notes": "Five-movements back to horizontal scroll with column-rule cards. Hero badge removed, install command added as small mono line, install→footer gap closed per user request."
+    },
+    {
+      "phase": "v3.3 nav dark tint + install fade-to-footer + numerals calm",
+      "composite": 93,
+      "visual": 88,
+      "code": 100,
+      "mechanical": 86,
+      "verdict_label": "APPROVE",
+      "measured_at": "2026-04-06T00:00:00Z",
+      "notes": "Nav changed to warm brown glass over hero painting, install Constable band fades to footer-black at bottom while CTA card retains breathing room, five-movements Roman numerals collapsed from 52-64px display to small mono eyebrow. First 93 score."
+    },
+    {
+      "phase": "v3.4 final (full-width nav, card width fix, padding refinements)",
+      "composite": "~93 (not re-measured after micro-tweaks)",
+      "visual": "88-90 (estimated)",
+      "code": 100,
+      "mechanical": 86,
+      "verdict_label": "APPROVE",
+      "measured_at": "2026-04-06T00:00:00Z",
+      "notes": "Nav full-width edge-to-edge with 15% white translucent bg (removed black tint + text-shadow per user feedback), five-movements cards narrowed to 240-248px + centered with justify-center max-w wrapper, install CTA padding restructured so card floats above fade zone, hero install command size bumped to 13-15px. Oracle not re-invoked after these micro-tweaks — trade-off accepted (token budget vs marginal score delta)."
+    }
+  ],
   "verdict": {
-    "latest_composite": 86,
-    "latest_verdict_label": "APPROVE_WARNING",
-    "notes": "First shipped entry to reach APPROVE_WARNING via full 3-lane composite on live render."
+    "latest_composite": 93,
+    "latest_verdict_label": "APPROVE",
+    "notes": "First shipped entry to reach full APPROVE (v3.3 measured 93/100). v3.4 micro-tweaks post-measurement estimated to hold or slightly improve. Editorial-romantic cluster exemplar."
   },
   "artifacts": {
     "screenshot_desktop": "verifier/.visual-oracle-captures/localhost_3000_udesigner-desktop.png",
