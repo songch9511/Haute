@@ -863,6 +863,70 @@ rules.push({
   },
 });
 
+// L2.27 — useScroll/useTransform in non-hero body sections (prefer CSS scroll-timeline)
+rules.push({
+  id: 'prefer-css-scroll-timeline',
+  severity: 'error',
+  category: 'motion',
+  description: 'Non-hero sections must use CSS animation-timeline: view()/scroll() for scroll-linked animation, not framer-motion useScroll/useTransform',
+  run({ ast, file }) {
+    if (!ast || isHeroFile(file)) return [];
+    const MOTION_PKGS = new Set(['framer-motion', 'motion/react', 'motion']);
+    const TARGET_SPECIFIERS = new Set(['useScroll', 'useTransform']);
+    const violations = [];
+    traverse(ast, {
+      ImportDeclaration(pathNode) {
+        const src = pathNode.node.source && pathNode.node.source.value;
+        if (!MOTION_PKGS.has(src)) return;
+        for (const spec of pathNode.node.specifiers) {
+          if (spec.type !== 'ImportSpecifier') continue;
+          const imported = spec.imported && spec.imported.name;
+          if (TARGET_SPECIFIERS.has(imported)) {
+            violations.push({
+              file,
+              line: spec.loc && spec.loc.start.line,
+              message: `${imported} imported from "${src}" in non-hero file — prefer CSS "animation-timeline: view()" for scroll-linked reveals (GPU composited, no main-thread cost)`,
+            });
+          }
+        }
+      },
+    });
+    return violations;
+  },
+});
+
+// L2.28 — 3+ arbitrary-value HEX hover/active states per file (prefer oklch + color-mix)
+rules.push({
+  id: 'prefer-color-mix-for-states',
+  severity: 'error',
+  category: 'color',
+  description: 'Do not hand-pick parallel HEX for hover/active/pressed states — declare one oklch accent and derive variants via color-mix()',
+  run({ code, file }) {
+    const violations = [];
+    // Matches Tailwind arbitrary values like hover:bg-[#8b5cf6], active:text-[#7c3aed], focus:border-[#fff0aa]
+    const re = /\b(?:hover|active|focus|pressed|group-hover):(?:bg|text|border|ring|from|to|via|fill|stroke|shadow|decoration|outline)-\[#([0-9a-fA-F]{3,8})\]/g;
+    const hits = [];
+    const lines = code.split('\n');
+    lines.forEach((line, i) => {
+      let m;
+      // Reset lastIndex defensively between lines
+      re.lastIndex = 0;
+      while ((m = re.exec(line)) !== null) {
+        hits.push({ line: i + 1, hex: m[1] });
+      }
+    });
+    if (hits.length >= 3) {
+      const firstLine = hits[0].line;
+      violations.push({
+        file,
+        line: firstLine,
+        message: `${hits.length} arbitrary-value HEX state classes in file (e.g., hover:bg-[#…]) — declare one oklch accent in a CSS var and derive hover/active/pressed via color-mix(in oklch, …); see taste-core.md §3`,
+      });
+    }
+    return violations;
+  },
+});
+
 // ─────────────────────────────────────────────────────────────────
 // Runner
 // ─────────────────────────────────────────────────────────────────

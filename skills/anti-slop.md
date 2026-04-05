@@ -174,6 +174,18 @@ Every pattern below is a known "AI tell" — a design choice that signals the in
 - **Instead:** If background brightness > 70%, text must be dark (`#191918` or similar).
 - **Detection:** Compute bg luminance; if > 0.7, check text luminance < 0.3.
 
+### 6.4 JS scroll-linked animation when CSS scroll-timeline fits
+- **Banned:** `useScroll` / `useTransform` imported from `framer-motion` or `motion/react` in non-hero body sections for standard parallax / progress reveals.
+- **Why:** Runs on the main thread and requires JS hydration before motion starts; CSS `animation-timeline: view()` is GPU-composited and works pre-hydration. Baseline 2024 on Chrome/Edge/Safari.
+- **Instead:** `@keyframes` + `animation-timeline: view()` + `animation-range: entry X cover Y`. Hero remains exempt (immediate `animate` prop).
+- **Detection:** Import specifier `useScroll` or `useTransform` from `framer-motion` or `motion/react` in a non-hero file.
+
+### 6.5 Parallel HEX hover/active state tokens (instead of color-mix)
+- **Banned:** Tailwind arbitrary values like `hover:bg-[#8b5cf6]`, `active:bg-[#7c3aed]`, `hover:text-[#...]` counting 3+ per file. Also banned: declaring `--accent`, `--accent-hover`, `--accent-pressed` as three parallel HEX constants.
+- **Why:** State colors should be perceptually derived from the canonical accent. Hand-picked HEX variants drift under theme change and produce hue shifts; `color-mix(in oklch, …)` fixes both.
+- **Instead:** Declare one oklch token, derive states with `color-mix()`. See `taste-core.md` §3 Modern color layer.
+- **Detection:** Count arbitrary-value hover/active classes with explicit `#rrggbb` in className literals. Fail at 3+.
+
 ---
 
 ## 7. Verifier Rules
@@ -204,6 +216,8 @@ INTERACTION_CHECKS:
   - useInView on element within first 400px of viewport → FAIL
   - text-align: center on paragraph with 3+ rendered lines → WARN
   - white/light text (luminance > 0.7) on bright bg (luminance > 0.7) → FAIL
+  - useScroll/useTransform imported in non-hero file → FAIL
+  - 3+ arbitrary-value hover HEX classes (hover:bg-[#…]) per file → FAIL
 
 CONTENT_CHECKS:
   - "John Doe" | "Jane Smith" | "Lorem ipsum" → FAIL

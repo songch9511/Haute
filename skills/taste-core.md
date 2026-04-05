@@ -101,6 +101,31 @@ Choose ONE accent color. Use sparingly — max 10% of visible surface area.
 - Opacity technique: prefer `hsla()` or `/opacity` over layering elements with `opacity` prop (avoids unintended child transparency)
 - WCAG requires TWO accent shades: `--accent-bg` (darker, for buttons) + `--accent-text` (lighter, for links). A single accent fails both white-on-accent and accent-on-dark checks.
 
+### Modern color layer — oklch + color-mix (2026-04, required for new designs)
+
+Declare the canonical accent in **oklch** and derive hover/active/subtle states via `color-mix()` rather than hand-picking extra HEX values. oklch is perceptually uniform (channel shifts preserve chroma) and `color-mix()` removes the combinatorial state-token explosion.
+
+```css
+:root {
+  /* Canonical — pick ONE per accent */
+  --accent: oklch(0.74 0.17 158);          /* green */
+  --surface: oklch(0.18 0.01 240);          /* near-black canvas */
+  --ink: oklch(0.96 0 0);                   /* off-white text */
+
+  /* Derived — never hand-pick these as separate hex */
+  --accent-hover:   color-mix(in oklch, var(--accent) 88%, black);
+  --accent-pressed: color-mix(in oklch, var(--accent) 78%, black);
+  --accent-subtle:  color-mix(in oklch, var(--accent) 14%, var(--surface));
+  --ink-muted:      color-mix(in oklch, var(--ink) 62%, var(--surface));
+}
+```
+
+Rules:
+- New designs declare accent/surface/ink as oklch. HEX is permitted only as a comment reference.
+- State variants (hover/active/pressed/subtle) MUST be derived with `color-mix()`. Do NOT declare three parallel HEX constants for the same accent.
+- Tailwind arbitrary values like `hover:bg-[#8b5cf6]` counting 3+ per file are a Code Oracle error — move the accent into a CSS variable and use `color-mix()`.
+- Fallback: wrap in `@supports (color: color-mix(in oklch, red, blue))` only if targeting browsers older than 2024; current Baseline covers Chrome/Edge/Safari/Firefox.
+
 ### Light Mode
 When light mode is needed, invert the scale:
 ```
@@ -237,3 +262,17 @@ Never use generic placeholder data. Generate realistic content:
 - `useEffect` animations MUST have cleanup functions
 - Heavy perpetual animations: isolate in own Client Component
 - Image: always specify width/height or aspect-ratio to prevent CLS
+
+### Scroll-linked animation — prefer CSS `scroll-timeline` / `view()`
+
+For body-section reveals and parallax, prefer native CSS scroll-driven animations over `useScroll` + `useTransform`. They run off the main thread and are GPU-composited by default.
+
+```css
+@keyframes slide-up { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+.reveal { animation: slide-up linear both; animation-timeline: view(); animation-range: entry 0% cover 30%; }
+```
+
+Rules:
+- New body sections use CSS `animation-timeline: view()` for enter reveals. Hero is exempt (immediate `animate`).
+- Importing `useScroll` / `useTransform` from `framer-motion` or `motion/react` in a non-hero file is a Code Oracle error. Move to CSS scroll-timeline unless the mapping is non-linear and genuinely requires JS (document the reason inline).
+- Firefox lacks full support — include a `@supports (animation-timeline: view())` guard when the reveal is load-bearing; otherwise fall back to visible-at-rest (no hidden content).
