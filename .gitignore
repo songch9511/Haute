@@ -21,6 +21,10 @@ brand-assets/
 .udesigner/.resumed
 .udesigner/session.json
 .udesigner/failure-log.md
+.udesigner/failures.json
+.udesigner/phase.json
+.udesigner/tasks.json
+.udesigner/feedback-digest.json
 
 # OMC local state
 .omc/
