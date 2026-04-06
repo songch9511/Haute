@@ -22,5 +22,24 @@ brand-assets/
 .udesigner/session.json
 .udesigner/failure-log.md
 
+# OMC local state
+.omc/
+**/.omc/
+
+# Verifier ephemeral captures & screenshots
+verifier/.visual-oracle-captures/
+verifier/oracle-*.png
+verifier/ref-*.png
+verifier/verify-*.png
+verifier/test-results/
+
+# SQLite ephemeral files
+*.db-shm
+*.db-wal
+*.db-journal
+
+# Ephemeral state signals
+state/cancel-signal-state.json
+
 # Nested git repos
 templates/next-app/.git
